@@ -18,7 +18,7 @@
 				<h2>Email</h2>
 				<p>ex@hmail.net</p>
 				<h2>Phone</h2>
-				<p>010-2869-4100</p>
+				<p>010-2869-4100</p> 
 			</div>
 		</div>
 		<div class=footer_bottom>
