@@ -1,0 +1,27 @@
+@charset "UTF-8";
+footer{
+	background-color: #95d595;
+}
+
+.footer_main{
+	display: flex;
+	margin: 0 auto;
+    width: 980px;
+}
+
+.footer_main_logo{
+	margin-right: 135px;
+    padding: 25px;
+}
+
+.footer_main_text{
+    color: white;
+}
+
+.footer_bottom{
+    text-align: center;
+    color: white;
+    font-family: math;
+    font-size: larger;
+    padding: 20px;
+}
