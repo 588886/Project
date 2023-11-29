@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+#jido {
+	margin: 0 auto;
+	width: 800px;
+}
+
+#jido h1{
+    text-align: center;
+    font-size: 50px;
+    font-family: serif;
+    color: darkgreen;
+}
+
+#jido h2{
+    font-size: 30px;
+    font-family: serif;
+    color: darkgreen;
+}
+#jido h3{
+    font-family: serif;
+    color: darkgreen;
+}
+
+.jihachul{
+	text-indent: -9999px;
+	overflow: hidden;
+	float: left;
+	width: 14px;
+	height: 14px;
+	margin-right: 5px;
+	background: url(//t1.daumcdn.net/localimg/localimages/07/2018/pc/ico_traffic_220511.png) no-repeat;
+	background-position: -180px 0;
+}
+
+.jihachulp{
+    position: relative;
+    top: -4px;
+}
+
+.busgansun{
+	text-indent: -9999px;
+	overflow: hidden;
+	float: left;
+	width: 26px;
+	height: 16px;
+	margin-right: 5px;
+	background: url(//t1.daumcdn.net/localimg/localimages/07/2018/pc/ico_traffic_220511.png) no-repeat;
+	background-position:0 -410px;
+}
+
+.busjisun{
+	text-indent: -9999px;
+	overflow: hidden;
+	float: left;
+	width: 26px;
+	height: 16px;
+	margin-right: 5px;
+	background: url(//t1.daumcdn.net/localimg/localimages/07/2018/pc/ico_traffic_220511.png) no-repeat;
+	background-position:-60px -410px;
+}
+
+.busgwang{
+	text-indent: -9999px;
+	overflow: hidden;
+	float: left;
+	width: 26px;
+	height: 16px;
+	margin-right: 5px;
+	background: url(//t1.daumcdn.net/localimg/localimages/07/2018/pc/ico_traffic_220511.png) no-repeat;
+	background-position:-360px -410px;
+}
+
+.busnung{
+	text-indent: -9999px;
+	overflow: hidden;
+	float: left;
+	width: 34px;
+	height: 16px;
+	margin-right: 5px;
+	background: url(//t1.daumcdn.net/localimg/localimages/07/2018/pc/ico_traffic_220511.png) no-repeat;
+	background-position:0 -430px;
+}
+
+.busp{
+    position: relative;
+    top: -3px;
+}
