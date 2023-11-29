@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>한울스마트팜</title>
-	<link href="<c:url value='/css/home.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
+	<link href="<c:url value='/css/home.css'/>" rel="stylesheet" />
 </head>
 <body>
 	<footer>
