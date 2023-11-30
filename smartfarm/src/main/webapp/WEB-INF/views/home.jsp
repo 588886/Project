@@ -4,9 +4,10 @@
 <html>
 <head>
 	<title>한울스마트팜</title>
+	
+    <link href="<c:url value='/css/home.css'/>" rel="stylesheet" />
 </head>
 <body>
 
-asfdqwer
 </body>
 </html>
