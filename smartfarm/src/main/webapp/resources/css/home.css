@@ -1,4 +1,23 @@
 @charset "UTF-8";
+.d-flex{
+	display: flex;
+	flex-direction: column;
+}
+header{
+	display: flex;
+    justify-content: space-between;
+    background-color: darkseagreen;
+    padding: 20px 50px;
+    align-items: center;
+}
+
+header .list-group a{
+	color:white;
+	font-family: math;
+	font-size: xxx-large;
+    margin: 10px;
+}
+
 footer{
 	background-color: #95d595;
 }
@@ -12,6 +31,7 @@ footer{
 .footer_main_logo{
 	margin-right: 135px; 
     padding: 25px;
+    margin-left: 70px;
 }
 
 .footer_main_text{

@@ -13,7 +13,7 @@
 <body>
 	<div id="jido">
 		<div><h1>오시는 길</h1></div>
-		<div>
+		<div class="magin_bottom_30">
 		<div id="map" style="width:100%; height:400px;"/>
 		</div>
 		<div><h2>Address</h2></div>
@@ -21,15 +21,15 @@
 		<div><h2>교통정보</h2></div>
 		<div><h3>지하철</h3></div>
 		<div>
-			<span class="jihachul">광주 1호선</span><p class=jihachulp>농성역 │ 7번 출구 도보6분</p>
-			<span class="jihachul">광주 1호선</span><p class=jihachulp>돌고개역 │ 3번 출구 도보13분</p>
+			<div class=jido_text><span class="jihachul">광주 1호선</span><p class=jihachulp>농성역 │ 7번 출구 도보6분</p></div>
+			<div class=jido_text> <span class="jihachul">광주 1호선</span><p class=jihachulp>돌고개역 │ 3번 출구 도보13분</p></div>
 		</div>
 		<div><h3>버스</h3></div>
 		<div>
-			<span class="busgansun">간선</span><p class="busp">금호36 │ 문흥39 │ 봉선37 │ 송정19 │ 수완12 │ 지원25</p>
-			<span class="busjisun">지선</span><p class="busp">1187 │ 송암68 │ 송암72 │ 지원56</p>
-			<span class="busgwang">광역</span><p class="busp">160 │ 161</p>
-			<span class="busnung">농어촌</span><p class="busp">200</p>
+			<div class=jido_text><span class="busgansun">간선</span><p class="busp">금호36 │ 문흥39 │ 봉선37 │ 송정19 │ 수완12 │ 지원25</p></div>
+			<div class=jido_text><span class="busjisun">지선</span><p class="busp">1187 │ 송암68 │ 송암72 │ 지원56</p></div>
+			<div class=jido_text><span class="busgwang">광역</span><p class="busp">160 │ 161</p></div>
+			<div class=jido_text><span class="busnung">농어촌</span><p class="busp">200</p></div>
 		</div>
 	</div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f66b96847a2059f0fcba4e3f2429b255"></script>
