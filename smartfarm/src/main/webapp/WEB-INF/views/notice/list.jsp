@@ -32,16 +32,17 @@
                 <div class="row g-0">
                    <c:if test="${not empty vo.filepath}">
                     <div class="col-md-4">
+                       <a class="text-link" href="<c:if test="${vo.indent > 0}">reply/</c:if>info?id=${vo.id }&${params}">
                        <img src="${vo.filepath}" class="img-fluid rounded-start" alt="공지 이미지" style="width: 100%;">
+                       </a>
                     </div>
                    </c:if>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <a class="text-link" href="<c:if test="${vo.indent > 0}">reply/</c:if>info?id=${vo.id }&${params}">
-                                <h5 class="card-title">${vo.title}</h5>
+                            <a class="text-link" href="<c:if test="${vo.indent > 0}">reply/</c:if>info?id=${vo.id }&${params}" style="text-decoration:none; color: #000">
+                                <h4 class="card-title">${vo.title}</h4>
+                            <p class="card-text my-5">${vo.content}</p>
                             </a>
-                            <p class="card-text">${vo.content}</p>
-                            <p class="card-text"><small class="text-body-secondary">${vo.name} | ${vo.writedate}</small></p>
                         </div>
                     </div>
                 </div>
