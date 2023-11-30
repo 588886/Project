@@ -79,7 +79,7 @@
 					</div>
 					<div class="footer_main_text">
 						<h2>Address</h2>
-						<p>광주광역시 서구 경열로 3 302호 </p>
+						<p>광주광역시 서구 경열로 3 302호1</p>
 						<h2>Email</h2>
 						<p>ex@hmail.net</p>
 						<h2>Phone</h2>
