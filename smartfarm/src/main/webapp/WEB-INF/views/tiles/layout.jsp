@@ -45,7 +45,7 @@
 			<div class="list-group">
                 <a href="<c:url value='/main/show'/>" class="${category eq 'ma' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3 ps-4">HOME</a>
                 <a href="<c:url value='/aboutUs/list'/>" class="${category eq 'ab' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3 ps-4">ABOUT US</a>
-                <a href="<c:url value='/service/list'/>" class="${category eq 'se' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3 ps-4">SERVICE</a>
+                <a href="<c:url value='/program'/>" class="${category eq 'se' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3 ps-4">PROGRAM</a>
                 <a href="<c:url value='/notice/list'/>" class="${category eq 'no' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3 ps-4">BOARD</a>
             </div>
     	</header>
