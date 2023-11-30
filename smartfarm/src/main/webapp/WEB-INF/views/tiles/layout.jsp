@@ -36,62 +36,45 @@
 </head>
 <body>
     <div class="d-flex" id="wrapper">
-        <!-- Sidebar-->
-        <div class="border-end bg-white" id="sidebar-wrapper">
-            <div class="sidebar-heading border-bottom bg-light">
+    	<header>
+    		<div >
             	<a href="<c:url value='/'/>">
-	            	<img class="me-2"  style="width:20%" src="<c:url value='/img/hanul.logo.png'/>">
-	            	<span>e-IoT 융합SW</span>
+	            	<img src="<c:url value='/img/hanul.logo.png'/>">
             	</a>
 			</div>
-            <div class="list-group list-group-flush">
-                <a class="${category eq 'cu'? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3 ps-4" 
-                	href="<c:url value='/list.cu'/>">고객관리</a>
-                <a href="<c:url value='/hr/list'/>" 
-                class="${category eq 'hr' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3 ps-4">사원관리</a>
-                <a href="<c:url value='/notice/list'/>" class="${category eq 'no' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3 ps-4">공지사항</a>
-                <a href="<c:url value='/board/list'/>" class="${category eq 'bo' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3 ps-4">방명록</a>
-                <a href="<c:url value='/data/list'/>" class="${category eq 'da' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3 ps-4">공공데이터</a>
-                <a href="<c:url value='/visual/list'/>" class="${category eq 'vi' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3 ps-4">시각화</a>
+			<div class="list-group">
+                <a href="<c:url value='/main/show'/>" class="${category eq 'ma' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3 ps-4">HOME</a>
+                <a href="<c:url value='/aboutUs/list'/>" class="${category eq 'ab' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3 ps-4">ABOUT US</a>
+                <a href="<c:url value='/program'/>" class="${category eq 'se' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3 ps-4">PROGRAM</a>
+                <a href="<c:url value='/notice/list'/>" class="${category eq 'no' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3 ps-4">BOARD</a>
             </div>
-        </div>
+    	</header>
+        
         <!-- Page content wrapper-->
-        <div id="page-content-wrapper">
-            <!-- Top navigation-->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <div class="container-fluid">
-                    <button class="btn btn-primary" id="sidebarToggle">Toggle Menu</button>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    
-                </div>
-            </nav>
+        <div >
             
-            <!-- Page content-->
-            <div class="container-fluid pt-4">
                <tiles:insertAttribute name="container"/>
-            </div>
-            
-            <!-- footer -->
-            <footer>
-				<div class="footer_main">
-					<div class="footer_main_logo">
-						<img alt="logo" src="<c:url value='/img/hanul.logo.png'/>">
-					</div>
-					<div class="footer_main_text">
-						<h2>Address</h2>
-						<p>광주광역시 서구 경열로 3 302호1</p>
-						<h2>Email</h2>
-						<p>ex@hmail.net</p>
-						<h2>Phone</h2>
-						<p>010-2869-4100</p> 
-					</div>
-				</div>
-				<div class=footer_bottom>
-					<p>&copy; 2023 by HANULSMARTFARM</p>
-				</div>
-			</footer>
             
         </div>
+        <!-- footer -->
+        <footer>
+			<div class="footer_main">
+				<div class="footer_main_logo">
+					<img alt="logo" src="<c:url value='/img/hanul.logo.png'/>">
+				</div>
+				<div class="footer_main_text">
+					<h2>Address</h2>
+					<p>광주광역시 서구 경열로 3 302호</p>
+					<h2>Email</h2>
+					<p>ex@hmail.net</p>
+					<h2>Phone</h2>
+					<p>010-2869-4100</p> 
+				</div>
+			</div>
+			<div class=footer_bottom>
+				<p>&copy; 2023 by HANULSMARTFARM</p>
+			</div>
+		</footer>
     </div>
     
 

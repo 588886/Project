@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.magin_bottom_30{
+	margin-bottom: 30px;
+}
+
 #jido {
 	margin: 0 auto;
 	width: 800px;
@@ -9,17 +13,25 @@
     text-align: center;
     font-size: 50px;
     font-family: serif;
-    color: darkgreen;
+    color: darkgreen;    
+    margin: 20px;
 }
 
 #jido h2{
+	margin: 15px 0;
     font-size: 30px;
     font-family: serif;
     color: darkgreen;
 }
-#jido h3{
+#jido h3{    
+	font-size: larger;
+    margin: 10px 0;
     font-family: serif;
     color: darkgreen;
+}
+
+#jido .jido_text{
+	margin: 8px 0;
 }
 
 .jihachul{
@@ -35,7 +47,7 @@
 
 .jihachulp{
     position: relative;
-    top: -4px;
+    top: -2px;
 }
 
 .busgansun{

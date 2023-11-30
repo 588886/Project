@@ -28,7 +28,7 @@ public class HomeController {
 	public String home(Locale locale, Model model,HttpSession session) {
 		System.out.println("Home");
 		session.removeAttribute("category");
-		return "home";
+		return "main";
 	}
 	
 }
