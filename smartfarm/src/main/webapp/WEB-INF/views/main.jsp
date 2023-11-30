@@ -11,6 +11,30 @@
 	
 </head>
 <body>
+	<div id="vision">
+		<div class="vision_head">
+			<h1>비전</h1>
+			<h3>미래에 필요한 농업시스템을 직접 체험할 수 있는 도심농장</h3>
+		</div>
+		<div class="vision_main">
+			<div>
+				<img alt="plant" src='<c:url value='img/plant.png'/>' />
+				<h3>어디서든</h3>
+				<p>공간제약없이 어디서나</p>
+			</div>
+			<div>
+				<img alt="nature" src='<c:url value='img/nature.png'/>' />
+				<h3>안전하게</h3>
+				<p>환경오염에서 안전한</p>
+			</div>
+			<div>
+				<img alt="plant" src='<c:url value='img/water.png'/>' />
+				<h3>친환경적</h3>
+				<p>친환경적 재배</p>
+			</div>
+		</div>
+	</div>
+	<hr>
 	<div id="jido">
 		<div><h1>오시는 길</h1></div>
 		<div class="magin_bottom_30">

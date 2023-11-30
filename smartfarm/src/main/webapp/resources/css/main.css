@@ -4,6 +4,50 @@
 	margin-bottom: 30px;
 }
 
+#vision{
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	width: 800px;
+}
+
+.vision_head{
+	text-align: center;
+    margin: 30px;
+}
+
+.vision_main{
+    display: flex;
+    justify-content: space-between;
+    margin: 100px 0 100px;
+}
+
+.vision_main div{
+    text-align: center;
+}
+
+.vision_main h3{
+    padding: 20px;
+}
+
+
+#vision h1{
+	font-size: 50px;
+	padding: 20px;
+	font-family: serif;
+	color: darkgreen;
+}
+
+#vision h3{
+    font-size: 25px;
+    font-family: serif;
+    color: darkgreen;
+}
+
+#vision p{
+    color: darkgreen;
+}
+
 #jido {
 	margin: 0 auto;
 	width: 800px;
