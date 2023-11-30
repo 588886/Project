@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,10 +24,10 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping("/")
-	public String home(Locale locale, Model model) {
-		
-		
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Locale locale, Model model,HttpSession session) {
+		System.out.println("Home");
+		session.removeAttribute("category");
 		return "home";
 	}
 	
