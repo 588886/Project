@@ -4,6 +4,31 @@
 	margin-bottom: 30px;
 }
 
+#sogae{
+	background-image: url(../resources/images/newplant.jpg);
+    width: 100vw;
+    height: 650px;
+    background-position: 0 900px;
+    text-align: center;
+    color: white;
+}
+
+#sogae h1{
+    font-weight: bold;
+    font-size: 50px;
+    padding: 135px 0 100px;
+    font-family: monospace;
+}
+
+#sogae span{
+    color: greenyellow;
+}
+
+#sogae p{
+    font-size: larger;
+    margin: 20px;
+}
+
 #vision{
 	display: flex;
 	flex-direction: column;
