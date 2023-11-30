@@ -24,7 +24,9 @@
         <div class="card-body">
             <!-- 이미지를 보여주는 부분 -->
             <p class="card-text">${fn:replace(vo.content, crlf, "<br>")}</p>
-            <img src="${vo.filepath}" class="img-fluid" alt="첨부 이미지" style="max-width: 100%;">
+            <c:if test="${not empty vo.filepath}">
+                <img src="${vo.filepath}" class="img-fluid" alt="첨부 이미지" style="width: 50% !important;">
+            </c:if>
         </div>
     </div>
 
