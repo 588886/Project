@@ -28,7 +28,7 @@
     <link href="<c:url value='/css/reset.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
     
     <!-- footerCss -->
-    <link href="<c:url value='/css/home.css'/>" rel="stylesheet" />
+    <link href="<c:url value='/css/home.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
@@ -79,7 +79,7 @@
 					</div>
 					<div class="footer_main_text">
 						<h2>Address</h2>
-						<p>광주광역시 서구 경열로 3 302호</p>
+						<p>광주광역시 서구 경열로 3 302호 </p>
 						<h2>Email</h2>
 						<p>ex@hmail.net</p>
 						<h2>Phone</h2>

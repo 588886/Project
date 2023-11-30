@@ -8,7 +8,6 @@
     <link href="<c:url value='/css/home.css'/>" rel="stylesheet" />
 </head>
 <body>
-	
-	
+
 </body>
 </html>
