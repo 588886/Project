@@ -21,17 +21,17 @@
                 ${vo.name}   ${vo.writedate}
             </p>
         </div>
-        <div class="card-body">
+        <div class="card-body my-3">
             <!-- 이미지를 보여주는 부분 -->
-            <p class="card-text">${fn:replace(vo.content, crlf, "<br>")}</p>
+            <p class="card-text my-5">${fn:replace(vo.content, crlf, "<br>")}</p>
             <c:if test="${not empty vo.filepath}">
-                <img src="${vo.filepath}" class="img-fluid" alt="첨부 이미지" style="width: 50% !important;">
+                <img src="${vo.filepath}" class="img-fluid my-3" alt="첨부 이미지" style="width: 50% !important;" onclick="openModal('${vo.filepath}')">
             </c:if>
         </div>
     </div>
 
     <div class="btn-toolbar gap-2 justify-content-center my-3">
-        <button class="btn btn-primary" onclick="location='<c:url value="/notice/list?${params}"/>'">목록으로</button>
+        <button class="btn btn-success" onclick="location='<c:url value="/notice/list?${params}"/>'">목록으로</button>
     </div>
 </div>
 
@@ -39,31 +39,17 @@
 
 <jsp:include page="/WEB-INF/views/include/modal_image.jsp"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- 모달 스크립트 추가 -->
 <script>
-//첨부파일 다운로드
-$('.file-download').click(function(){
-	location = "download?id=${vo.id}";
-})
+    function openModal(imagePath) {
+        // 모달 열기
+        var myModal = new bootstrap.Modal(document.getElementById('modal-image'));
+        myModal.show();
 
-$(function(){
-    if( isImage("${vo.filename}") ){
-        $('.file-name').after("<span class='file-preview'><img src='${vo.filepath}'></span>")
+        // 모달 내부 이미지 설정
+        var modalBody = document.querySelector('#modal-image .modal-body');
+        modalBody.innerHTML = '<img src="' + imagePath + '" class="img-fluid" alt="모달 이미지" style="width: 100%;">';
     }
-
-    $('.file-preview img').click(function(){
-        if( $('#modal-image').length==1 ){
-            $('#modal-image .modal-body').html( $(this).clone() )
-            new bootstrap.Modal( $('#modal-image') ).show()
-        }
-    })
-    
-})
-
-//모달이미지 배경클릭시 이미지 삭제
-$('#modal-image').click(function(){
-	if( ! $(this).hasClass("show") ) 
-		$('#modal-image .modal-body').empty()
-})
 </script>
 
 
