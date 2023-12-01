@@ -24,17 +24,17 @@
 		</div>
 		<div class="vision_main">
 			<div>
-				<img alt="plant" src='<c:url value='../img/plant.png'/>' />
+				<img alt="plant" src='/smartfarm/img/plant.png' />
 				<h3>어디서든</h3>
 				<p>공간제약없이 어디서나</p>
 			</div>
 			<div>
-				<img alt="nature" src='<c:url value='../img/nature.png'/>' />
+				<img alt="nature" src='/smartfarm/img/nature.png' />
 				<h3>안전하게</h3>
 				<p>환경오염에서 안전한</p>
 			</div>
 			<div>
-				<img alt="plant" src='<c:url value='../img/water.png'/>' />
+				<img alt="plant" src='/smartfarm/img/water.png'/>' />
 				<h3>친환경적</h3>
 				<p>친환경적 재배</p>
 			</div>
