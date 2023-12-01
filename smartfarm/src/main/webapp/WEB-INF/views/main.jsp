@@ -34,7 +34,7 @@
 				<p>환경오염에서 안전한</p>
 			</div>
 			<div>
-				<img alt="plant" src='/smartfarm/img/water.png'/>' />
+				<img alt="plant" src='/smartfarm/img/water.png'/>
 				<h3>친환경적</h3>
 				<p>친환경적 재배</p>
 			</div>
