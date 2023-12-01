@@ -66,7 +66,7 @@
 					<h2>Address</h2>
 					<p>광주광역시 서구 경열로 3 302호</p>
 					<h2>Email</h2>
-					<p>ex@hmail.net</p>
+					<p>hanulsmart0302@gmail.com</p>
 					<h2>Phone</h2>
 					<p>010-2869-4100</p> 
 				</div>
