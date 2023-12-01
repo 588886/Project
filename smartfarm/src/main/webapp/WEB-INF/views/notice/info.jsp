@@ -11,10 +11,10 @@
     <link href="<c:url value='/css/styles.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
     <link href="<c:url value='/css/common.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
 </head>
-<body>
+<body style="background-color:#19c274;">
 
 <div class="container mt-5">
-    <div class="card text-center"> <!-- text-center 클래스 추가 -->
+    <div class="card text-center" style="background-color:#19c274; color: #fff;"> <!-- text-center 클래스 추가 -->
         <div class="card-header">
             <h2 class="card-title">${vo.title}</h2>
             <p class="card-subtitle text-muted">
@@ -30,6 +30,7 @@
         </div>
     </div>
 
+<c:set var="params" value="curPage=${page.curPage}&search=${page.search}&keyword=${page.keyword}"/>
     <div class="btn-toolbar gap-2 justify-content-center my-3">
         <button class="btn btn-success" onclick="location='<c:url value="/notice/list?${params}"/>'">목록으로</button>
     </div>
