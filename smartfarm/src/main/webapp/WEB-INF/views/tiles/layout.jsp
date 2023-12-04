@@ -72,13 +72,18 @@
 				</div>
 			</div>
 			<div class=footer_bottom>
-				<p>&copy; 2023 by HANULSMARTFARM</p>
+				<p>&copy; 2023 by HANULSMARTFARM
+				<c:if test="${empty loginInfo}">
+					<a href="<c:url value='/admin/login'/>"><img id="admin" alt="admin" src="/smartfarm/img/admin.png"></a>
+				</c:if>
+				<c:if test="${not empty loginInfo}">
+					<a href="<c:url value='/admin/setting'/>"><img id="admin" alt="setting" src="/smartfarm/img/setting.png"></a>
+				</c:if>
+				</p>
 			</div>
 		</footer>
     </div>
     
 
-
-    
 </body>
 </html>
