@@ -44,5 +44,6 @@ public class PageVO {
 		beginPage = endPage - (blockPage-1);
 		//끝 페이지번호가 총 페이지수보다 클 수 없으므로 총 페이지수를 끝 페이지번호로 한다.
 		if( endPage > totalPage ) endPage = totalPage;
+		
 	}
 } 
