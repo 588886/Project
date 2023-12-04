@@ -6,6 +6,7 @@
 
 
 
+
 <!-- 선택한 공지글 삭제 -->
 <delete id="delete">
 delete from notice where id = #{id}

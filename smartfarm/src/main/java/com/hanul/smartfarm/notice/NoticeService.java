@@ -38,6 +38,7 @@ public class NoticeService {
 	//선택한 공지글 조회
 	public NoticeVO notice_info(int id) {
 		return sql.selectOne("notice.info", id);
+		
 	}
 	//조회수증가처리
 	public void notice_read(int id) {
