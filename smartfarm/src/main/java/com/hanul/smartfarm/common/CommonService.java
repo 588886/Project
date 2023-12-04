@@ -25,23 +25,115 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.gson.JsonObject;
 import com.hanul.smartfarm.member.MemberService;
 import com.hanul.smartfarm.member.MemberVO;
 
 @Service
 public class CommonService {
 
+	//파일 여러개 첨부(업로드)처리
+	public ArrayList<FileVO> fileAttach(String category, MultipartFile files[]
+										, HttpServletRequest request ) {
+		ArrayList<FileVO> list = null;
+		for( MultipartFile file : files ) {
+			if( file.isEmpty() ) continue;
+			if( list==null ) list = new ArrayList<FileVO>();
+			FileVO vo = new FileVO();
+			vo.setFilename( file.getOriginalFilename() );
+			vo.setFilepath( fileUpload(file, category, request) );
+			list.add( vo );
+		}
+		
+		return list;
+	}
 	
+	
+	//물리적인 파일삭제처리
+	public void fileDelete(String filepath, HttpServletRequest request) {
+		if( filepath != null) {
+			// http://192.168.0.66:80 -->  d://app 로 변경되어야 함
+			filepath = ipToDisc(filepath, request);
+			File file = new File( filepath );
+			if( file.exists() ) file.delete();
+		}
+	}
+	
+	private String ipToDisc( String path, HttpServletRequest request ) {
+		String ip = "http://192.168.0.27";
+		ip += ":" + request.getServerPort(); //  http://192.168.0.66:80
+		// http://192.168.0.66:80 또는 http://localhost:80 -->  d://app 로 변경되어야 함
+		path = path	.replace(ip, "d://app")
+					.replace("http://localhost:"+ request.getServerPort(), "d://app");
+		return path;
+	}
+	
+	//첨부파일 다운로드
+	public boolean fileDownload(String filename, String filepath
+							, HttpServletRequest request, HttpServletResponse response) 
+									throws Exception {
+		//파일이 업로드된 위치정보
+		//예) http://192.168.0.66:80/upload/notice/2023/10/17/1e1fedde-a39692_화면설계구현-평가지.pdf
+		//-> 변경 d://app/upload/notice/2023/10/17/1e1fedde-a39692_화면설계구현-평가지.pdf
+		// http://192.168.0.66:80 -->  d://app 로 변경되어야 함
+		
+//		filepath = "d://app" 
+//					+ filepath.substring( filepath.indexOf(  request.getContextPath()  ) );// /iot/upload/notice/2023/10/17/1e1fedde-a39692_화면설계구현-평가지.pdf
+		filepath = ipToDisc(filepath, request);
+		File file = new File( filepath ); //다운로드할 파일객체
+		if( ! file.exists() ) return false;
+			
+		//다운로드할 파일의 타입 지정
+		String mime = request.getSession().getServletContext().getMimeType(filename);
+		response.setContentType( mime );
+		
+		//파일명 한글인 경우 처리
+		filename = URLEncoder.encode( filename, "utf-8");
+		response.setHeader( "content-disposition" , "attachment; filename=" + filename );
+		
+		FileCopyUtils.copy( new FileInputStream(file), response.getOutputStream() );
+		return true;
+	}
+	
+	//첨부파일 업로드
+	public String fileUpload(MultipartFile file, String category, HttpServletRequest request) {
+		//업로드할 위치:  D:\Study_Spring\.metadata\.plugins\org.ecli....\wtpwebapps
+		//				 \\02_eIot\\resources\\upload\\profile\\2023\\10\\16
+		//String path = request.getSession().getServletContext().getRealPath("resources");
+		String path = "d://app" + request.getContextPath(); // d://app/iot
+		
+		// "/upload/profile/2023/10/16";
+		String upload = "/upload/" + category 
+						+ new SimpleDateFormat("/yyyy/MM/dd").format(new Date());  
+		
+		path += upload;
+		
+		//폴더 존재여부 확인후 폴더만들기
+		File folder = new File( path );
+		if( ! folder.exists() ) folder.mkdirs();
+		
+		//각 파일에 고유ID 부여하기: adf3rlhkja_abc.jpg
+		String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+		try {
+			file.transferTo( new File(path, filename) );
+		}catch(Exception e) {
+		}
+		
+		
+		//다른ip에서 저장된 파일도 보여질수 있도록 localhost는 실제ip로 처리
+		String url = appURL(request).replace("localhost", "192.168.0.27");
+		return  url + upload + "/" + filename;
+	}
 	
 	
 	
 	// 웹, 안드로이드, IoT 에서 공통으로 사용할 수 있는 로그인인증된 사용자 정보
-	public MemberVO loginUser( MemberService memberService, MemberVO dto) {
+	public MemberVO loginUser( MemberService memberService, MemberVO dto, BCryptPasswordEncoder pwEncoder ) {
 		MemberVO user = memberService.member_info(dto.getUserid());
 		boolean result = user==null ? false : true;
-		
-		return dto.getUserpw().equals(user.getUserpw()) ? user : null;
+		if( result ) {
+			result = pwEncoder.matches(dto.getUserpw(), user.getUserpw());
+		}
+		return result ? user : null;
 	}
 	
 	// 웹, 안드로이드, IoT 에서 공통으로 사용할 수 있는 로그인인증
@@ -124,14 +216,14 @@ public class CommonService {
 	
 	
 	
-	private String EMAIL_ADDRESS = "itstudydev@naver.com";
+	private String EMAIL_ADDRESS = "tkd5659@naver.com";
 //	private String EMAIL_ADDRESS = "ojink2@gmail.com";
 	
 	private void emailServer( HtmlEmail email ) {
 		String id = EMAIL_ADDRESS.substring(0, EMAIL_ADDRESS.indexOf("@"));
 		String service = EMAIL_ADDRESS.substring( EMAIL_ADDRESS.indexOf("@")+1 );
 		//gmail 인 경우 앱비밀번호(16자리), 그 외는 해당 이메일아이디에 대한 비밀번호
-		String pw = service.contains("gmail") ? "mkevmvbhdsyzixbn" : "Itstudy10102";
+		String pw = service.contains("gmail") ? "mkevmvbhdsyzixbn" : "!dltkdgns1270";
 		
 		email.setDebug(true);
 		email.setCharset("utf-8");
@@ -144,7 +236,40 @@ public class CommonService {
 		email.setSSLOnConnect(true);
 	}
 	
-	
+	//회원가입축하메일 보내기
+	public void sendWelcome( MemberVO vo, HttpServletRequest request ) {
+		HtmlEmail email = new HtmlEmail();
+		emailServer(email);
+		
+		try{
+			email.setFrom(EMAIL_ADDRESS, "e-IoT 융합SW 관리자");
+			email.addTo( vo.getEmail(), vo.getName() );
+			email.setSubject("e-IoT 융합SW 가입 축하메시지");
+			
+			StringBuffer content = new StringBuffer();
+			content.append("<html>");
+			content.append("<body>");
+			content.append("<h3><a target='_blank' href='http://www.hanuledu.co.kr/'>e-IoT 융합SW 과정</a></h3>");
+			content.append("<div>e-IoT 융합SW 과정의 가입을 축하합니다</div>");
+			content.append("<div>프로젝트까지 마무리 잘 하여 취업에 성공하시길 바랍니다.</div>");
+			content.append("<div>첨부된 파일을 확인하신후 등교하세요.</div>");
+			content.append("</body>");
+			content.append("</html>");
+			email.setHtmlMsg( content.toString() );
+			
+			//가입축하파일 첨부
+			String welcomeFile = request.getSession().getServletContext()
+									 	.getRealPath( "resources/files/회원가입안내.pdf" );
+			EmailAttachment file = new EmailAttachment();
+			file.setPath( welcomeFile );
+			email.attach( file );  //파일첨부하기
+			
+			email.send(); //이메일보내기
+			
+		}catch(Exception e) {
+		}
+		
+	}
 	
 	//임시비번 이메일로 보내기
 	public boolean sendPassword( MemberVO vo, String pw ) {
@@ -186,10 +311,10 @@ public class CommonService {
 		return url.toString();
 	}
 	
-	public Map<String, Object> requestAPIInfo(String url) {
-		JSONObject json= new JSONObject(requestAPI(url));
-		json=json.getJSONObject("response");
-		return json.getJSONObject( "body" ).toMap();
+	public Map<String, Object> requestAPIInfo( String url ) {
+		 JSONObject json = new JSONObject( requestAPI( url ) );
+		 json = json.getJSONObject( "response" );
+		 return json.getJSONObject( "body" ).toMap();
 	}
 	
 }

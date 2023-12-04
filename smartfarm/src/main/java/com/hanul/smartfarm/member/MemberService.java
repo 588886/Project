@@ -1,13 +1,11 @@
 package com.hanul.smartfarm.member;
 
-
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
 
 @Service
 public class MemberService {
@@ -21,7 +19,7 @@ public class MemberService {
 	
 	//로그인상태유지 정보 삭제
 	public int remember_release(HashMap<String, String> map) {
-		return sql.insert("member.rememberRelease", map);
+		return sql.delete("member.rememberRelease", map);
 	}
 	
 	//로그인상태유지 정보 저장

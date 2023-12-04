@@ -32,6 +32,8 @@
 
 
 
+<!-- 암호화에 사용할 객체 선언 -->
+<bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
 
 </beans>
