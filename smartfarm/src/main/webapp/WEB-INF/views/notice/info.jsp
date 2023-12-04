@@ -11,10 +11,10 @@
     <link href="<c:url value='/css/styles.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
     <link href="<c:url value='/css/common.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
 </head>
-<body style="background-color:#19c274;">
+<body style="background-color:#7a9c30;">
 
 <div class="container mt-5">
-    <div class="card text-center" style="background-color:#19c274; color: #fff;"> <!-- text-center 클래스 추가 -->
+    <div class="card text-center" style="background-color:#7a9c30; color: #fff;"> <!-- text-center 클래스 추가 -->
         <div class="card-header">
             <h2 class="card-title">${vo.title}</h2>
             <p class="card-subtitle text-muted">
@@ -31,26 +31,51 @@
     </div>
 
 <c:set var="params" value="curPage=${page.curPage}&search=${page.search}&keyword=${page.keyword}"/>
+    
     <div class="btn-toolbar gap-2 justify-content-center my-3">
-        <button class="btn btn-success" onclick="location='<c:url value="/notice/list?${params}"/>'">목록으로</button>
-    </div>
+	<button class="btn btn-success" 
+			onclick="location='<c:url value="/notice/list?${params}"/>'">목록으로</button>
+	<!-- 로그인한 사용자가 작성한 경우만 수정/삭제 가능 -->
+	<c:if test="${loginInfo.userid eq vo.writer }">
+	<button class="btn btn-warning" 
+			onclick="location='modify?id=${vo.id}&${params}'">정보수정</button>
+	<button class="btn btn-danger"
+	  		onclick="if( confirm('이 공지글 정말 삭제?') ){ location='delete?id=${vo.id}&${params}' }" >정보삭제</button>
+	</c:if>
+	
 </div>
-
+</div>
 
 
 <jsp:include page="/WEB-INF/views/include/modal_image.jsp"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- 모달 스크립트 추가 -->
 <script>
-    function openModal(imagePath) {
-        // 모달 열기
-        var myModal = new bootstrap.Modal(document.getElementById('modal-image'));
-        myModal.show();
+//첨부파일 다운로드
+$('.file-download').click(function(){
+	location = "download?id=${vo.id}";
+})
 
-        // 모달 내부 이미지 설정
-        var modalBody = document.querySelector('#modal-image .modal-body');
-        modalBody.innerHTML = '<img src="' + imagePath + '" class="img-fluid" alt="모달 이미지" style="width: 100%;">';
-    }
+// 첨부된 파일이 이미지이면 미리보기되게하기
+$(function(){
+	if( isImage("${vo.filename}") ){
+		$('.file-name').after(
+				"<span class='file-preview'><img src='${vo.filepath}'></span>" )
+	}
+	
+	$('.file-preview img').click(function(){
+		if( $('#modal-image').length==1 ){ //이미지띄울 모달이 있으면
+			$('#modal-image .modal-body').html( $(this).clone() )
+			new bootstrap.Modal(  $('#modal-image') ).show()	
+		}
+	})
+	
+})
+
+//모달이미지 배경클릭시 이미지 삭제
+$('#modal-image').click(function(){
+	if( ! $(this).hasClass("show") ) 
+		$('#modal-image .modal-body').empty()
+})
 </script>
 
 

@@ -70,7 +70,7 @@ select count(*) from notice <include refid="searchWhere"/>
 <!-- 공지글목록조회 -->
 <select id="list" resultType="notice"> 
 select * 
-from (select name,  row_number() over(order by root, step desc) no,   n.*
+from (select name,  row_number() over(order by id) no,   n.*
       from notice n inner join member m on writer = userid 
       <include refid="searchWhere"/>) n
 where no between #{beginList} and #{endList}
@@ -83,12 +83,12 @@ order by no desc
 </select>
 
 <!-- 답글신규저장 -->
-<insert id="reply_register">
+<!-- <insert id="reply_register">
 insert into notice (title, content, writer, filename, filepath, root, rid, step, indent)
 values ( #{title}, #{content}, #{writer}
 		, #{filename, jdbcType=VARCHAR}, #{filepath, jdbcType=VARCHAR}
 		,#{root}, #{rid}, #{step}+1, #{indent}+1 )
-</insert>
+</insert> -->
 
 <!-- 공지글신규저장 -->
 <insert id="register">
