@@ -47,6 +47,7 @@
                 <a href="<c:url value='/aboutUs/list'/>" class="${category eq 'ab' ? 'active' : ''} ">ABOUT US</a>
                 <a href="<c:url value='/program'/>" class="${category eq 'se' ? 'active' : ''} ">PROGRAM</a>
                 <a href="<c:url value='/notice/list'/>" class="${category eq 'no' ? 'active' : ''} ">BOARD</a>
+
             </div>
     	</header>
         
