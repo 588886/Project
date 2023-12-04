@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.loginContaner{
+	margin: 0 auto;
+	width: 850px;
+	padding-top: 100px;
+}
+
+.inputID, .inputPW{
+    display: flex;
+    gap: 100px;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.inputID label, .inputPW label{
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.inputID input, .inputPW input{
+    height: 50px;
+    width: 500px;
+    font-size: 40px;
+    border-radius: 15px;
+}
+
+.loginButton{
+	display: flex;
+    justify-content: space-evenly;
+}
+
+.loginButton button{
+	width: 200px;
+    height: 50px;
+    font-size: 30px;
+    font-family: sans-serif;
+}
+
+
