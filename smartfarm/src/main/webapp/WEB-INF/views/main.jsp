@@ -11,6 +11,38 @@
 	
 </head>
 <body>
+
+	<div id="sogae">
+		<h1>안녕하세요<span>한울스마트팜</span>입니다.</h1>
+		<p>한울스마트팜은 광주 서구 농성동에 위치한 50평 규모의 스마트팜입니다.</p>
+		<p>굳이 바로 옆에 있지 않아도 식물 재배가 가능하다는 것을 배오고 직접 기기를 만들어보는 체험을 해볼 수 있으며,</p>
+		<p>온도, 습도, 일조량 등을 컴퓨터나 스마트폰으로 데이터를 받아보고 자동으로 제어하는 장치를 자신이 원하는대로 커스터마이징할 수 있습니다.</p>
+	</div>
+	<div id="vision">
+		<div class="vision_head">
+			<h1>비전</h1>
+			<h3>미래에 필요한 농업시스템을 직접 체험할 수 있는 도심농장</h3>
+		</div>
+		<div class="vision_main">
+			<div>
+				<img alt="plant" src='/smartfarm/img/plant.png' />
+				<h3>어디서든</h3>
+				<p>공간제약없이 어디서나</p>
+			</div>
+			<div>
+				<img alt="nature" src='/smartfarm/img/nature.png' />
+				<h3>안전하게</h3>
+				<p>환경오염에서 안전한</p>
+			</div>
+			<div>
+				<img alt="plant" src='/smartfarm/img/water.png'/>' />
+				<h3>친환경적</h3>
+				<p>친환경적 재배</p>
+			</div>
+		</div>
+	</div>
+	<hr>
+
 	<div id="jido">
 		<div><h1>오시는 길</h1></div>
 		<div>
