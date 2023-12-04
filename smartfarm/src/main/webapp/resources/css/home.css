@@ -53,3 +53,8 @@ footer{
     font-size: larger;
     padding: 20px;
 }
+#admin{
+    height: 20px;
+    position: relative;
+    top: 3px;
+}
