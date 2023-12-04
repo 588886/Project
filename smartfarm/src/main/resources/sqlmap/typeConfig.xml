@@ -3,5 +3,6 @@
  <configuration>
  <typeAliases>
  	<typeAlias type="com.hanul.smartfarm.notice.NoticeVO" alias="notice"/>
+ 	<typeAlias type="com.hanul.smartfarm.member.MemberVO" alias="member"/>
  </typeAliases>
  </configuration>
