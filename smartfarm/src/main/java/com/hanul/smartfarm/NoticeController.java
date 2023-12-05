@@ -44,7 +44,7 @@ public class NoticeController {
 	
 	
 	//공지글 삭제처리 요청
-	@RequestMapping({"/delete", "/reply/delete"})
+	@RequestMapping("/delete")
 	public String delete(int id, HttpServletRequest request, PageVO page) throws Exception{
 		NoticeVO vo = service.notice_info(id);
 		//선택한 공지글을 DB에서 삭제한 후 목록화면으로 연결
@@ -59,37 +59,9 @@ public class NoticeController {
 				;
 	}
 	
-	//답글저장처리 요청
-	@RequestMapping("/reply/register")
-	public String reply(PageVO page, NoticeVO vo, MultipartFile file
-						, HttpServletRequest request) throws Exception{
-		//화면에서 입력한 답글정보를 DB에 신규 저장한 후 목록화면으로 연결
-		//첨부된 파일이 있는 경우
-		if( ! file.isEmpty() ) {
-			vo.setFilename( file.getOriginalFilename() );
-			vo.setFilepath( common.fileUpload(file, "notice", request) );
-		}
-		service.notice_reply_register(vo);
-		
-		return "redirect:/notice/list"
-				+ "?curPage=" + page.getCurPage()
-				+ "&search=" + page.getSearch()
-				+ "&keyword=" + URLEncoder.encode( page.getKeyword(), "utf-8" )
-				;
-	}
-	
-	//답글쓰기 화면 요청
-	@RequestMapping("/reply/new")
-	public String reply( Model model, int id, PageVO page ) {
-		//원글의 정보가 필요하므로 원글정보 조회해와 답글쓰기 화면에 사용할 수 있도록 Model객체에 담기
-		model.addAttribute("vo", service.notice_info(id));
-		model.addAttribute("page", page);
-		return "notice/reply";
-	}
-	
 	
 	//공지글 수정저장처리 요청
-	@RequestMapping({"/update", "/reply/update"}) 
+	@RequestMapping("/update") 
 	public String update(NoticeVO vo, MultipartFile file, PageVO page
 						, HttpServletRequest request) throws Exception {
 		//변경전 공지글정보 조회
@@ -128,7 +100,7 @@ public class NoticeController {
 	
 	
 	//공지글 수정화면 요청
-	@RequestMapping({"/modify", "/reply/modify"}) 
+	@RequestMapping("/modify") 
 	public String modify( int id, Model model, PageVO page ) {
 		//해당 공지글정보를  DB 에서 조회해와 수정화면에 출력할 수 있도록  Model객체에 담기
 		model.addAttribute("vo", service.notice_info(id) );
@@ -166,7 +138,7 @@ public class NoticeController {
 	
 	
 	//선택한 공지글 정보화면 요청
-	@RequestMapping({"/info", "/reply/info"})
+	@RequestMapping("/info")
 	public String info(int id, Model model, PageVO page) {
 		//조회수증가처리
 		service.notice_read(id);

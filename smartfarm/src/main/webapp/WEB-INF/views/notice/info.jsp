@@ -36,11 +36,11 @@
 	<button class="btn btn-success" 
 			onclick="location='<c:url value="/notice/list?${params}"/>'">돌아가기</button>
 	<!-- 로그인한 사용자가 작성한 경우만 수정/삭제 가능 -->
-	<c:if test="${loginInfo.userid eq vo.writer }">
+	<c:if test="${loginInfo.role eq 'ADMIN' or loginInfo.role eq 'MANAGER'}">
 	<button class="btn btn-success" 
 			onclick="location='modify?id=${vo.id}&${params}'">수정</button>
 	<button class="btn btn-success"
-	  		onclick="if( confirm('이 공지글 정말 삭제?') ){ location='delete?id=${vo.id}&${params}' }" >삭제</button>
+	  		onclick="if( confirm('내용을 삭제 하시겠습니까?') ){ location='delete?id=${vo.id}&${params}' }" >삭제</button>
 	</c:if>
 	
 </div>
