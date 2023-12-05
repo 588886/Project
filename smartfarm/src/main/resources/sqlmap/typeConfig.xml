@@ -2,7 +2,7 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
  <configuration>
  <typeAliases>
-<!--  	<typeAlias type="com.hanul.smartfarm.notice.NoticeVO" alias="notice"/> -->
+ 	<typeAlias type="com.hanul.smartfarm.notice.NoticeVO" alias="notice"/>
  	<typeAlias type="com.hanul.smartfarm.member.MemberVO" alias="member"/>
  	<typeAlias type="com.hanul.smartfarm.common.FileVO" alias="file"/>
  	

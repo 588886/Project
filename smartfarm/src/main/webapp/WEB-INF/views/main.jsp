@@ -49,7 +49,7 @@
 		<div id="map" style="width:100%; height:400px;"/>
 		</div>
 		<div><h2>Address</h2></div>
-		<div><p>광주광역시 서구 경열로 3 302호 ${adress }</p></div>
+		<div><p>광주광역시 서구 경열로 3 302호</p></div>
 		<div><h2>교통정보</h2></div>
 		<div><h3>지하철</h3></div>
 		<div>

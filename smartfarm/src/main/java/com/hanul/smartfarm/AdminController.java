@@ -28,6 +28,7 @@ public class AdminController {
 	private MemberService service;
 	@Autowired
 	private CommonService common;
+	
 	//로그인화면 요청
 	@RequestMapping("/login")
 	public String login(HttpSession session, String id, String url) {
@@ -67,8 +68,12 @@ public class AdminController {
 			
 		}
 		
-		
-		
 	}
 	
+	//세팅화면
+	@RequestMapping("/setting")
+	public String setting(HttpSession session, String id, String url) {
+		
+		return "/admin/setting";
+	}
 }
