@@ -24,4 +24,9 @@ where userid = #{userid} and sessionid = #{sessionid}
 select * from member where userid = #{userid}
 </select>
 
+<insert id="new">
+insert into member (name, userid,userpw,role)
+values ( #{name}, #{userid} , #{userpw},'MANAGER')
+</insert>
+
 </mapper>

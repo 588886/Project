@@ -22,6 +22,11 @@ public class MemberService {
 		return sql.selectList("member.admin_list");
 	}
 	
+	//운영자 추가
+	public int admin_new(MemberVO vo) {
+		return sql.insert("member.new",vo);
+	}
+	
 	//운영자 삭제
 	public int admin_delete(String userid) {
 		return sql.delete("member.delete",userid);
