@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 <body>
-<h3 class="my-4">공지글 쓰기</h3>
+<h3 class="my-4 text-center">공지사항 작성</h3>
 
 <form method="post" enctype="multipart/form-data" action="register">
 <table class="table tb-row">

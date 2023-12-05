@@ -28,7 +28,7 @@
 
     <c:set var="params" value="curPage=${page.curPage}&search=${page.search}&keyword=${page.keyword}"/>
 
-    <c:forEach var="vo" items="${page.list}" varStatus="loop">
+    <c:forEach var="vo" items="${page.list}">
         <div class="card mb-3 mx-auto" style="max-width: 900px; background-color:#7a9c30;">
             <div class="row g-0">
                 <c:if test="${not empty vo.filepath}">

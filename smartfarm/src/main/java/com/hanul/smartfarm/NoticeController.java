@@ -188,7 +188,7 @@ public class NoticeController {
 		String userid = "admin1", userpw = "0000";
 		MemberVO user = member.member_info(userid);
 		if( user!=null && pwEncoder.matches(userpw, user.getUserpw()) ) {
-			//session.setAttribute("loginInfo", user);
+			session.setAttribute("loginInfo", user);
 		}
 		//---------------------------------
 		

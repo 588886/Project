@@ -37,9 +37,9 @@
 			onclick="location='<c:url value="/notice/list?${params}"/>'">목록으로</button>
 	<!-- 로그인한 사용자가 작성한 경우만 수정/삭제 가능 -->
 	<c:if test="${loginInfo.userid eq vo.writer }">
-	<button class="btn btn-warning" 
+	<button class="btn btn-success" 
 			onclick="location='modify?id=${vo.id}&${params}'">정보수정</button>
-	<button class="btn btn-danger"
+	<button class="btn btn-success"
 	  		onclick="if( confirm('이 공지글 정말 삭제?') ){ location='delete?id=${vo.id}&${params}' }" >정보삭제</button>
 	</c:if>
 	
