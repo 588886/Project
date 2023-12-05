@@ -53,8 +53,12 @@ footer{
     font-size: larger;
     padding: 20px;
 }
-#admin{
+.admin{
     height: 20px;
     position: relative;
     top: 3px;
+}
+.active{
+	color: greenyellow !important;
+    text-decoration: underline;
 }
