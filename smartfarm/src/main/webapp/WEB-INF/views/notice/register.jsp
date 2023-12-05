@@ -42,8 +42,8 @@
 </form>
 
 <div class="btn-toolbar gap-2 justify-content-center my-3">
-	<button class="btn btn-primary" id="btn-save">저장</button>
-	<button class="btn btn-outline-primary" id="btn-cancel">취소</button>
+	<button class="btn btn-success" id="btn-save">저장</button>
+	<button class="btn btn-success" id="btn-cancel">취소</button>
 </div>
 
 <script>

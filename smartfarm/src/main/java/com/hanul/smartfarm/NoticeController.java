@@ -185,11 +185,11 @@ public class NoticeController {
 		//임시로 관리자로 로그인해두기 - 나중에 삭제
 //		String userid = "park2023", userpw = "Park2023";
 //		String userid = "hong2023", userpw = "Hong2023";
-		String userid = "admin1", userpw = "0000";
-		MemberVO user = member.member_info(userid);
-		if( user!=null && pwEncoder.matches(userpw, user.getUserpw()) ) {
-			session.setAttribute("loginInfo", user);
-		}
+		/*
+		 * String userid = "admin1", userpw = "0000"; MemberVO user =
+		 * member.member_info(userid); if( user!=null && pwEncoder.matches(userpw,
+		 * user.getUserpw()) ) { session.setAttribute("loginInfo", user); }
+		 */
 		//---------------------------------
 		
 		session.setAttribute("category", "no");

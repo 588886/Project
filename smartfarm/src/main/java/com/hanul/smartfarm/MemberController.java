@@ -281,33 +281,34 @@ public class MemberController {
 		return "default/member/find";
 	}
 	
-	//회원가입처리 요청
-	@ResponseBody @RequestMapping(value="/register", produces= "text/html; charset=utf-8" )
-	public String join(MemberVO vo,  MultipartFile file,  HttpServletRequest request) {
-		
-		//첨부파일이 있는 경우
-		if( ! file.isEmpty() ) {
-			vo.setProfile( common.fileUpload(file, "profile", request) );
-		}
-		
-		
-		//화면에서 입력한 회원정보를 DB에 신규저장 후 가입성공여부 알리기
-		vo.setUserpw( pwEncoder.encode( vo.getUserpw() ) );  //입력비번을 암호화하여 담기
-		
-		StringBuffer msg = new StringBuffer("<script>");
-		
-		if( service.member_join(vo)==1 ) {
-			common.sendWelcome(vo, request);  //회원가입축하메일전송
-			
-			msg.append("alert('회원가입을 축하합니다^^ \\n축하메일을 보냈으니 확인하세요~'); location='")
-					.append( common.appURL(request) )
-					.append("' ");
-		}else {
-			msg.append("alert('회원가입 실패ㅠㅠ'); history.go(-1) ");
-		}
-		msg.append("</script>");
-		return msg.toString();
+	// 회원가입처리 요청
+	@ResponseBody
+	@RequestMapping(value="/register", produces="text/html; charset=utf-8")
+	public String join(MemberVO vo, MultipartFile file, HttpServletRequest request) {
+
+	    // 첨부파일이 있는 경우
+	    if (!file.isEmpty()) {
+	        vo.setProfile(common.fileUpload(file, "profile", request));
+	    }
+
+	    // 화면에서 입력한 회원정보를 DB에 신규저장 후 가입성공여부 알리기
+	    // vo.setUserpw(pwEncoder.encode(vo.getUserpw())); // Removed password encoding
+
+	    StringBuffer msg = new StringBuffer("<script>");
+
+	    if (service.member_join(vo) == 1) {
+	        common.sendWelcome(vo, request);  // 회원가입축하메일전송
+
+	        msg.append("alert('회원가입을 축하합니다^^ \\n축하메일을 보냈으니 확인하세요~'); location='")
+	                .append(common.appURL(request))
+	                .append("' ");
+	    } else {
+	        msg.append("alert('회원가입 실패ㅠㅠ'); history.go(-1) ");
+	    }
+	    msg.append("</script>");
+	    return msg.toString();
 	}
+
 	
 	
 	//아이디 중복확인처리 요청
@@ -359,56 +360,42 @@ public class MemberController {
 	
 	
 	//로그인처리 요청
-	//@ResponseBody 
-	@RequestMapping(value="/smartfarmLogin"
-							, produces="text/html; charset=utf-8")
-	public String login(HttpSession session, HttpServletRequest request, HttpServletResponse response
-						, RedirectAttributes redirect
-						, @RequestParam(defaultValue = "false") boolean remember
-						, MemberVO vo, Model model) {
-//							, String userid, String userpw) {
-		//비지니스로직: 화면에 입력한 아이디/비번과 일치하는 회원정보를 DB에서 조회하기
-		//로그인회원정보를 session 에 담기
-		
-		//화면에서 입력한 아이디의 정보를 DB에서 조회하기
-		/*
-		boolean match = false;
-		MemberVO vo = service.member_info(userid);
-		if( vo != null ) {
-			//해당 아이디의 정보가 있는 경우 입력한 비번과 암호화된 비번의 일치여부 확인
-			match = pwEncoder.matches( userpw, vo.getUserpw() );
-		}
-		*/
-		//공통 로그인 적용
-		vo = common.loginUser(service, vo, pwEncoder);
-		boolean match = vo==null ? false : true ;
-		
-		if( match ) {
-			//로그인유지체크한 경우
-			if( remember ) {
-				//세션아이디를 가진 쿠키를 생성하기
-				Cookie rememberCookie = new Cookie("remember-smartfarm", session.getId());
-				rememberCookie.setMaxAge( 60*60*24*365 );
-				rememberCookie.setPath( request.getContextPath() );
-				response.addCookie( rememberCookie );
-				
-				//DB에 저장
-				HashMap<String, String> map = new HashMap<String, String>();
-				map.put( "userid", vo.getUserid() );
-				map.put( "sessionid", session.getId() );
-				service.remember_login_keep(map);
-			}
-			
-			//로그인된 경우
-			session.setAttribute("loginInfo", vo); //세션에 로그인된 회원정보 담기
-			//웰컴페이지로 연결
-			return redirectURL(session, model);
-			
-		}else {
-			//로그인 안된 경우
-			redirect.addFlashAttribute("fail", true);
-			return "redirect:login";
-		}
+	// 로그인처리 요청
+	@RequestMapping(value="/iotLogin", produces="text/html; charset=utf-8")
+	public String login(HttpSession session, HttpServletRequest request, HttpServletResponse response,
+	                    RedirectAttributes redirect, @RequestParam(defaultValue = "false") boolean remember,
+	                    MemberVO vo, Model model) {
+
+	    // 공통 로그인 적용
+	    vo = common.loginUser(service, vo);
+	    boolean match = vo == null ? false : true;
+
+	    if (match) {
+	        // 로그인유지체크한 경우
+	        if (remember) {
+	            // 세션아이디를 가진 쿠키를 생성하기
+	            Cookie rememberCookie = new Cookie("remember-smartfarm", session.getId());
+	            rememberCookie.setMaxAge(60 * 60 * 24 * 365);
+	            rememberCookie.setPath(request.getContextPath());
+	            response.addCookie(rememberCookie);
+
+	            // DB에 저장
+	            HashMap<String, String> map = new HashMap<String, String>();
+	            map.put("userid", vo.getUserid());
+	            map.put("sessionid", session.getId());
+	            service.remember_login_keep(map);
+	        }
+
+	        // 로그인된 경우
+	        session.setAttribute("loginInfo", vo); // 세션에 로그인된 회원정보 담기
+	        // 웰컴페이지로 연결
+	        return redirectURL(session, model);
+
+	    } else {
+	        // 로그인 안된 경우
+	        redirect.addFlashAttribute("fail", true);
+	        return "redirect:login";
+	    }
 	}
 	
 	
@@ -428,7 +415,7 @@ public class MemberController {
 		}
 		*/
 		//공통 로그인 적용
-		vo = common.loginUser(service, vo, pwEncoder);
+		vo = common.loginUser(service, vo);
 		boolean match = vo==null ? false : true ;
 		
 		StringBuffer msg = new StringBuffer("<script>");

@@ -34,13 +34,13 @@
     
     <div class="btn-toolbar gap-2 justify-content-center my-3">
 	<button class="btn btn-success" 
-			onclick="location='<c:url value="/notice/list?${params}"/>'">목록으로</button>
+			onclick="location='<c:url value="/notice/list?${params}"/>'">돌아가기</button>
 	<!-- 로그인한 사용자가 작성한 경우만 수정/삭제 가능 -->
 	<c:if test="${loginInfo.userid eq vo.writer }">
 	<button class="btn btn-success" 
-			onclick="location='modify?id=${vo.id}&${params}'">정보수정</button>
+			onclick="location='modify?id=${vo.id}&${params}'">수정</button>
 	<button class="btn btn-success"
-	  		onclick="if( confirm('이 공지글 정말 삭제?') ){ location='delete?id=${vo.id}&${params}' }" >정보삭제</button>
+	  		onclick="if( confirm('이 공지글 정말 삭제?') ){ location='delete?id=${vo.id}&${params}' }" >삭제</button>
 	</c:if>
 	
 </div>
