@@ -1,9 +1,42 @@
 @charset "UTF-8";
 
-.loginContaner{
+.contaner{
 	margin: 0 auto;
 	width: 850px;
 	padding-top: 100px;
+}
+
+.contaner table{
+	text-align: center;
+	border: 1px solid #444444;
+	border-collapse: collapse;
+}
+
+.contaner table tr{
+	height: 50px;
+}
+
+.contaner table td,.contaner table th{
+	border: 1px solid #444444;
+}
+
+.contaner table th{
+	font-size: 35px
+}
+
+.contaner table td{
+	font-size: 20px
+}
+
+.contaner table td button{
+    width: 80%;
+    height: 30px;
+    background: gray;
+    color: white;
+}
+
+.contaner table td button:hover{
+    color: black;
 }
 
 .inputID, .inputPW{
@@ -37,4 +70,20 @@
     font-family: sans-serif;
 }
 
+.addback{
+	display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 
+.addback button{
+	margin: 20px;
+    width: 80px;
+    height: 35px;
+    background: gray;
+    color: white;
+}
+
+.addback button:hover{
+    color: black;
+}
