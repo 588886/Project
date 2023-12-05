@@ -380,7 +380,7 @@ public class MemberController {
 		}
 		*/
 		//공통 로그인 적용
-		vo = common.loginUser(service, vo, pwEncoder);
+		vo = common.loginUser(service, vo);
 		boolean match = vo==null ? false : true ;
 		
 		if( match ) {
@@ -428,7 +428,7 @@ public class MemberController {
 		}
 		*/
 		//공통 로그인 적용
-		vo = common.loginUser(service, vo, pwEncoder);
+		vo = common.loginUser(service, vo);
 		boolean match = vo==null ? false : true ;
 		
 		StringBuffer msg = new StringBuffer("<script>");
