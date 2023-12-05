@@ -96,6 +96,7 @@
 #jido h3{
     font-family: serif;
     color: darkgreen;
+    margin: 15px 0;
 }
 
 .jihachul{
@@ -111,7 +112,8 @@
 
 .jihachulp{
     position: relative;
-    top: -4px;
+    top: -1px;
+    margin: 10px 0;
 }
 
 .busgansun{
@@ -160,5 +162,5 @@
 
 .busp{
     position: relative;
-    top: -3px;
+    margin: 10px 0;
 }
