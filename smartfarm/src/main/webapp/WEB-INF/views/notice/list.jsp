@@ -50,7 +50,7 @@
         </div>
     </c:forEach>
     <!-- 관리자로 로그인되어 있는 경우만 새글쓰기 가능 -->
-	<c:if test="${loginInfo.role eq 'ADMIN'}">
+	<c:if test="${loginInfo.role eq 'ADMIN' or loginInfo.role eq 'MANAGER'}">
 		<div class="col-auto">
 			<a class="btn btn-success col-12" href="new">새글쓰기</a>
 		</div>
