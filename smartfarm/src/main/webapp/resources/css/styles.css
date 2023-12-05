@@ -10870,3 +10870,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     margin-left: -15rem;
   }
 }
+
+ .custom-img {
+    height: 250px; /* 원하는 값으로 높이를 조절하세요. */
+}

@@ -281,33 +281,34 @@ public class MemberController {
 		return "default/member/find";
 	}
 	
-	//회원가입처리 요청
-	@ResponseBody @RequestMapping(value="/register", produces= "text/html; charset=utf-8" )
-	public String join(MemberVO vo,  MultipartFile file,  HttpServletRequest request) {
-		
-		//첨부파일이 있는 경우
-		if( ! file.isEmpty() ) {
-			vo.setProfile( common.fileUpload(file, "profile", request) );
-		}
-		
-		
-		//화면에서 입력한 회원정보를 DB에 신규저장 후 가입성공여부 알리기
-		vo.setUserpw( pwEncoder.encode( vo.getUserpw() ) );  //입력비번을 암호화하여 담기
-		
-		StringBuffer msg = new StringBuffer("<script>");
-		
-		if( service.member_join(vo)==1 ) {
-			common.sendWelcome(vo, request);  //회원가입축하메일전송
-			
-			msg.append("alert('회원가입을 축하합니다^^ \\n축하메일을 보냈으니 확인하세요~'); location='")
-					.append( common.appURL(request) )
-					.append("' ");
-		}else {
-			msg.append("alert('회원가입 실패ㅠㅠ'); history.go(-1) ");
-		}
-		msg.append("</script>");
-		return msg.toString();
+	// 회원가입처리 요청
+	@ResponseBody
+	@RequestMapping(value="/register", produces="text/html; charset=utf-8")
+	public String join(MemberVO vo, MultipartFile file, HttpServletRequest request) {
+
+	    // 첨부파일이 있는 경우
+	    if (!file.isEmpty()) {
+	        vo.setProfile(common.fileUpload(file, "profile", request));
+	    }
+
+	    // 화면에서 입력한 회원정보를 DB에 신규저장 후 가입성공여부 알리기
+	    // vo.setUserpw(pwEncoder.encode(vo.getUserpw())); // Removed password encoding
+
+	    StringBuffer msg = new StringBuffer("<script>");
+
+	    if (service.member_join(vo) == 1) {
+	        common.sendWelcome(vo, request);  // 회원가입축하메일전송
+
+	        msg.append("alert('회원가입을 축하합니다^^ \\n축하메일을 보냈으니 확인하세요~'); location='")
+	                .append(common.appURL(request))
+	                .append("' ");
+	    } else {
+	        msg.append("alert('회원가입 실패ㅠㅠ'); history.go(-1) ");
+	    }
+	    msg.append("</script>");
+	    return msg.toString();
 	}
+
 	
 	
 	//아이디 중복확인처리 요청
@@ -359,6 +360,7 @@ public class MemberController {
 	
 	
 	//로그인처리 요청
+
 	//@ResponseBody 
 	@RequestMapping(value="/smartfarmLogin"
 							, produces="text/html; charset=utf-8")
@@ -409,6 +411,7 @@ public class MemberController {
 			redirect.addFlashAttribute("fail", true);
 			return "redirect:login";
 		}
+
 	}
 	
 	

@@ -35,7 +35,7 @@
     <script src="<c:url value='/js/common.js'/>?<%=new java.util.Date()%>"></script>
 </head>
 <body>
-    <div class="d-flex" id="wrapper">
+    <div class="l-d-flex" id="wrapper">
     	<header>
     		<div >
             	<a href="<c:url value='/'/>">
