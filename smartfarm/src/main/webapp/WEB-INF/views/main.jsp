@@ -44,17 +44,18 @@
 	<hr>
 
 	<div id="jido">
+		
 		<div><h1>오시는 길</h1></div>
 		<div>
 		<div id="map" style="width:100%; height:400px;"/>
 		</div>
 		<div><h2>Address</h2></div>
-		<div><p>광주광역시 서구 경열로 3 302호</p></div>
+		<div><p id='adressp'>광주광역시 서구 경열로 3 302호</p></div>
 		<div><h2>교통정보</h2></div>
 		<div><h3>지하철</h3></div>
-		<div>
-			<span class="jihachul">광주 1호선</span><p class=jihachulp>농성역 │ 7번 출구 도보6분</p>
-			<span class="jihachul">광주 1호선</span><p class=jihachulp>돌고개역 │ 3번 출구 도보13분</p>
+		<div class="jihachul_data">
+			<span class="jihachul1">광주 1호선</span><p class=jihachulp>농성역 │ 7번 출구 도보6분</p>
+			<span class="jihachul1">광주 1호선</span><p class=jihachulp>돌고개역 │ 3번 출구 도보13분</p>
 		</div>
 		<div><h3>버스</h3></div>
 		<div>
@@ -84,7 +85,7 @@
 		     if (status === kakao.maps.services.Status.OK) {
 
 		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
+				
 		        // 결과값으로 받은 위치를 마커로 표시합니다
 		        var marker = new kakao.maps.Marker({
 		            map: map,
@@ -100,9 +101,29 @@
 		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 		        map.setCenter(coords);
 		    } 
-		});    
-		
 
+
+		}); 
+		var places = new kakao.maps.services.Places();
+		// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+		var callback = function(result, status) {
+		    if (status === kakao.maps.services.Status.OK) {
+			        var placeid = result[0].id;
+			        var placeurl = "https://place.map.kakao.com/main/v/"+placeid;
+			        
+			        var jihachul_data = '';
+			        $.ajax({
+			    		url: "<c:url value='/main/info'/>",
+			    		data: { placeurl: placeurl }
+			    	}).done(function( response ){
+			    		console.log( 'result12',response)
+			    		
+			    		$('#adressp').text(response.basicInfo.address.region.newaddrfullname+' '+response.basicInfo.address.newaddr.newaddrfull)
+			    	})
+			    }
+		};
+		places.keywordSearch('${adress }', callback);
+		
 	</script>
 </body>
 </html>

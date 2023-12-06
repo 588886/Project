@@ -1,6 +1,7 @@
 package com.hanul.smartfarm;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.Cookie;
@@ -134,6 +135,22 @@ public class AdminController {
 	public String delete(String userid) {
 		service.admin_delete(userid);
 		
+		return "redirect:add";
+	}
+
+	//운영자 정보 수정 요청
+	@RequestMapping("/modify")
+	public String modify(String userid,Model model) {
+		MemberVO vo=service.member_info(userid);
+		model.addAttribute("vo", vo);
+		
+		return "/admin/modify";
+	}
+	
+	//운영자 정보 수정
+	@RequestMapping("/adminmodify")
+	public String adminmodify(MemberVO vo) {
+		service.admin_update(vo);
 		return "redirect:add";
 	}
 	
