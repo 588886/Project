@@ -18,11 +18,7 @@ public class NoticeService {
 	public int notice_register( NoticeVO vo ) {
 		return sql.insert("notice.register", vo);
 	}
-	//신규 답글 저장
-	public int notice_reply_register( NoticeVO vo ) {
-		return sql.insert("notice.reply_register", vo);
-	}
-		
+	
 	//공지글목록 조회
 	public List<NoticeVO> notice_list() {
 		return sql.selectList("notice.list");
@@ -39,10 +35,6 @@ public class NoticeService {
 	public NoticeVO notice_info(int id) {
 		return sql.selectOne("notice.info", id);
 		
-	}
-	//조회수증가처리
-	public void notice_read(int id) {
-		sql.update("notice.read", id);
 	}
 
 	//선택한 공지글 변경저장
