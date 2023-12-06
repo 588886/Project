@@ -32,6 +32,11 @@ public class MemberService {
 		return sql.delete("member.delete",userid);
 	}
 	
+	//운영자 수정
+	public int admin_update(MemberVO vo) {
+		return sql.update("member.update",vo);
+	}
+	
 	//로그인상태유지 정보 삭제
 	public int remember_release(HashMap<String, String> map) {
 		return sql.insert("member.rememberRelease", map);
