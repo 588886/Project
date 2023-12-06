@@ -141,7 +141,7 @@ public class NoticeController {
 	@RequestMapping("/info")
 	public String info(int id, Model model, PageVO page) {
 		//조회수증가처리
-		service.notice_read(id);
+		
 		//선택한 공지글 정보를 DB에서 조회해와 화면에 출력할 수 있도록 Model객체에 담기
 		model.addAttribute("page", page);
 	 	model.addAttribute("vo",  service.notice_info(id) );
