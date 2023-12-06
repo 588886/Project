@@ -127,6 +127,7 @@ public class CommonService {
 	
 	
 	// 웹, 안드로이드, IoT 에서 공통으로 사용할 수 있는 로그인인증된 사용자 정보
+
     public MemberVO loginUser(MemberService memberService, MemberVO dto) {
         MemberVO user = memberService.member_info(dto.getUserid());
         boolean result = user == null ? false : true;
@@ -136,16 +137,7 @@ public class CommonService {
         return result ? user : null;
     }
 
-    // 웹, 안드로이드, IoT 에서 공통으로 사용할 수 있는 로그인인증
-    public String loginCheck(MemberService memberService, MemberVO dto) {
-        MemberVO user = memberService.member_info(dto.getUserid());
-        boolean result = user == null ? false : true;
-        if (result) {
-            result = dto.getUserpw().equals(user.getUserpw());
-        }
-        return result ? "success" : "fail";
-    }
-	
+    
 	public MemberVO loginInfo(HttpSession session) {
 		return (MemberVO)session.getAttribute("loginInfo");
 	}
