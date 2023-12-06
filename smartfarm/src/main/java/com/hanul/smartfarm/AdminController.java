@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
@@ -114,11 +115,18 @@ public class AdminController {
 		return "/admin/list";
 	}
 	
-	//운영자 삭제 요청
+	//운영자 추가 창 이동
 	@RequestMapping("/plus")
 	public String plus(String userid) {
 		
 		return "/admin/plus";
+	}
+	
+	//운영자 추가
+	@RequestMapping("/register")
+	public String register(MemberVO vo) {
+		service.admin_new(vo);
+		return "redirect:add";
 	}
 	
 	//운영자 삭제 요청
@@ -127,5 +135,12 @@ public class AdminController {
 		service.admin_delete(userid);
 		
 		return "redirect:add";
+	}
+	
+	//아이디 중복확인처리 요청
+	@ResponseBody @RequestMapping("/useridCheck")
+	public boolean useridCheck( String userid ) {
+		//입력한 아이디인 회원정보가 DB에 존재하는지 확인: true(사용가능아이디), false(이미사용중아이디)
+		return service.member_info( userid )==null ? true : false;
 	}
 }
