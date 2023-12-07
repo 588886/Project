@@ -43,7 +43,7 @@
             	</a>
 			</div>
 			<div class="list-grouping">
-                <a href="<c:url value='/main/show'/>" class="${category eq 'ma' ? 'active' : ''} ">HOME</a>
+                <a href="<c:url value='/'/>" class="${category eq 'ma' ? 'active' : ''} ">HOME</a>
                 <a href="<c:url value='/about'/>" class="${category eq 'ab' ? 'active' : ''} ">ABOUT US</a>
                 <a href="<c:url value='/program'/>" class="${category eq 'pr' ? 'active' : ''} ">PROGRAM</a>
                 <a href="<c:url value='/notice/list'/>" class="${category eq 'no' ? 'active' : ''} ">BOARD</a>

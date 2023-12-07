@@ -16,7 +16,6 @@ public class MemberService {
 	@Autowired @Qualifier("sql_hanul") private SqlSession sql;
 	
 	
-	//여기부터 새로
 	//로그인상태유지된 세션의 회원정보 조회
 	public List<MemberVO> admin_list() {
 		return sql.selectList("member.admin_list");

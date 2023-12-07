@@ -50,19 +50,20 @@
 		<div id="map" style="width:100%; height:400px;"/>
 		</div>
 		<div><h2>Address</h2></div>
-		<div><p id='adressp'>광주광역시 서구 경열로 3 302호</p></div>
+		<div><p id='adressp'>${vo.adress }</p></div>
 		<div><h2>교통정보</h2></div>
 		<div><h3>지하철</h3></div>
-		<div class="jihachul_data">
-			<span class="jihachul1">광주 1호선</span><p class=jihachulp>농성역 │ 7번 출구 도보6분</p>
-			<span class="jihachul1">광주 1호선</span><p class=jihachulp>돌고개역 │ 3번 출구 도보13분</p>
-		</div>
+<!-- 		<div id="jihachul_data"> -->
+<!-- 			<span class="jihachul1">광주 1호선</span><p class=jihachulp>농성역 │ 7번 출구 도보6분</p> -->
+<!-- 			<span class="jihachul1">광주 1호선</span><p class=jihachulp>돌고개역 │ 3번 출구 도보13분</p> -->
+<!-- 		</div> -->
+		<div id="jihacul-list"></div>
 		<div><h3>버스</h3></div>
-		<div>
-			<span class="busgansun">간선</span><p class="busp">금호36 │ 문흥39 │ 봉선37 │ 송정19 │ 수완12 │ 지원25</p>
-			<span class="busjisun">지선</span><p class="busp">1187 │ 송암68 │ 송암72 │ 지원56</p>
-			<span class="busgwang">광역</span><p class="busp">160 │ 161</p>
-			<span class="busnung">농어촌</span><p class="busp">200</p>
+		<div id="bus-list">
+<!-- 			<span class="busgansun">간선</span><p class="busp">금호36 │ 문흥39 │ 봉선37 │ 송정19 │ 수완12 │ 지원25</p> -->
+<!-- 			<span class="busjisun">지선</span><p class="busp">1187 │ 송암68 │ 송암72 │ 지원56</p> -->
+<!-- 			<span class="busgwang">광역</span><p class="busp">160 │ 161</p> -->
+<!-- 			<span class="busnung">농어촌</span><p class="busp">200</p> -->
 		</div>
 	</div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f66b96847a2059f0fcba4e3f2429b255&libraries=services"></script>
@@ -79,7 +80,7 @@
 		var geocoder = new kakao.maps.services.Geocoder();
 		var adress=document.get
 		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('${adress }', function(result, status) {
+		geocoder.addressSearch('${vo.adress }', function(result, status) {
 			
 		    // 정상적으로 검색이 완료됐으면 
 		     if (status === kakao.maps.services.Status.OK) {
@@ -110,19 +111,112 @@
 		    if (status === kakao.maps.services.Status.OK) {
 			        var placeid = result[0].id;
 			        var placeurl = "https://place.map.kakao.com/main/v/"+placeid;
-			        
 			        var jihachul_data = '';
+		    		var gansun=[];
+		    		var jisun=[];
+		    		var gwang=[];
+		    		var nong=[];
+			        var bus_data = '';
 			        $.ajax({
-			    		url: "<c:url value='/main/info'/>",
+			    		url: "<c:url value='/info'/>",
 			    		data: { placeurl: placeurl }
 			    	}).done(function( response ){
 			    		console.log( 'result12',response)
+				        jihachul_data = '';
+			    		$( response.findway.subway ).each(function(){
+			    			jihachul_data += 
+			    			`<span class="jihachul1">광주 1호선</span><p class="jihachulp">\${this.stationSimpleName} │ \${this.exitNum}번 출구 도보\${this.toExitMinute}분</p>
+			    			`;
+			    		})
+			    		$("#jihacul-list").html( jihachul_data )
 			    		
+				        
+			    		$( response.findway.busstop ).each(function(){
+			    			for(i=0;i<this.busInfo.length;i++){
+			    				if(this.busInfo[i].busType=='지선'){
+			    					jisun.push(...this.busInfo[i].busNames.split(", "))
+			    				}else if(this.busInfo[i].busType=='간선'){
+			    					gansun.push(...this.busInfo[i].busNames.split(", "))
+			    				}else if(this.busInfo[i].busType=='광역'){
+			    					gwang.push(...this.busInfo[i].busNames.split(", "))
+			    				}else if(this.busInfo[i].busType=='농어촌'){
+			    					nong.push(...this.busInfo[i].busNames.split(", "))
+			    				}
+			    			}
+			    			
+
+			    		})
+			    		var resultjisun = jisun.reduce((unique, item) => {
+			    			  return unique.includes(item) ? unique : [...unique, item];
+			    		}, []);
+			    		var resultgansun = gansun.reduce((unique, item) => {
+			    			  return unique.includes(item) ? unique : [...unique, item];
+			    		}, []);
+			    		var resultgwang = gwang.reduce((unique, item) => {
+			    			  return unique.includes(item) ? unique : [...unique, item];
+			    		}, []);
+			    		var resultnong = nong.reduce((unique, item) => {
+			    			  return unique.includes(item) ? unique : [...unique, item];
+			    		}, []);
+			    		var jisunText='';
+			    		var gansunText='';
+			    		var gwangText='';
+			    		var nongText='';
+			    		for(i=0;i<resultjisun.length;i++){
+			    			if(i==resultjisun.length-1){
+			    				jisunText+=resultjisun[i];
+			    			}else{
+			    				jisunText+=resultjisun[i]+' | ';
+			    			}
+			    		}
+			    		for(i=0;i<resultgansun.length;i++){
+			    			if(i==resultgansun.length-1){
+			    				gansunText+=resultgansun[i];
+			    			}else{
+			    				gansunText+=resultgansun[i]+' | ';
+			    			}
+			    		}
+			    		for(i=0;i<resultgwang.length;i++){
+			    			if(i==resultgwang.length-1){
+			    				gwangText+=resultgwang[i];
+			    			}else{
+			    				gwangText+=resultgwang[i]+' | ';
+			    			}
+			    		}
+			    		for(i=0;i<resultnong.length;i++){
+			    			if(i==resultnong.length-1){
+			    				nongText+=resultnong[i];
+			    			}else{
+			    				nongText+=resultnong[i]+' | ';
+			    			}
+			    		}
+			    		bus_data = '';
+			    		if(resultgansun.length>0){
+			    			bus_data +=
+			    				`<span class="busgansun">간선</span><p class="busp">`+gansunText+'</p>';
+			    		}
+			    		if(resultjisun.length>0){
+			    			bus_data +=
+			    				`<span class="busjisun">지선</span><p class="busp">`+jisunText+'</p>';
+			    		}
+			    		if(resultgwang.length>0){
+			    			bus_data +=
+			    				`<span class="busgwang">지선</span><p class="busp">`+gwangText+'</p>';
+			    		}
+			    		if(resultjisun.length>0){
+			    			bus_data +=
+			    				`<span class="busnung">지선</span><p class="busp">`+nongText+'</p>';
+			    		}
+// 			    		console.log( 'jisun',jisunText)
+// 			    		console.log( 'gansun',gansunText)
+// 			    		console.log( 'gwang',gwangText)
+// 			    		console.log( 'nong',nongText)
+			    		$("#bus-list").html( bus_data )
 			    		$('#adressp').text(response.basicInfo.address.region.newaddrfullname+' '+response.basicInfo.address.newaddr.newaddrfull)
 			    	})
 			    }
 		};
-		places.keywordSearch('${adress }', callback);
+		places.keywordSearch('${vo.adress }', callback);
 		
 	</script>
 </body>
