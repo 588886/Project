@@ -16,7 +16,6 @@ public class MemberService {
 	@Autowired @Qualifier("sql_hanul") private SqlSession sql;
 	
 	
-	//여기부터 새로
 	//로그인상태유지된 세션의 회원정보 조회
 	public List<MemberVO> admin_list() {
 		return sql.selectList("member.admin_list");
@@ -30,6 +29,11 @@ public class MemberService {
 	//운영자 삭제
 	public int admin_delete(String userid) {
 		return sql.delete("member.delete",userid);
+	}
+	
+	//운영자 수정
+	public int admin_update(MemberVO vo) {
+		return sql.update("member.update",vo);
 	}
 	
 	//로그인상태유지 정보 삭제

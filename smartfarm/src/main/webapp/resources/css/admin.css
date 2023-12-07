@@ -113,3 +113,11 @@
     margin-right: 5px;
     border-radius: 5px;
 }
+
+.modify-form{
+	width: 97%;
+    height: 35px;
+    font-size: larger;
+    text-align: center;
+    border-radius: 5px;
+}

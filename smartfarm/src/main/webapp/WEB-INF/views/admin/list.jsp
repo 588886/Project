@@ -22,7 +22,7 @@
 					<tr><td>${vo.name}</td>
 						<td>${vo.userid }</td>
 						<td>${vo.userpw }</td>
-						<td><button>click</button></td>
+						<td><button onclick="location='/smartfarm/admin/modify?userid=${vo.userid}'">click</button></td>
 						<td><button onclick="if(confirm('정말 삭제하시겠습니까?')){location='/smartfarm/admin/delete?userid=${vo.userid}'}">click</button></td>
 					</tr>
 				</c:forEach>

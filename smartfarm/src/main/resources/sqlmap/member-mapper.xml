@@ -7,10 +7,16 @@
 <select id="admin_list" resultType="member">
 select * from member 
 where role = 'MANAGER'
+order by name
 </select>
 
 <delete id="delete">
 delete from member where userid = #{userid}
+</delete>
+
+<delete id="update">
+update member set name = #{name}, userpw=#{userpw} 
+where userid = #{userid}
 </delete>
 
 
