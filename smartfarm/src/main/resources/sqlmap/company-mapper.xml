@@ -9,7 +9,9 @@
 	</select>
 	
 	<update id="update">
-		update company set name = #{name}, adress=#{adress} 
+
+		update company set name = #{name}, adress=#{adress} ,detailadress=#{detailadress} 
+
 	</update>
 </mapper>
 

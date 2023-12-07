@@ -50,7 +50,7 @@
 		<div id="map" style="width:100%; height:400px;"/>
 		</div>
 		<div><h2>Address</h2></div>
-		<div><p id='adressp'>${vo.adress }</p></div>
+		<div><p id='adressp'>${vo.adress } ${vo.detailadress }</p></div>
 		<div><h2>교통정보</h2></div>
 		<div><h3>지하철</h3></div>
 <!-- 		<div id="jihachul_data"> -->
@@ -203,16 +203,11 @@
 			    			bus_data +=
 			    				`<span class="busgwang">지선</span><p class="busp">`+gwangText+'</p>';
 			    		}
-			    		if(resultjisun.length>0){
+			    		if(resultnong.length>0){
 			    			bus_data +=
-			    				`<span class="busnung">지선</span><p class="busp">`+nongText+'</p>';
+			    				`<span class="busnung">농어촌</span><p class="busp">`+nongText+'</p>';
 			    		}
-// 			    		console.log( 'jisun',jisunText)
-// 			    		console.log( 'gansun',gansunText)
-// 			    		console.log( 'gwang',gwangText)
-// 			    		console.log( 'nong',nongText)
 			    		$("#bus-list").html( bus_data )
-			    		$('#adressp').text(response.basicInfo.address.region.newaddrfullname+' '+response.basicInfo.address.newaddr.newaddrfull)
 			    	})
 			    }
 		};

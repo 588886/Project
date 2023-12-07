@@ -87,11 +87,13 @@ public class AdminController {
 	}
 	
 
-	//운영자 정보 수정
+
+	//회사 정보 수정
 	@RequestMapping("/campanyModify")
 	public String campanyModify(CompanyVO vo) {
 		company.company_update(vo);
-		return "/";
+		return "main";
+
 	}
 	
 	//로그아웃처리 요청
