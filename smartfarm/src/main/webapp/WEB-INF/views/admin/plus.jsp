@@ -9,7 +9,15 @@
 <link href="<c:url value='/css/admin.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
 </head>
 <body>
+	<c:if test="${empty loginInfo}">
+		<div class="noadmin">
+			<img alt="notEnter" src="/smartfarm/img/notenter.jpg">
+			<a style="display: none;" href="https://kr.freepik.com/free-vector/flat-design-do-not-enter-sign_23101533.htm#query=%EA%B8%88%EC%A7%80%20%ED%91%9C%EC%A7%80%ED%8C%90&position=5&from_view=keyword&track=ais&uuid=4dba9b05-3ffb-440c-bd3e-6cc3be8272b8">Freepik</a>
+			<p >접근할 수 없는 페이지입니다.</p>
+		</div>
+	</c:if>
 	<div class="contaner">
+		<c:if test="${not empty loginInfo}">
 		<form method="post" action="register">
 			<table id="registertable">
 				<colgroup><col width="200px"><col width="650px">
@@ -48,7 +56,7 @@
 			<button id="admin_add">추가하기</button>
 			<button onclick=history.go(-1)>돌아가기</button>
 		</div>
-		
+		</c:if>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script src="<c:url value='/js/member.js'/>?<%=new java.util.Date() %>"></script>

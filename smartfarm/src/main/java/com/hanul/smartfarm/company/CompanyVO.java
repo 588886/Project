@@ -5,5 +5,5 @@ import lombok.Setter;
 
 @Getter @Setter
 public class CompanyVO {
-		private String name, adress;
+		private String name, adress,detailadress;
 }

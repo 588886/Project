@@ -28,7 +28,7 @@
 	        	</div>
 	        </div>
 	        <div class="loginButton">
-		        <button class="loginBtn">로그인</button>
+		        <button>로그인</button>
 		        <button onclick=history.go(-1)>돌아가기</button>
 	        </div>
 	    </form>
