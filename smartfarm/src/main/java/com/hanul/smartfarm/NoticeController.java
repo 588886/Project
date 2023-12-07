@@ -113,11 +113,11 @@ public class NoticeController {
 	
 	//첨부파일 다운로드처리 요청
 	@ResponseBody @RequestMapping(value="/download", produces="text/html; charset=utf-8")
-	public String download( int id, HttpServletRequest request
+	public String download( int file, HttpServletRequest request
 								, HttpServletResponse response ) throws Exception{
 		//선택한 글의 첨부파일을 저장된 위치(서버)에서 가져와 클라이언트에 저장하기
-		NoticeVO vo = service.notice_info(id);
-		boolean download 
+		FileVO vo = service.notice_file_info(file);
+		boolean download
 			= common.fileDownload( vo.getFilename(), vo.getFilepath(), request, response);
 		if( download ) return null;
 		else {

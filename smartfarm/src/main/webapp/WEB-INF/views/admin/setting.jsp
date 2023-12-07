@@ -9,6 +9,7 @@
 <link href="<c:url value='/css/admin.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
 </head>
 <body>
+
 	<c:if test="${empty loginInfo}">
 		<div class="noadmin">
 			<img alt="notEnter" src="/smartfarm/img/notenter.jpg">
@@ -18,6 +19,7 @@
 	</c:if>
 	<div class="contaner">
 		<c:if test="${not empty loginInfo}">
+
 		<form method="post" action="campanyModify">
 			<table id="settingtable">
 				<colgroup><col width="200px"><col width="650px">
@@ -30,6 +32,7 @@
 				</tr>
 				<tr><th>주소</th>
 					<td><div class="inputid">
+
 							<input type="text"  id="addr" name="adress" onclick="openZipSearch();" readonly="readonly"  value="${vo.adress }">
 						</div>
 					</td>
@@ -37,11 +40,13 @@
 				<tr><th>상세주소</th>
 					<td><div>
 							<input type="text"  id="addr_dtl" name="detailadress" value="${vo.detailadress }">
+
 						</div>
 					</td>
 				</tr>
 				
 			</table>
+
 			<div class="addback">
 				<button>수정하기</button>
 				<button type="button" onclick=history.go(-1)>돌아가기</button>
@@ -71,5 +76,6 @@
 	    }).open();
 	}
 	</script>
+
 </body>
 </html>
