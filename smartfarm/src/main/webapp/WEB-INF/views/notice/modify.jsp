@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="<c:url value='/css/styles.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
+<link href="<c:url value='/css/common.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <link href="<c:url value='/css/styles.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
- <link href="<c:url value='/css/common.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 <body>
 <h3 class="my-4 text-center">공지사항 수정</h3>
@@ -24,49 +24,65 @@
 			class="form-control check-empty" title="내용">${vo.content}</textarea></td>
 </tr>
 <tr><th>첨부파일</th>
-	<td><div class="row">
-			<div class="col-auto d-flex gap-4 align-items-center ">
-				<label>
-					<input type="file" name="file" id="file-single">
-					<i role="button" class="fs-3 fa-solid fa-file-circle-plus"></i>
-				</label>
-				<div class="d-flex gap-3 align-items-center" id="file-attach">
-					<span class="file-name">${vo.filename}</span>
-					<i class="file-delete ${empty vo.filename ? 'd-none' : ''} fs-3 fa-regular fa-circle-xmark text-danger" role="button"></i>
+	<td><div>
+			<label>
+				<input type="file" name="file" id="file-multiple" multiple>
+				<i role="button" class="fs-3 fa-solid fa-file-circle-plus"></i>
+			</label>
+		</div>
+		
+		<div class="form-control py-2 mt-2 file-drag">
+			<!-- 첨부파일이 없는 경우 -->
+			<c:if test="${empty vo.files}">
+				<div class="py-3 text-center">첨부할 파일을 마우스로 끌어 오세요</div>
+			</c:if>
+			<!-- 첨부된 파일들 --> 
+			<c:forEach items="${vo.files}" var="file" varStatus="s">
+				<div class="d-flex gap-3 align-items-center file-item my-1" >
+					<button class="btn-close small" data-seq="${s.index}"></button>
+					<span class="file-name">${file.filename}</span>
 				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</td>
 </tr>
 </table>
+<input type="hidden" name="remove" >
 <input type="hidden" name="id" value="${vo.id}">
-<input type="hidden" name="filename">
 <input type="hidden" name="curPage" value="${page.curPage}">
 <input type="hidden" name="search" value="${page.search}">
 <input type="hidden" name="keyword" value="${page.keyword}">
 </form>
 
 <div class="btn-toolbar gap-2 justify-content-center my-3">
-	<button class="btn btn-success" id="btn-save">저장</button>
-	<button class="btn btn-success" id="btn-cancel">취소</button>
+	<button class="btn btn-primary" id="btn-save">저장</button>
+	<button class="btn btn-outline-primary" id="btn-cancel">취소</button>
 </div>
 
 <script>
+var fileList = new FileList();
+
+// 이전에 첨부된 파일목록을 fileList에 담기
+<c:forEach items="${vo.files}" var="file">
+	fileList.setFile( urlToFile( "${file.filepath}", "${file.filename}" ), ${file.id} )
+</c:forEach>
+console.log( "files> ", fileList )
+
 $('#btn-cancel').on('click', function(){
 	history.go(-1)	
 })
 
 $('#btn-save').click(function(){
-	$('[name=filename]').val( $('.file-name').text() )
 	if( emptyCheck() ){
-		singleFileUpload()
+		$('[name=remove]').val( fileList.info.removeId )
+		//console.log( 'remove> ', $('[name=remove]').val()  )
+		multipleFileUpload();
 		$('form').submit()
 	}
 })
-
-var singleFile = '';
 
 </script>
 
 </body>
 </html>
+
