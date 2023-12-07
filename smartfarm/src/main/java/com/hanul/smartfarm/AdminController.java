@@ -62,7 +62,7 @@ public class AdminController {
 			//로그인된 경우
 			session.setAttribute("loginInfo", vo); //세션에 로그인된 회원정보 담기
 			//웰컴페이지로 연결
-			return "main";
+			return "redirect:../";
 			
 		}else {
 			//로그인 안된 경우
@@ -121,7 +121,7 @@ public class AdminController {
 		}
 		session.setAttribute("category", "ma");
 		
-			return "main";
+			return "redirect:../";
 	}
 	
 	//운영자 추가및 수정,삭제
