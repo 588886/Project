@@ -20,7 +20,7 @@
     <script src="<c:url value='/js/common.js'/>?<%=new java.util.Date()%>"></script>
 </head>
 <body style="background-color:#7a9c30;">
-
+<h3 class="my-3 text-center mt-5" style="color: #fff; font-size: 50px;" >공지사항</h3>
 <div class="container mt-5">
     <form method="post" action="list" class="mb-3">
         <input type="hidden" name="curPage" value="1">

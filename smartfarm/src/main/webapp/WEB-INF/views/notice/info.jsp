@@ -17,7 +17,7 @@
     <div class="card text-center" style="background-color:#7a9c30; color: #fff;">
         <div class="card-header">
             <h2 class="card-title">${vo.title}</h2>
-            <p class="card-subtitle text-muted">
+            <p class="card-subtitle">
                 ${vo.name}   ${vo.writedate}
             </p>
         </div>
