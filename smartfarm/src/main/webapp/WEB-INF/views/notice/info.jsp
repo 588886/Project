@@ -48,7 +48,7 @@
 	</c:if>
 	
 </div>
-</div>
+
 
 
 <jsp:include page="/WEB-INF/views/include/modal_image.jsp"/>
