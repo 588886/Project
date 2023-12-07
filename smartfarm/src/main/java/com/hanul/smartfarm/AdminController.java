@@ -18,6 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 import com.hanul.smartfarm.common.CommonService;
+import com.hanul.smartfarm.company.CompanyService;
+import com.hanul.smartfarm.company.CompanyVO;
 import com.hanul.smartfarm.member.MemberService;
 import com.hanul.smartfarm.member.MemberVO;
 
@@ -30,6 +32,8 @@ public class AdminController {
 	private MemberService service;
 	@Autowired
 	private CommonService common;
+	@Autowired 
+	private CompanyService company;
 	
 	//로그인화면 요청
 	@RequestMapping("/login")
@@ -76,9 +80,18 @@ public class AdminController {
 	
 	//세팅화면
 	@RequestMapping("/setting")
-	public String setting() {
-		
+	public String setting(HttpSession session) {
+		CompanyVO vo=company.company_info();
+		session.setAttribute("vo", vo);
 		return "/admin/setting";
+	}
+	
+
+	//운영자 정보 수정
+	@RequestMapping("/campanyModify")
+	public String campanyModify(CompanyVO vo) {
+		company.company_update(vo);
+		return "/";
 	}
 	
 	//로그아웃처리 요청

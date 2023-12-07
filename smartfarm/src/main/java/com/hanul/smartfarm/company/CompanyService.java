@@ -11,9 +11,15 @@ public class CompanyService {
 	//CRUD
 	@Autowired @Qualifier("sql_hanul") private SqlSession sql;
 	
-	//해당 아이디의 회원정보 조회
+	//회사 정보 조회
 	public CompanyVO company_info() {
 		
 		return sql.selectOne("company.info");
+	}
+	
+	//회사 정보 수정
+	public int company_update(CompanyVO vo) {
+		
+		return sql.update("company.update",vo);
 	}
 }

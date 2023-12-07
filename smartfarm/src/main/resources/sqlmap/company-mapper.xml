@@ -7,5 +7,9 @@
 	<select id="info" resultType="company">
 	select * from company
 	</select>
+	
+	<update id="update">
+		update company set name = #{name}, adress=#{adress} 
+	</update>
 </mapper>
 
