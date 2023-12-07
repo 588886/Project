@@ -9,6 +9,8 @@
 <link href="<c:url value='/css/styles.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
 <link href="<c:url value='/css/common.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+
 </head>
 <body>
 <h3 class="my-4 text-center">공지사항 작성</h3>
@@ -23,17 +25,15 @@
 	<td><textarea name="content" class="form-control check-empty" title="내용"></textarea></td>
 </tr>
 <tr><th>첨부파일</th>
-	<td><div class="row">
-			<div class="col-auto d-flex gap-4 align-items-center ">
-				<label>
-					<input type="file" name="file" id="file-single">
-					<i role="button" class="fs-3 fa-solid fa-file-circle-plus"></i>
-				</label>
-				<div class="d-flex gap-3 align-items-center" id="file-attach">
-					<span class="file-name"></span>
-					<i class="file-delete d-none fs-3 fa-regular fa-circle-xmark text-danger" role="button"></i>
-				</div>
-			</div>
+	<td><div>
+			<label>
+				<input type="file" name="file" id="file-multiple" multiple>
+				<i role="button" class="fs-3 fa-solid fa-file-circle-plus"></i>
+			</label>
+		</div>
+		
+		<div class="form-control py-2 mt-2 file-drag">
+			<div class="py-3 text-center">첨부할 파일을 마우스로 끌어 오세요</div>
 		</div>
 	</td>
 </tr>
@@ -47,16 +47,26 @@
 </div>
 
 <script>
+var fileList = new FileList();
+
+$(function(){
+
+})
+
+
+
+
+
 $('#btn-cancel').on('click', function(){
 	history.go(-1)	
 })
 
 $('#btn-save').click(function(){
-	if( emptyCheck() )
+	if( emptyCheck() ){
+		multipleFileUpload();
 		$('form').submit()
+	}
 })
-
-var singleFile = '';
 
 </script>
 </body>

@@ -1,13 +1,16 @@
 package com.hanul.smartfarm;
 
 import java.net.URLEncoder;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +22,10 @@ import com.hanul.smartfarm.common.PageVO;
 import com.hanul.smartfarm.notice.NoticeService;
 
 import com.hanul.smartfarm.common.CommonService;
-import com.hanul.smartfarm.member.MemberService;
-import com.hanul.smartfarm.member.MemberVO;
+
 import com.hanul.smartfarm.notice.NoticeVO;
+
+import com.hanul.smartfarm.common.FileVO;
 
 @Controller
 @RequestMapping("/notice")
@@ -31,12 +35,9 @@ public class NoticeController {
 	
 	//공지글 새글저장처리 요청
 	@RequestMapping("/register")
-	public String register(NoticeVO vo, MultipartFile file, HttpServletRequest request) {
-		//첨부된 파일이 있는 경우
-		if( ! file.isEmpty() ) {
-			vo.setFilename( file.getOriginalFilename() );
-			vo.setFilepath( common.fileUpload(file, "notice", request) );
-		}
+	public String register(NoticeVO vo, MultipartFile[] file, HttpServletRequest request) {
+		//첨부된 파일들을 NoticeVO의 files에 담기
+		vo.setFiles(  common.fileAttach("notice", file, request) );
 		//화면에서 입력한 정보를 DB에 신규저장 후 목록화면으로 연결
 		service.notice_register(vo);
 		return "redirect:list";
@@ -46,11 +47,15 @@ public class NoticeController {
 	//공지글 삭제처리 요청
 	@RequestMapping("/delete")
 	public String delete(int id, HttpServletRequest request, PageVO page) throws Exception{
-		NoticeVO vo = service.notice_info(id);
+//		NoticeVO vo = service.notice_info(id);
+		//첨부된 파일이 있는 경우: DB삭제+물리적파일 삭제
+		List<FileVO> files = service.notice_files_list(id);
 		//선택한 공지글을 DB에서 삭제한 후 목록화면으로 연결
 		if( service.notice_delete(id)==1 ) {
 			//첨부파일이 있으면 물리적파일도 삭제
-			common.fileDelete( vo.getFilepath(), request );
+			for(FileVO vo : files) {
+				common.fileDelete(vo.getFilepath(), request);
+			}
 		}
 		return "redirect:list"
 				+ "?curPage=" + page.getCurPage()
@@ -62,35 +67,24 @@ public class NoticeController {
 	
 	//공지글 수정저장처리 요청
 	@RequestMapping("/update") 
-	public String update(NoticeVO vo, MultipartFile file, PageVO page
-						, HttpServletRequest request) throws Exception {
+	public String update(NoticeVO vo, MultipartFile file[], PageVO page
+						, String remove, HttpServletRequest request) throws Exception {
 		//변경전 공지글정보 조회
-		NoticeVO before = service.notice_info( vo.getId() );
-		if( file.isEmpty() ) {
-			//첨부파일 없는 경우: 원래X, 원래O삭제, 원래O그대로 
-			if( ! vo.getFilename().isEmpty() ) { //원래O그대로 
-				vo.setFilepath( before.getFilepath() );
-			}
-			
-		}else {
-			//첨부파일 있는 경우: 원래O바꿔첨부, 원래X새로첨부
-			vo.setFilename( file.getOriginalFilename() );
-			vo.setFilepath(  common.fileUpload(file, "notice", request) );
-		}
-		
-		//화면에서 변경입력한 정보를 DB에 변경저장후 정보화면으로 연결
-		if( service.notice_update(vo)==1 ) {
-			if( file.isEmpty() ) {
-				//첨부파일 없는 경우: 원래O삭제: 이전파일삭제
-				if( vo.getFilename().isEmpty() ) {
-					common.fileDelete(before.getFilepath(), request);
+		//첨부된 파일이 있는 경우
+				vo.setFiles( common.fileAttach("notice", file, request) );
+				//화면에서 입력한 정보를 DB에 변경저장한 후 정보화면으로 연결
+				if( service.notice_update(vo)==1 ) {
+					//삭제된 파일이 있으면: DB에서 삭제 + 물리적파일 삭제
+					if( ! remove.isEmpty() ) {
+						//삭제대상인 파일 정보를 조회해두기
+						List<FileVO> files = service.notice_remove_files(remove);
+						if( service.notice_files_delete(remove) > 0 ) { // DB에서 삭제
+							for(FileVO filevo : files ) {
+								common.fileDelete(filevo.getFilepath(), request); //물리적파일 삭제
+							}
+						}
+					}
 				}
-				
-			}else {
-				//첨부파일 있는 경우: 원래O바꿔첨부: 이전파일삭제
-				common.fileDelete(before.getFilepath(), request);
-			}
-		}
 		return "redirect:info?id=" + vo.getId() 
 						+ "&curPage=" + page.getCurPage()
 						+ "&search=" + page.getSearch()
@@ -115,8 +109,7 @@ public class NoticeController {
 		return "notice/register";
 	}
 	
-	@Autowired private MemberService member;
-	@Autowired private BCryptPasswordEncoder pwEncoder;
+	
 	
 	//첨부파일 다운로드처리 요청
 	@ResponseBody @RequestMapping(value="/download", produces="text/html; charset=utf-8")
@@ -136,7 +129,19 @@ public class NoticeController {
 		}
 	}
 	
-	
+	//파일을 읽어들여 binary로 변환해 응답하기
+		@ResponseBody @RequestMapping( value="/convertFile"
+							, produces= MediaType.APPLICATION_OCTET_STREAM_VALUE)
+		public byte[] convert(String file, HttpServletRequest request) throws Exception  {
+			//http://192.168.0.49:80/upload/board/2023/10/26/423b33e6-bfe7-4731-96da-5e0cfd9d7c72_pp.jpg
+			//d://app/upload/board/....
+			//http://192.168.0.49:80/iot/upload/board/2023/10/26/423b33e6-bfe7-4731-96da-5e0cfd9d7c72_pp.jpg
+			//d://app/iot/upload/board/....
+			file = "d://app" + request.getContextPath() + file.substring( file.indexOf("/upload") );
+			//해당 위치의 물리적인 파일을 읽어들여 byte로 변환
+			return Files.readAllBytes( Paths.get( file ) );
+		}
+		
 	//선택한 공지글 정보화면 요청
 	@RequestMapping("/info")
 	public String info(int id, Model model, PageVO page) {

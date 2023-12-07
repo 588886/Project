@@ -14,7 +14,7 @@
 <body style="background-color:#7a9c30;">
 
 <div class="container mt-5">
-    <div class="card text-center" style="background-color:#7a9c30; color: #fff;"> <!-- text-center 클래스 추가 -->
+    <div class="card text-center" style="background-color:#7a9c30; color: #fff;">
         <div class="card-header">
             <h2 class="card-title">${vo.title}</h2>
             <p class="card-subtitle text-muted">
@@ -22,13 +22,17 @@
             </p>
         </div>
         <div class="card-body my-3">
-            <!-- 이미지를 보여주는 부분 -->
+            <!-- 내용을 먼저 표시 -->
             <p class="card-text my-5">${fn:replace(vo.content, crlf, "<br>")}</p>
-            <c:if test="${not empty vo.filepath}">
-                <img src="${vo.filepath}" class="img-fluid my-3" alt="첨부 이미지" style="width: 50% !important;" onclick="openModal('${vo.filepath}')">
-            </c:if>
+            <!-- 이미지를 보여주는 부분 -->
+            <c:forEach var="file" items="${vo.files}">
+                <c:if test="${not empty file.filepath}">
+                    <img src="${file.filepath}" class="img-fluid my-3 custom-img2 mt-5" alt="첨부 이미지" style="width: 50% !important;" onclick="openModal('${vo.filepath}')">
+                </c:if>
+            </c:forEach>
         </div>
     </div>
+</div>
 
 <c:set var="params" value="curPage=${page.curPage}&search=${page.search}&keyword=${page.keyword}"/>
     
