@@ -14,10 +14,10 @@ order by name
 delete from member where userid = #{userid}
 </delete>
 
-<delete id="update">
+<update id="update">
 update member set name = #{name}, userpw=#{userpw} 
 where userid = #{userid}
-</delete>
+</update>
 
 
 <delete id="rememberRelease">

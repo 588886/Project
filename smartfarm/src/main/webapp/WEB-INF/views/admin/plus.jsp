@@ -17,7 +17,7 @@
 				<tr><th>성명</th>
 					<td><div>
 							<div class="col-auto">
-								<input type="text" name="name" class="form-control" title="이름" autofocus >
+								<input type="text" name="name"title="이름" autofocus >
 							</div>
 						</div>
 					</td>
@@ -25,7 +25,7 @@
 				<tr><th>아이디</th>
 					<td><div class="row input-check">
 							<div class="inputid">
-								<input type="text" name="userid" class="form-control"  title="아이디">
+								<input type="text" name="userid"  title="아이디">
 								<button type="button" id="btn-userid">
 									중복확인
 								</button>
@@ -37,7 +37,7 @@
 				<tr><th>비밀번호</th>
 					<td><div>
 							<div class="col-auto">
-								<input type="text" name="userpw" class="form-control" title="비밀번호">
+								<input type="text" name="userpw" title="비밀번호">
 							</div>
 						</div>
 					</td>
