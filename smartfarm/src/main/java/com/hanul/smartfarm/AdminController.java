@@ -3,6 +3,7 @@ package com.hanul.smartfarm;
 import java.util.HashMap;
 import java.util.Locale;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,12 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.WebUtils;
 
 import com.hanul.smartfarm.common.CommonService;
 import com.hanul.smartfarm.member.MemberService;
 import com.hanul.smartfarm.member.MemberVO;
-
-
 
 
 
@@ -28,6 +28,7 @@ public class AdminController {
 	private MemberService service;
 	@Autowired
 	private CommonService common;
+	
 	//로그인화면 요청
 	@RequestMapping("/login")
 	public String login(HttpSession session, String id, String url) {
@@ -71,4 +72,60 @@ public class AdminController {
 		
 	}
 	
+	//세팅화면
+	@RequestMapping("/setting")
+	public String setting() {
+		
+		return "/admin/setting";
+	}
+	
+	//로그아웃처리 요청
+	@RequestMapping("/logout")
+	public String logout(HttpSession session, HttpServletResponse response
+						, HttpServletRequest request) {
+		//MemberVO login = (MemberVO) session.getAttribute("loginInfo");
+		MemberVO login = common.loginInfo(session);
+		
+		//세션의 로그인정보 삭제
+		session.removeAttribute("loginInfo");
+		
+		//로그인유지 쿠키 삭제
+		Cookie rememberCookie = WebUtils.getCookie(request, "remember-smartfarm");
+		if( rememberCookie != null ) {
+			rememberCookie.setMaxAge(0);
+			rememberCookie.setPath( request.getContextPath() );
+			response.addCookie(rememberCookie);
+			
+			//DB에서 쿠키의 세션아이디인 정보 삭제
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("userid", login.getUserid());
+			map.put("sessionid", rememberCookie.getValue());
+			service.remember_release(map);
+		}
+		session.setAttribute("category", "ma");
+		
+			return "main";
+	}
+	
+	//운영자 추가및 수정,삭제
+	@RequestMapping("/add")
+	public String add(Model model) {
+		model.addAttribute("adminList", service.admin_list());
+		return "/admin/list";
+	}
+	
+	//운영자 삭제 요청
+	@RequestMapping("/plus")
+	public String plus(String userid) {
+		
+		return "/admin/plus";
+	}
+	
+	//운영자 삭제 요청
+	@RequestMapping("/delete")
+	public String delete(String userid) {
+		service.admin_delete(userid);
+		
+		return "redirect:add";
+	}
 }

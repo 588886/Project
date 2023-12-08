@@ -28,13 +28,13 @@
 
     <c:set var="params" value="curPage=${page.curPage}&search=${page.search}&keyword=${page.keyword}"/>
 
-    <c:forEach var="vo" items="${page.list}" varStatus="loop">
+    <c:forEach var="vo" items="${page.list}">
         <div class="card mb-3 mx-auto" style="max-width: 900px; background-color:#7a9c30;">
             <div class="row g-0">
                 <c:if test="${not empty vo.filepath}">
                     <div class="col-md-4">
                         <a class="text-link" href="<c:if test="${vo.indent > 0}"></c:if>info?id=${vo.id }&${params}">
-                            <img src="${vo.filepath}" class="img-fluid rounded-start" alt="공지 이미지" style="width: 100%;">
+                            <img src="${vo.filepath}" class="img-fluid rounded-start custom-img" alt="공지 이미지" style="width: 100%;">
                         </a>
                     </div>
                 </c:if>
@@ -50,7 +50,7 @@
         </div>
     </c:forEach>
     <!-- 관리자로 로그인되어 있는 경우만 새글쓰기 가능 -->
-	<c:if test="${loginInfo.role eq 'ADMIN'}">
+	<c:if test="${loginInfo.role eq 'ADMIN' or loginInfo.role eq 'MANAGER'}">
 		<div class="col-auto">
 			<a class="btn btn-success col-12" href="new">새글쓰기</a>
 		</div>

@@ -1,5 +1,79 @@
 @charset "UTF-8";
 
+
+.magin_bottom_30{
+	margin-bottom: 30px;
+}
+
+#sogae{
+	background-image: url(../resources/images/newplant.jpg);
+    width: 100vw;
+    height: 650px;
+    background-position: 0 900px;
+    text-align: center;
+    color: white;
+}
+
+#sogae h1{
+    font-weight: bold;
+    font-size: 50px;
+    padding: 135px 0 100px;
+    font-family: monospace;
+}
+
+#sogae span{
+    color: greenyellow;
+}
+
+#sogae p{
+    font-size: larger;
+    margin: 20px;
+}
+
+#vision{
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	width: 800px;
+}
+
+.vision_head{
+	text-align: center;
+    margin: 30px;
+}
+
+.vision_main{
+    display: flex;
+    justify-content: space-between;
+    margin: 100px 0 100px;
+}
+
+.vision_main div{
+    text-align: center;
+}
+
+.vision_main h3{
+    padding: 20px;
+}
+
+
+#vision h1{
+	font-size: 50px;
+	padding: 20px;
+	font-family: serif;
+	color: darkgreen;
+}
+
+#vision h3{
+    font-size: 25px;
+    font-family: serif;
+    color: darkgreen;
+}
+
+#vision p{
+    color: darkgreen;
+}
+
 #jido {
 	margin: 0 auto;
 	width: 800px;
@@ -10,16 +84,19 @@
     font-size: 50px;
     font-family: serif;
     color: darkgreen;
+    margin: 30px 0;
 }
 
 #jido h2{
     font-size: 30px;
     font-family: serif;
     color: darkgreen;
+    margin: 20px 0;
 }
 #jido h3{
     font-family: serif;
     color: darkgreen;
+    margin: 15px 0;
 }
 
 .jihachul{
@@ -35,7 +112,8 @@
 
 .jihachulp{
     position: relative;
-    top: -4px;
+    top: -1px;
+    margin: 10px 0;
 }
 
 .busgansun{
@@ -84,5 +162,5 @@
 
 .busp{
     position: relative;
-    top: -3px;
+    margin: 10px 0;
 }

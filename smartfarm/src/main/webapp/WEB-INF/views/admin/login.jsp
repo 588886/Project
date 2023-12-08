@@ -9,7 +9,7 @@
 <link href="<c:url value='/css/admin.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
 </head>
 <body>
-	<div class="loginContaner">
+	<div class="contaner">
 	    <form method="post" action="smartfarmLogin">
 	    	<div class="inputID">
 	        	<div>

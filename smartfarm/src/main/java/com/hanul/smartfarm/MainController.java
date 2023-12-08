@@ -20,7 +20,7 @@ public class MainController {
 		
 //		model.addAttribute("adress", adress);
 		session.setAttribute("adress", adress);
-		
+		session.setAttribute("category", "ma");
 		return "main";
 	}
 }

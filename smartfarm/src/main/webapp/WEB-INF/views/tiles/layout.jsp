@@ -35,7 +35,7 @@
     <script src="<c:url value='/js/common.js'/>?<%=new java.util.Date()%>"></script>
 </head>
 <body>
-    <div class="d-flex" id="wrapper">
+    <div class="l-d-flex" id="wrapper">
     	<header>
     		<div >
             	<a href="<c:url value='/'/>">
@@ -45,7 +45,7 @@
 			<div class="list-grouping">
                 <a href="<c:url value='/main/show'/>" class="${category eq 'ma' ? 'active' : ''} ">HOME</a>
                 <a href="<c:url value='/about'/>" class="${category eq 'ab' ? 'active' : ''} ">ABOUT US</a>
-                <a href="<c:url value='/program'/>" class="${category eq 'se' ? 'active' : ''} ">PROGRAM</a>
+                <a href="<c:url value='/program'/>" class="${category eq 'pr' ? 'active' : ''} ">PROGRAM</a>
                 <a href="<c:url value='/notice/list'/>" class="${category eq 'no' ? 'active' : ''} ">BOARD</a>
 
             </div>
@@ -67,7 +67,7 @@
 					<h2>Address</h2>
 					<p>광주광역시 서구 경열로 3 302호</p>
 					<h2>Email</h2>
-					<p>ex@hmail.net</p>
+					<p>hanulsmart0302@gmail.com</p>
 					<h2>Phone</h2>
 					<p>010-2869-4100</p> 
 				</div>
@@ -75,10 +75,14 @@
 			<div class=footer_bottom>
 				<p>&copy; 2023 by HANULSMARTFARM
 				<c:if test="${empty loginInfo}">
-					<a href="<c:url value='/admin/login'/>"><img id="admin" alt="admin" src="/smartfarm/img/admin.png"></a>
+					<a href="<c:url value='/admin/login'/>"><img class="admin" alt="admin" src="/smartfarm/img/admin.png"></a>
 				</c:if>
 				<c:if test="${not empty loginInfo}">
-					<a href="<c:url value='/admin/setting'/>"><img id="admin" alt="setting" src="/smartfarm/img/setting.png"></a>
+					<c:if test="${loginInfo.role eq 'ADMIN'}">
+						<a href="<c:url value='/admin/add'/>"><img class="admin" alt="add" src="/smartfarm/img/addAdmin.png"></a>
+					</c:if>
+					<a href="<c:url value='/admin/setting'/>"><img class="admin" alt="setting" src="/smartfarm/img/setting.png"></a>
+					<a href="<c:url value='/admin/logout'/>"><img class="admin" alt="logout" src="/smartfarm/img/logout.png"></a>
 				</c:if>
 				</p>
 			</div>
