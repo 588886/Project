@@ -177,7 +177,7 @@
 							<h4 class="mb-0">Weakness</h4>
 							<p class="text-primary">미국에 비해 늦은 시장진입으로 낮은 경쟁력</p>
 						</div>
-					</div>
+					</div> 
 				</div>
 				<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
 					<div class="team-item rounded">
