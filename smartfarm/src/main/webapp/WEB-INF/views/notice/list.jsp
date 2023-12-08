@@ -7,7 +7,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>공지사항</title>
 
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="<c:url value='/css/styles.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
@@ -19,8 +18,8 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="<c:url value='/js/common.js'/>?<%=new java.util.Date()%>"></script>
 </head>
-<body style="background-color:#7a9c30;">
-<h3 class="my-3 text-center mt-5" style="color: #fff; font-size: 50px;" >공지사항</h3>
+<body id="back">
+<h3 class="my-3 text-center mt-5" style="color: #60635a; font-size: 50px;" ><strong>공지사항</strong></h3>
 <div class="container mt-5">
     <form method="post" action="list" class="mb-3">
         <input type="hidden" name="curPage" value="1">
@@ -29,7 +28,7 @@
     <c:set var="params" value="curPage=${page.curPage}&search=${page.search}&keyword=${page.keyword}"/>
 
     <c:forEach var="vo" items="${page.list}">
-    <div class="card mb-3 mx-auto" style="max-width: 900px; background-color:#7a9c30;">
+    <div class="card mb-3 mx-auto" style="max-width: 900px; background-color:#95d595;">
         <div class="row g-0">
             <c:set var="imageDisplayed" value="false" />
             <c:forEach var="file" items="${vo.files}">
@@ -45,8 +44,8 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <a class="text-link" href="<c:if test="${vo.indent > 0}"></c:if>info?id=${vo.id }&${params}" style="text-decoration:none; color: #000">
-                        <h4 class="card-title" style="color: #fff;">${vo.title}</h4>
-                        <p class="card-text my-5" style="color: #fff;">${vo.content}</p>
+                        <h4 class="card-title" style="color: #60635a;">${vo.title}</h4>
+                        <p class="card-text my-5" style="color: #60635a;">${vo.content}</p>
                     </a>
                 </div>
             </div>
@@ -56,8 +55,8 @@
 
     <!-- 관리자로 로그인되어 있는 경우만 새글쓰기 가능 -->
 	<c:if test="${loginInfo.role eq 'ADMIN' or loginInfo.role eq 'MANAGER'}">
-		<div class="col-auto">
-			<a class="btn btn-success col-12" href="new">새글쓰기</a>
+		<div class="col-auto text-center">
+			<a class="btn btn-success" href="new">새글쓰기</a>
 		</div>
 	</c:if>
 </div>
