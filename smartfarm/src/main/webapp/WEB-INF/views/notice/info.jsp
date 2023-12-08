@@ -14,7 +14,7 @@
 <body id="back">
 
 <div class="container mt-5">
-    <div class="card text-center" style="background-color:#d4ed9a; color: #60635a;">
+    <div class="card text-center" style="background-color:#95d595; color: #60635a;">
         <div class="card-header">
             <h2 class="card-title">${vo.title}</h2>
             <p class="card-subtitle">

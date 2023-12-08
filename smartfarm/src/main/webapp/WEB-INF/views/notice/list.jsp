@@ -28,7 +28,7 @@
     <c:set var="params" value="curPage=${page.curPage}&search=${page.search}&keyword=${page.keyword}"/>
 
     <c:forEach var="vo" items="${page.list}">
-    <div class="card mb-3 mx-auto" style="max-width: 900px; background-color:#d4ed9a;">
+    <div class="card mb-3 mx-auto" style="max-width: 900px; background-color:#95d595;">
         <div class="row g-0">
             <c:set var="imageDisplayed" value="false" />
             <c:forEach var="file" items="${vo.files}">
