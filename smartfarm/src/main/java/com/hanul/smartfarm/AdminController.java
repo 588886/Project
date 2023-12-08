@@ -92,7 +92,7 @@ public class AdminController {
 	@RequestMapping("/campanyModify")
 	public String campanyModify(CompanyVO vo) {
 		company.company_update(vo);
-		return "main";
+		return "redirect:/";
 
 	}
 	
