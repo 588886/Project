@@ -27,7 +27,7 @@
             <!-- 이미지를 보여주는 부분 -->
             <c:forEach var="file" items="${vo.files}">
                 <c:if test="${not empty file.filepath}">
-                    <img src="${file.filepath}" class="img-fluid my-3 custom-img2 mt-5" alt="첨부 이미지" style="width: 50% !important;" onclick="openModal('${vo.filepath}')">
+                    <img src="${file.filepath}" class="img-fluid my-3 custom-img2 mt-5" alt="첨부 이미지" style="width: 50% !important;">
                 </c:if>
             </c:forEach>
         </div>
