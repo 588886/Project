@@ -16,14 +16,14 @@
 <div class="container mt-5">
     <div class="card text-center" style="background-color:#95d595; color: #60635a;">
         <div class="card-header">
-            <h2 class="card-title">${vo.title}</h2>
-            <p class="card-subtitle">
-                ${vo.name}   ${vo.writedate}
+            <strong class="card-title" style="font-size:30px; color:#000;">${vo.title}</strong>
+            <p class="card-subtitle" style="color:#000;">
+                <br>${vo.name}   ${vo.writedate}
             </p>
         </div>
         <div class="card-body my-3">
             <!-- 내용을 먼저 표시 -->
-            <p class="card-text my-5" id="text-page">${fn:replace(vo.content, crlf, "<br>")}</p>
+            <p class="card-text my-5" id="text-page" style="color:#000;">${fn:replace(vo.content, crlf, "<br>")}</p>
             <!-- 이미지를 보여주는 부분 -->
             <c:forEach var="file" items="${vo.files}">
                 <c:if test="${not empty file.filepath}">
