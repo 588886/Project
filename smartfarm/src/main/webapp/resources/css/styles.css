@@ -10875,7 +10875,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     height: 350px; /* 원하는 값으로 높이를 조절하세요. */
 }
  .custom-img2 {
-    height: 800px; /* 원하는 값으로 높이를 조절하세요. */
+    height: auto; /* 원하는 값으로 높이를 조절하세요. */
 }
 #text-page a {
         text-decoration: underline;
