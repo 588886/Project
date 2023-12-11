@@ -15,6 +15,14 @@
     color: white;
 }
 
+@media screen and (max-width:480px){
+	#sogae{
+		background-image: url(../resources/images/mobileback.jpg);
+		height: 700px;
+		color: black;
+	}
+}
+
 #sogae h1{
     font-weight: bold;
     font-size: 50px;
@@ -22,8 +30,21 @@
     font-family: monospace;
 }
 
+@media screen and (max-width:480px){
+	#sogae h1{
+	    font-size: 18px;
+    	padding: 100px 0 70px;
+	}
+}
+
 #sogae span{
     color: greenyellow;
+}
+
+@media screen and (max-width:480px){
+	#sogae span{
+		color: #0b993f;
+	}
 }
 
 #sogae p{
@@ -38,6 +59,13 @@
 	width: 800px;
 }
 
+@media screen and (max-width:480px){
+	#vision{
+	    width: 100vw;
+	    margin: 0;
+	}
+}
+
 .vision_head{
 	text-align: center;
     margin: 30px;
@@ -47,6 +75,13 @@
     display: flex;
     justify-content: space-between;
     margin: 100px 0 100px;
+}
+
+@media screen and (max-width:480px){
+	.vision_main{
+	    margin: 250px 0 100px;
+	    flex-direction: column;
+	}
 }
 
 .vision_main div{
@@ -71,6 +106,12 @@
     color: darkgreen;
 }
 
+@media screen and (max-width:480px){
+	#vision h3{
+	    font-family: none;
+	}
+}
+
 #vision p{
     color: darkgreen;
 }
@@ -80,6 +121,16 @@
 	width: 800px;
 }
 
+@media screen and (max-width:480px){
+	#jido{
+	    margin: 0;
+    	width: 100vw;
+	}
+	#jido #map{
+    	width: 100vw;
+	}
+}
+
 #jido h1{
     text-align: center;
     font-size: 50px;
@@ -87,6 +138,7 @@
     color: darkgreen;
     margin: 30px 0;
 }
+
 
 #jido h2{
     font-size: 30px;
@@ -164,4 +216,11 @@
 .busp{
     position: relative;
     margin: 10px 0;
+    line-height: 1.5rem;
+    margin-left: 0.3rem;
+}
+.buswrap{
+	display: flex;
+    flex-direction: row;
+    align-items: center;
 }
