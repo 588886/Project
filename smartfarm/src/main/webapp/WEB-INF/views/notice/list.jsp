@@ -19,7 +19,7 @@
     <script src="<c:url value='/js/common.js'/>?<%=new java.util.Date()%>"></script>
 </head>
 <body id="back">
-<h3 class="my-3 text-center mt-5" style="font-size: 50px;" ><strong>공지사항</strong></h3>
+<h3 class="my-3 text-center mt-5" style="font-size: 50px; color:#000;" ><strong>공지사항</strong></h3>
 <div class="container mt-5">
     <form method="post" action="list" class="mb-3">
         <input type="hidden" name="curPage" value="1">
