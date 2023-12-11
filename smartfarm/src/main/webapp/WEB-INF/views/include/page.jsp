@@ -18,7 +18,7 @@
 
 		<c:forEach var="no" begin="${page.beginPage  }" end="${page.endPage }">
 			<c:if test="${no eq page.curPage}">
-				<li class="page-item"><a class="page-link active" href="#">${no}</a></li>
+				<li class="page-item"><a class="page-link active2" href="#">${no}</a></li>
 			</c:if>
 			<c:if test="${no ne page.curPage}">
 				<li class="page-item"><a class="page-link"
