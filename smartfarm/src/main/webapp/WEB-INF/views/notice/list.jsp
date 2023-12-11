@@ -19,7 +19,7 @@
     <script src="<c:url value='/js/common.js'/>?<%=new java.util.Date()%>"></script>
 </head>
 <body id="back">
-<h3 class="my-3 text-center mt-5" style="color: #60635a; font-size: 50px;" ><strong>공지사항</strong></h3>
+<h3 class="my-3 text-center mt-5" style="font-size: 50px;" ><strong>공지사항</strong></h3>
 <div class="container mt-5">
     <form method="post" action="list" class="mb-3">
         <input type="hidden" name="curPage" value="1">
@@ -44,8 +44,8 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <a class="text-link" href="<c:if test="${vo.indent > 0}"></c:if>info?id=${vo.id }&${params}" style="text-decoration:none; color: #000">
-                        <h4 class="card-title" style="color: #60635a;">${vo.title}</h4>
-                        <p class="card-text my-5" style="color: #60635a;">${vo.content}</p>
+                        <strong class="card-title" style="font-size:30px;">${vo.title}</strong>
+                        <p class="card-text my-5">${vo.content}</p>
                     </a>
                 </div>
             </div>

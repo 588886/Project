@@ -45,7 +45,7 @@
 	  		onclick="if( confirm('내용을 삭제 하시겠습니까?') ){ location='delete?id=${vo.id}&${params}' }" >삭제</button>
 	</c:if>
 	<button class="btn btn-success" 
-			onclick="location='<c:url value="/notice/list?${params}"/>'">돌아가기</button>
+			onclick="location='<c:url value="/notice/list?${params}"/>'">목록으로</button>
 	
 </div>
 
