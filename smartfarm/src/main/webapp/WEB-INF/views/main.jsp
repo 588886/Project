@@ -193,19 +193,19 @@
 			    		bus_data = '';
 			    		if(resultgansun.length>0){
 			    			bus_data +=
-			    				`<div class="buswrap"><div><span class="busgansun">간선</span></div><div><p class="busp">`+gansunText+'</p></div></div>';
+			    				`<div class="buswrap"><div class="busimg"><span class="busgansun">간선</span></div><div><p class="busp">`+gansunText+'</p></div></div>';
 			    		}
 			    		if(resultjisun.length>0){
 			    			bus_data +=
-			    				`<div class="buswrap"><div><span class="busjisun">지선</span></div><div><p class="busp">`+jisunText+'</p></div></div>';
+			    				`<div class="buswrap"><div class="busimg"><span class="busjisun">지선</span></div><div><p class="busp">`+jisunText+'</p></div></div>';
 			    		}
 			    		if(resultgwang.length>0){
 			    			bus_data +=
-			    				`<div class="buswrap"><div><span class="busgwang">지선</span></div><div><p class="busp">`+gwangText+'</p></div></div>';
+			    				`<div class="buswrap"><div class="busimg"><span class="busgwang">지선</span></div><div><p class="busp">`+gwangText+'</p></div></div>';
 			    		}
 			    		if(resultnong.length>0){
 			    			bus_data +=
-			    				`<div class="buswrap"><div><span class="busnung">농어촌</span></div><div><p class="busp">`+nongText+'</p></div></div>';
+			    				`<div class="buswrap"><div class="busimg"><span class="busnung">농어촌</span></div><div><p class="busp">`+nongText+'</p></div></div>';
 			    		}
 			    		$("#bus-list").html( bus_data )
 			    	})

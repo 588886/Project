@@ -6,7 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 관리</title>
+<link rel="icon" type="image/x-icon" href="<c:url value='/img/hanul.ico'/>" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <link href="<c:url value='/css/admin.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 <body>
 	<c:if test="${empty loginInfo}">
@@ -31,7 +35,10 @@
 						<td>${vo.userid }</td>
 						<td>${vo.userpw }</td>
 						<td><button onclick="location='/smartfarm/admin/modify?userid=${vo.userid}'">click</button></td>
-						<td><button onclick="if(confirm('정말 삭제하시겠습니까?')){location='/smartfarm/admin/delete?userid=${vo.userid}'}">click</button></td>
+						<td><button 
+						onclick="<c:if test='${empty loginInfo }'> alert('로그인이 되어있지 않습니다.');location='/smartfarm' </c:if>
+						<c:if test='${not empty loginInfo }'> if(confirm('정말 삭제하시겠습니까?')){location='/smartfarm/admin/delete?userid=${vo.userid}&adminid=${loginInfo.userid}'}</c:if>"
+						>click</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -43,6 +50,11 @@
 		</div>
 		</c:if>
 	</div>
+	<script>
+		$('.noadmin').click(function(){
+			location = "/smartfarm/";
+		})
 	
+	</script>
 </body>
 </html>

@@ -66,10 +66,9 @@ public class AdminController {
 			
 		}else {
 			//로그인 안된 경우
-			StringBuffer msg = new StringBuffer("<script>");
-			msg.append("alert('아이디나 비밀번호가 일치하지 않습니다!'); location='login' ");
-			msg.append("</script>");
-			return msg.toString();
+			redirect.addFlashAttribute("fail", true);
+			return "redirect:login";
+//			return msg.toString();
 //		msg.append("alert('아이디나 비밀번호가 일치하지 않습니다!'); history.go(-1)");
 			
 		}
@@ -147,10 +146,17 @@ public class AdminController {
 	
 	//운영자 삭제 요청
 	@RequestMapping("/delete")
-	public String delete(String userid) {
-		service.admin_delete(userid);
+	public String delete(String userid,HttpSession session) {
+		
+		MemberVO vo=(MemberVO)session.getAttribute("loginInfo");
+		if(vo!=null) {
+			if(vo.getRole().equals("ADMIN")) {
+				service.admin_delete(userid);
+			}
+		}
 		
 		return "redirect:add";
+		
 	}
 
 	//운영자 정보 수정 요청

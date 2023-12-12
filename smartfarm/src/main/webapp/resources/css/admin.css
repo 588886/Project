@@ -6,8 +6,21 @@
     align-items: center;
 }
 
+@media screen and (max-width:480px){
+	.noadmin{
+		width: 100vw;
+		height: 100vh;
+	}
+}
+
 .noadmin img{
 	width: 40vw;
+}
+
+@media screen and (max-width:480px){
+	.noadmin img{
+        width: 90vw;
+	}
 }
 
 .noadmin p{
@@ -15,6 +28,11 @@
 	text-align: center;
 }
 
+@media screen and (max-width:480px){
+	.noadmin p{
+        font-size: 25px;
+	}
+}
 .contaner{
 	margin: 0 auto;
 	width: 850px;
@@ -140,4 +158,10 @@
     font-size: larger;
     text-align: center;
     border-radius: 5px;
+}
+
+.fail-text{
+	text-align: center;
+    margin-bottom: 50px;
+    color: red;
 }

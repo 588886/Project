@@ -79,7 +79,7 @@
 
 @media screen and (max-width:480px){
 	.vision_main{
-	    margin: 250px 0 100px;
+	    margin: 50px 0 100px;
 	    flex-direction: column;
 	}
 }
@@ -145,11 +145,18 @@
     font-family: serif;
     color: darkgreen;
     margin: 20px 0;
+    font-weight: bolder;
 }
 #jido h3{
     font-family: serif;
     color: darkgreen;
     margin: 15px 0;
+    font-size: 1.5rem;
+    font-weight: unset;
+}
+
+#jihacul-list{
+	margin: 20px 0;
 }
 
 .jihachul1{
@@ -165,7 +172,7 @@
 
 .jihachulp{
     position: relative;
-    top: -1px;
+    top: -5px;
     margin: 10px 0;
 }
 
@@ -219,8 +226,13 @@
     line-height: 1.5rem;
     margin-left: 0.3rem;
 }
+
 .buswrap{
 	display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.buswrap .busimg{
+    width: 40px;
 }
