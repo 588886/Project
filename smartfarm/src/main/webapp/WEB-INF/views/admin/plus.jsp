@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>관리자 추가</title>
 <link href="<c:url value='/css/admin.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
+<link rel="icon" type="image/x-icon" href="<c:url value='/img/hanul.ico'/>" />
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 <body>
 	<c:if test="${empty loginInfo}">
@@ -144,6 +147,10 @@
 				member.showStatus( $(this) )  //키보드입력상태를 화면에 출력
 			}
 		})
+		$(".noadmin").click(function(){
+			location = "/smartfarm";
+		})
+	
 	</script>
 </body>
 </html>

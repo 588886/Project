@@ -17,78 +17,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>한울스마트팜 ${title}</title>
-    <!-- Favicon-->
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="<c:url value='/img/hanul.ico'/>" />
     <!-- Css reset-->
     <link href="<c:url value='/css/reset.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
+   	
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     
-    <!-- footerCss -->
-    <link href="<c:url value='/css/home.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
-    
+    <!-- Customized Bootstrap Stylesheet 추가됨 -->
+    <link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
+	
+    <!-- Template Stylesheet -->
+    <link href="<c:url value='/css/style.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="<c:url value='/js/common.js'/>?<%=new java.util.Date()%>"></script>
-</head>
-<body>
-    <div class="l-d-flex" id="wrapper">
-    	<header>
-    		<div >
-            	<a href="<c:url value='/'/>">
-	            	<img src="<c:url value='/img/hanul.logo.png'/>">
-            	</a>
-			</div>
-			<div class="list-grouping">
-                <a href="<c:url value='/'/>" class="${category eq 'ma' ? 'active' : ''} ">HOME</a>
-                <a href="<c:url value='/about'/>" class="${category eq 'ab' ? 'active' : ''} ">ABOUT US</a>
-                <a href="<c:url value='/program'/>" class="${category eq 'pr' ? 'active' : ''} ">PROGRAM</a>
-                <a href="<c:url value='/notice/list'/>" class="${category eq 'no' ? 'active' : ''} ">BOARD</a>
-
-            </div>
-    	</header>
-        
-        <!-- Page content wrapper-->
-        <div >
-            
-               <tiles:insertAttribute name="container"/>
-            
-        </div>
-        <!-- footer -->
-        <footer>
-			<div class="footer_main">
-				<div class="footer_main_logo">
-					<img alt="logo" src="<c:url value='/img/hanul.logo.png'/>">
-				</div>
-				<div class="footer_main_text">
-					<h2>Address</h2>
-					<p>광주광역시 서구 경열로 3 302호</p>
-					<h2>Email</h2>
-					<p>hanulsmart0302@gmail.com</p>
-					<h2>Phone</h2>
-					<p>010-2869-4100</p> 
-				</div>
-			</div>
-			<div class=footer_bottom>
-				<p>&copy; 2023 by HANULSMARTFARM
-				<c:if test="${empty loginInfo}">
-					<a href="<c:url value='/admin/login'/>"><img class="admin" alt="admin" src="/smartfarm/img/admin.png"></a>
-				</c:if>
-				<c:if test="${not empty loginInfo}">
-					<c:if test="${loginInfo.role eq 'ADMIN'}">
-						<a href="<c:url value='/admin/add'/>"><img class="admin" alt="add" src="/smartfarm/img/addAdmin.png"></a>
-					</c:if>
-					<a href="<c:url value='/admin/setting'/>"><img class="admin" alt="setting" src="/smartfarm/img/setting.png"></a>
-					<a href="<c:url value='/admin/logout'/>"><img class="admin" alt="logout" src="/smartfarm/img/logout.png"></a>
-				</c:if>
-				</p>
-			</div>
-		</footer>
-    </div>
     
+    <!-- header,footerCss -->
+    <link href="<c:url value='/css/home.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
+</head>
 
+<body>
+ <div class="l-d-flex" id="wrapper">	
+    <!-- Navbar Start -->
+    <!-- <header class="navbar navbar-expand-lg navbar-light sticky-top p-0"> -->
+    <header class="sticky-top">
+        <a href="<c:url value='/'/>" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+          	<img src="<c:url value='/img/hanul.logo.png'/>">
+        </a>
+        <div class="list-grouping p-2 p-lg-0" id="navbarCollapse">
+	        <a href="<c:url value='/'/>" class="${category eq 'ma' ? 'active' : ''} nav-item nav-link">HOME</a>
+	        <a href="<c:url value='/about'/>" class="${category eq 'ab' ? 'active' : ''} nav-item nav-link">ABOUT US</a>
+	        <a href="<c:url value='/program'/>" class="${category eq 'pr' ? 'active' : ''} nav-item nav-link">PROGRAM</a>
+	        <a href="<c:url value='/notice/list'/>" class="${category eq 'no' ? 'active' : ''} nav-item nav-link">BOARD</a>
+	    
+        </div>
+    </header>
+    <!-- Navbar End -->
+
+    <div>
+		<tiles:insertAttribute name="container"/>
+    </div>
+
+    <!-- Footer Start -->
+    <footer class="mt-5">
+    <div class="container-fluid text-light bg-dark py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6 md-none">
+                    <h4 class="text-white mb-4"><img alt="logo" src="<c:url value='/img/hanul.logo.png'/>"></h4>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Address</h4>
+                    <p><i class="fa fa-map-marker-alt me-3"></i>광주광역시 서구 경열로 3 302호</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Email</h4>
+                    <p><i class="fa fa-envelope me-3"></i>hanulsmart0302@gmail.com</p>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Phone</h4>
+                    <p><i class="fa fa-phone-alt me-3"></i>010-2869-4100</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid copyright py-3">
+        <div class="container">
+            <div class="row">
+                <div class="text-center mb-3 mb-md-0">
+					<p>&copy; 2023 by HANULSMARTFARM
+					<c:if test="${empty loginInfo}">
+						<a href="<c:url value='/admin/login'/>"><img class="admin" alt="admin" src="/smartfarm/img/admin.png"></a>
+					</c:if>
+					<c:if test="${not empty loginInfo}">
+						<c:if test="${loginInfo.role eq 'ADMIN'}">
+							<a href="<c:url value='/admin/add'/>"><img class="admin" alt="add" src="/smartfarm/img/addAdmin.png"></a>
+						</c:if>
+						<a href="<c:url value='/admin/setting'/>"><img class="admin" alt="setting" src="/smartfarm/img/setting.png"></a>
+						<a href="<c:url value='/admin/logout'/>"><img class="admin" alt="logout" src="/smartfarm/img/logout.png"></a>
+					</c:if>
+					</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </footer>
+    
+    <!-- Footer End -->
+</div>
 </body>
 </html>

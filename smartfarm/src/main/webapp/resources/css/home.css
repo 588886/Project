@@ -23,17 +23,22 @@ header{
 	}
 }
 
+header .list-grouping {
+    display: flex;
+    flex-direction: row;
+}
+
 header .list-grouping a{
 	color:white;
 	font-family: math;
-	font-size: xxx-large;
+	font-size: xx-large;
     margin: 10px;
 }
 
 @media screen and (max-width:480px){
 	
 	header .list-grouping a{
-	font-size: x-small;
+	font-size: medium;
     margin: 5px;
 	}
 
@@ -79,7 +84,18 @@ footer{
     height: 20px;
     position: relative;
     top: 3px;
+    background-color: #fff; /* 추가 */
+    border-radius: 50%; 	/* 추가 */
 }
+
+@media screen and (max-width:480px){
+	
+	.md-none{
+	display: none;
+	}
+
+}
+
 .active{
 	color: greenyellow !important;
     text-decoration: underline;

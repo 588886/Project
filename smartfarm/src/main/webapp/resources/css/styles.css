@@ -3631,6 +3631,7 @@ textarea.form-control-lg {
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
+
 @media (prefers-reduced-motion: reduce) {
   .nav-link {
     transition: none;
@@ -10884,4 +10885,10 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 #back {
 	background-color: #0f422999;
 	opacity: undefined;
+}
+
+
+.page-header {
+    background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../img/carousel-1.jpg) center center no-repeat;
+    background-size: cover;
 }

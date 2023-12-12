@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>회사정보 수정</title>
 <link href="<c:url value='/css/admin.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
+<link rel="icon" type="image/x-icon" href="<c:url value='/img/hanul.ico'/>" />
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 <body>
 
@@ -75,6 +78,10 @@
 	        }
 	    }).open();
 	}
+	$(".noadmin").click(function(){
+		location = "/smartfarm";
+	})
+
 	</script>
 
 </body>

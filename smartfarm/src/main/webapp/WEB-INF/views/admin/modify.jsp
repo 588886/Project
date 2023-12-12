@@ -6,8 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>운영자 정보 수정</title>
+<link rel="icon" type="image/x-icon" href="<c:url value='/img/hanul.ico'/>" />
 <link href="<c:url value='/css/admin.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
 <script src="<c:url value='/js/common.js'/>?<%=new java.util.Date()%>"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 <body>
 	<c:if test="${empty loginInfo}">
@@ -68,6 +71,10 @@
 				$('form').submit()
 			}
 		})
+		$(".noadmin").click(function(){
+			location = "/smartfarm";
+		})
+	
 	
 	</script>
 </body>
