@@ -11,7 +11,7 @@ import lombok.Setter;
 public class NoticeVO {
 
 	private int id, no, indent;
-	private String title, content, writer, name, filepath, filename;
+	private String title, content, writer, name;
 	private Date writedate;
 	private List<FileVO> files;
 }

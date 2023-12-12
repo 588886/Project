@@ -35,7 +35,7 @@
                 <c:if test="${not empty file.filepath and not imageDisplayed}">
                     <div class="col-md-4">
                         <a class="text-link" href="<c:if test="${vo.indent > 0}"></c:if>info?id=${vo.id }&${params}">
-                            <img src="${file.filepath}" class="img-fluid rounded-start custom-img d-block" alt="공지 이미지" style="width: 100%;">
+                            <img src="${file.filepath}" class="img-fluid rounded-start d-block" alt="공지 이미지" style="object-fit: cover; width: 100%; height: 100%;">
                         </a>
                         <c:set var="imageDisplayed" value="true" />
                     </div>
