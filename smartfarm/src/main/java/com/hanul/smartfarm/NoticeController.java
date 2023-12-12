@@ -109,26 +109,6 @@ public class NoticeController {
 		return "notice/register";
 	}
 	
-	
-	
-	//첨부파일 다운로드처리 요청
-	@ResponseBody @RequestMapping(value="/download", produces="text/html; charset=utf-8")
-	public String download( int file, HttpServletRequest request
-								, HttpServletResponse response ) throws Exception{
-		//선택한 글의 첨부파일을 저장된 위치(서버)에서 가져와 클라이언트에 저장하기
-		FileVO vo = service.notice_file_info(file);
-		boolean download
-			= common.fileDownload( vo.getFilename(), vo.getFilepath(), request, response);
-		if( download ) return null;
-		else {
-			//다운로드할 파일이 물리적으로 존재하지 않는 경우 처리
-			StringBuffer msg = new StringBuffer("<script>");
-			msg.append(" alert('다운로드할 파일이 없습니다!!'); history.go(-1) ");
-			msg.append("</script>");
-			return msg.toString();
-		}
-	}
-	
 	//파일을 읽어들여 binary로 변환해 응답하기
 		@ResponseBody @RequestMapping( value="/convertFile"
 							, produces= MediaType.APPLICATION_OCTET_STREAM_VALUE)

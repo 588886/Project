@@ -26,7 +26,7 @@
 <tr><th>첨부파일</th>
 	<td><div>
 			<label>
-				<input type="file" name="file" id="file-multiple" multiple>
+				<input type="file" name="file" id="file-multiple" multiple accept=".png, .jpg, .webp">
 				<i role="button" class="fs-3 fa-solid fa-file-circle-plus"></i>
 			</label>
 		</div>

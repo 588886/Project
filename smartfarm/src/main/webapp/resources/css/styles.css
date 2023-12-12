@@ -10871,12 +10871,6 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   }
 }
 
- .custom-img {
-    height: 350px; /* 원하는 값으로 높이를 조절하세요. */
-}
- .custom-img2 {
-    height: auto; /* 원하는 값으로 높이를 조절하세요. */
-}
 #text-page a {
         text-decoration: underline;
     }
