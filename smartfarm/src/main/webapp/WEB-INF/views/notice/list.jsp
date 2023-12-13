@@ -11,11 +11,11 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="<c:url value='/css/styles.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
     <link href="<c:url value='/css/common.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" /> -->
+<!--     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"> -->
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<!--     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+<!--     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
     <script src="<c:url value='/js/common.js'/>?<%=new java.util.Date()%>"></script>
 </head>
 <body id="back">
