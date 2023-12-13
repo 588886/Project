@@ -182,6 +182,13 @@ public class AdminController {
 		return service.member_info( userid )==null ? true : false;
 	}
 	
+	//관리자 페이지 전체 틀
+	@RequestMapping("/admin")
+	public String admin() {
+		
+		return "/admin/admin";
+	}
+	
 	//프로그램 관리
 	@RequestMapping("/program")
 	public String program() {

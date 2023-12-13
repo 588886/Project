@@ -1,5 +1,84 @@
 @charset "UTF-8";
 
+.admin-contaner{
+	display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.admin-contaner p{
+	margin-bottom: 0;
+}
+
+.admin-contaner .menu{
+    width: 10%;
+    background-color: #2a5baa;
+}
+
+.admin-contaner .menu .profile{
+    height: 28%;
+}
+
+.admin-contaner .menu .profile img{
+    width: 60%
+}
+
+.admin-contaner .menu .profile p{
+    text-align: center;
+    margin: 15px;
+    font-size: x-large;
+    font-family: fantasy;
+}
+
+.admin-contaner .menu .slot{
+    height: 18%;
+}
+
+.admin-contaner .menu .slot img{
+    width: 65px;
+    height: 65px;
+    margin-bottom: 15px;
+}
+
+.admin-contaner .menu .select{
+    border-left: 5px solid #17aeef;
+    background-color: #1d4f9b;
+}
+
+.profile, .slot{
+	position: relative;
+}
+
+.profile .content, .slot .content{ 
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+}
+
+.admin-contaner .workpage{
+	width: 100%
+}
+
+.admin-contaner .workpage .head{
+    background-color: gainsboro;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.admin-contaner .workpage .head img{
+    width: 30px;
+    margin: 20px 20px 20px 0;
+}
+
+.admin-contaner .workpage .head p{
+    font-size: xx-large;
+    font-family: fantasy;
+}
+
 .noadmin {
 	display: flex;
     flex-direction: column;
