@@ -101,11 +101,12 @@
 					</c:if>
 					<c:if test="${not empty loginInfo}">
 						<c:if test="${loginInfo.role eq 'ADMIN'}">
-							<a href="<c:url value='/admin/add'/>"><img class="admin" alt="add" src="/smartfarm/img/addAdmin.png"></a>
+<%-- 							<a href="<c:url value='/admin/add'/>"><img class="admin" alt="add" src="/smartfarm/img/addAdmin.png"></a> --%>
 						</c:if>
-						<a href="<c:url value='/admin/program'/>"><img class="admin" alt="program" src="/smartfarm/img/memo.png"></a>
+<%-- 						<a href="<c:url value='/admin/program'/>"><img class="admin" alt="program" src="/smartfarm/img/memo.png"></a> --%>
+						<a href="<c:url value='/admin/admin'/>"><img class="admin" alt="program" src="/smartfarm/img/setting.png"></a>
 						<c:if test="${loginInfo.role eq 'ADMIN'}">
-							<a href="<c:url value='/admin/setting'/>"><img class="admin" alt="setting" src="/smartfarm/img/setting.png"></a>
+<%-- 							<a href="<c:url value='/admin/setting'/>"><img class="admin" alt="setting" src="/smartfarm/img/setting.png"></a> --%>
 						</c:if>
 						<a href="<c:url value='/admin/logout'/>"><img class="admin" alt="logout" src="/smartfarm/img/logout.png"></a>
 					</c:if>
