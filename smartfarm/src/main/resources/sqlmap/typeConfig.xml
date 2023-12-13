@@ -6,6 +6,7 @@
  	<typeAlias type="com.hanul.smartfarm.member.MemberVO" alias="member"/>
  	<typeAlias type="com.hanul.smartfarm.common.FileVO" alias="file"/>
  	<typeAlias type="com.hanul.smartfarm.company.CompanyVO" alias="company"/>
+ 	<typeAlias type="com.hanul.smartfarm.program.ProgramVO" alias="program"/>
  	
  </typeAliases>
  </configuration>
