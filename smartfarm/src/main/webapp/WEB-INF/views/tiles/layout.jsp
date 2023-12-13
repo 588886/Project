@@ -26,9 +26,9 @@
     <link rel="icon" type="image/x-icon" href="<c:url value='/img/hanul.ico'/>" />
     <!-- Css reset-->
     <link href="<c:url value='/css/reset.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
-   	
+   	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     
     <!-- Customized Bootstrap Stylesheet 추가됨 -->
@@ -85,7 +85,7 @@
                 
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Phone</h4>
-                    <p><i class="fa fa-phone-alt me-3"></i>010-2869-4100</p>
+                    <p><i class="fa-solid fa-phone me-3"></i>010-2869-4100</p>
                 </div>
             </div>
         </div>
