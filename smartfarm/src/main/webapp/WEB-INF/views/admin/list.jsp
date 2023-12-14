@@ -20,8 +20,8 @@
 			<p >접근할 수 없는 페이지입니다.</p>
 		</div>
 	</c:if>
-	<div class="contaner">
-		<c:if test="${not empty loginInfo}">
+	<c:if test="${not empty loginInfo}">
+		<div class="contaner">
 		<table>
 			<colgroup><col width="150px"><col width="130px"><col width="370px"><col width="100px"><col width="100px">
 			</colgroup>
@@ -48,8 +48,8 @@
 			<button onclick="location='/smartfarm/admin/plus'">추가하기</button>
 			<button onclick="location='/smartfarm'">돌아가기</button>
 		</div>
-		</c:if>
-	</div>
+		</div>
+	</c:if>
 	<script>
 		$('.noadmin').click(function(){
 			location = "/smartfarm/";

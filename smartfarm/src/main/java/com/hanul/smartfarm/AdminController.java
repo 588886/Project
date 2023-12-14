@@ -181,4 +181,19 @@ public class AdminController {
 		//입력한 아이디인 회원정보가 DB에 존재하는지 확인: true(사용가능아이디), false(이미사용중아이디)
 		return service.member_info( userid )==null ? true : false;
 	}
+	
+	//관리자 페이지 전체 틀
+	@RequestMapping("/admin")
+	public String admin() {
+		
+		return "/admin/admin";
+	}
+	
+	//프로그램 관리
+	@RequestMapping("/program")
+	public String program() {
+		
+		return "/admin/program";
+	}
+	
 }
