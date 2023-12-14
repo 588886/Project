@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter @Setter
 public class ProgramVO {
 
-	private int id, headcount,totalcount;
+	private int id, headcount;
 	private String name,phone,email,state,plan_name;
-	private Date plan_date, plan_time,create_at;
+	private Date plan_start_date,plan_end_date ,create_at;
 }
