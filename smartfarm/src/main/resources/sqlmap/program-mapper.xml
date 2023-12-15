@@ -3,9 +3,24 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="program">
+<!-- 체험프로그램 목록정보 -->
 <select id="list" resultType="program">
-	select *
-  	from program_plan
+	select * from program_plan
 </select>
-
+<select id="info" resultType="program">
+	select * from program_plan where id = #{id}
+</select>
+<!-- <select id="applicant_headcount" resultType="integer"> -->
+<!-- 	select sum(headcount) from applicant where plan_id = #{plan_id} and to_char(application_date, 'yyyy-mm-dd') = #{application_date} and plan_time = #{plan_time} -->
+<!-- 	select sum(headcount) from applicant where plan_id = #{plan_id} and   plan_time = #{plan_time} -->
+<!-- </select> -->
+<select id="applicant_headcount" resultType="integer">
+	select sum(headcount) from applicant where plan_id = #{plan_id} and   application_date = #{application_date} and   plan_time = #{plan_time}
+<!-- 	select sum(headcount) from applicant where plan_id = #{plan_id} and   plan_time = #{plan_time} -->
+</select>
+<!-- 신규 체험신청 저장 -->
+<insert id="application">
+	insert into applicant ( name, phone, email, plan_id, headcount, application_date  )
+	values( #{name}, #{phone}, #{email}, #{plan_id}, #{headcount}, #{application_date} )
+</insert>
 </mapper>

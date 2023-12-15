@@ -41,20 +41,13 @@
                         <td>${vo.plan_name}</td>
                         <td>${vo.plan_start_date}</td>
                         <td>${vo.plan_end_date}</td>
-                        <td><a class="btn btn-primary" href="apply">체험신청</a></td>
+                        <td><a class="btn btn-primary" href="apply?id=${vo.id}">체험신청</a></td>
+
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
-       
-        
-        <!-- 관리자로 로그인되어 있는 경우만 새글쓰기 가능 -->
-        <c:if test="${loginInfo.role eq 'ADMIN' or loginInfo.role eq 'MANAGER'}">
-            <div class="col-auto text-center">
-                <a class="btn btn-success" href="new">새글쓰기</a>
-            </div>
-        </c:if>
-    </div>
+      </div>
     <jsp:include page="/WEB-INF/views/include/page.jsp" />
 </body>
 </html>
