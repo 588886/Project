@@ -15,6 +15,18 @@
     background-color: #2a5baa;
 }
 
+.admin-contaner .menu a{
+	color: black;
+}
+
+.admin-contaner .menu a:hover{
+    color: gray;
+}
+
+.admin-contaner .menu a:active{
+    color: aliceblue;
+}
+
 .admin-contaner .menu .profile{
     height: 28%;
 }
@@ -48,6 +60,7 @@
 .profile, .slot{
 	position: relative;
 }
+
 
 .profile .content, .slot .content{ 
 	position: absolute;
@@ -130,6 +143,7 @@
 
 .contaner table td,.contaner table th{
 	border: 1px solid #444444;
+	vertical-align: middle !important;
 }
 
 .contaner table th{
@@ -243,4 +257,17 @@
 	text-align: center;
     margin-bottom: 50px;
     color: red;
+}
+
+.list{
+	display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.list .addbtn{
+	margin-bottom: 10px;
+    width: 100px;
+    height: 40px;
+    font-size: large;
 }

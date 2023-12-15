@@ -53,6 +53,12 @@
           	<img src="<c:url value='/img/hanul.logo.png'/>">
         </a>
         <div class="list-grouping p-2 p-lg-0" id="navbarCollapse">
+        	<c:if test="${empty loginInfo}">
+        		<a href="<c:url value='/admin/login'/>">로그인 임시</a>
+        	</c:if>
+        	<c:if test="${not empty loginInfo}">
+        		<a href="<c:url value='/admin/admin'/>">세팅화면 임시</a>
+        	</c:if>
 	        <a href="<c:url value='/'/>" class="${category eq 'ma' ? 'active' : ''} nav-item nav-link">HOME</a>
 	        <a href="<c:url value='/about'/>" class="${category eq 'ab' ? 'active' : ''} nav-item nav-link">ABOUT US</a>
 	        <a href="<c:url value='/program/list'/>" class="${category eq 'pr' ? 'active' : ''} nav-item nav-link">PROGRAM</a>
@@ -100,14 +106,7 @@
 						<a href="<c:url value='/admin/login'/>"><img class="admin" alt="admin" src="/smartfarm/img/admin.png"></a>
 					</c:if>
 					<c:if test="${not empty loginInfo}">
-						<c:if test="${loginInfo.role eq 'ADMIN'}">
-<%-- 							<a href="<c:url value='/admin/add'/>"><img class="admin" alt="add" src="/smartfarm/img/addAdmin.png"></a> --%>
-						</c:if>
-<%-- 						<a href="<c:url value='/admin/program'/>"><img class="admin" alt="program" src="/smartfarm/img/memo.png"></a> --%>
 						<a href="<c:url value='/admin/admin'/>"><img class="admin" alt="program" src="/smartfarm/img/setting.png"></a>
-						<c:if test="${loginInfo.role eq 'ADMIN'}">
-<%-- 							<a href="<c:url value='/admin/setting'/>"><img class="admin" alt="setting" src="/smartfarm/img/setting.png"></a> --%>
-						</c:if>
 						<a href="<c:url value='/admin/logout'/>"><img class="admin" alt="logout" src="/smartfarm/img/logout.png"></a>
 					</c:if>
 					</p>
