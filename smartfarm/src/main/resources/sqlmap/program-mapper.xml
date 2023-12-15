@@ -4,6 +4,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="program">
 	<select id="list" resultType="program">
-  		select * from program_plan
+  		select * from program_plan order by id
   	</select>
+  	<insert id="newprogram">
+		insert into program_plan (plan_start_date, plan_end_date,plan_name,plan_time_am,plan_time_pm)
+		values ( #{plan_start_date}, #{plan_end_date} , #{plan_name}, #{plan_time_am}, #{plan_time_pm})
+	</insert>
 </mapper>
