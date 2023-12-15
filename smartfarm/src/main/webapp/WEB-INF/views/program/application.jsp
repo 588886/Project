@@ -101,10 +101,8 @@ table th span { color:#dc3545; margin-right: 5px }
         $('input[name="application_date"]').attr('min', todayString);
         console.log(todayString);
         
-        // 최대 날짜를 오늘로부터 10년 후로 설정
-        var maxDate = new Date(today.getFullYear() + 10, today.getMonth(), today.getDate());
-        var maxDateString = maxDate.toISOString().split('T')[0];
-        $('input[name="application_date"]').attr('max', maxDateString);
+     // 최대 날짜를 plan_end_date까지로 설정
+        $('input[name="application_date"]').attr('max', '${info.plan_end_date}');
         
         // 날짜 변경 이벤트 처리
         $('input[name="application_date"]').on('change', function () {
