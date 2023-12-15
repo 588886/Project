@@ -11,7 +11,7 @@
 </head>
 <body>
 <h3 class="my-4 text-center">공지사항 수정</h3>
-
+<div class="container mt-5">
 <form method="post" enctype="multipart/form-data" action="update">
 <table class="table tb-row">
 <colgroup><col width="180px"><col></colgroup>
@@ -57,7 +57,7 @@
 	<button class="btn btn-success" id="btn-save">저장</button>
 	<button class="btn btn-success" id="btn-cancel">취소</button>
 </div>
-
+</div>
 <script>
 var fileList = new FileList();
 

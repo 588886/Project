@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 	select sum(headcount) from applicant where plan_id = #{plan_id} and   plan_time = #{plan_time} -->
 <!-- </select> -->
 <select id="applicant_headcount" resultType="integer">
-	select sum(headcount) from applicant where plan_id = #{plan_id} and   application_date = #{application_date} and   plan_time = #{plan_time}
+	select 10-nvl(sum(headcount),0) from applicant where plan_id = #{plan_id} and   application_date = #{application_date} and   plan_time = #{plan_time}
 <!-- 	select sum(headcount) from applicant where plan_id = #{plan_id} and   plan_time = #{plan_time} -->
 </select>
 <!-- 신규 체험신청 저장 -->

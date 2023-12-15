@@ -12,6 +12,7 @@ table th span { color:#dc3545; margin-right: 5px }
 </style>
 </head>
 <body id="back">
+<div class="container mt-5">
 <h3 class="my-3 text-center mt-5" style="font-size: 50px; color:#000;"><strong>체험 신청하기</strong></h3>
 <form method="post" action="register" enctype="multipart/form-data">
 <table class="table tb-row">
@@ -65,6 +66,7 @@ table th span { color:#dc3545; margin-right: 5px }
 <tr><th>신청인원</th>
 	<td><div class="row">
 			<div class="col-auto d-flex align-items-center">
+                
                 <select class="form-select w-px160" name="headcount" id="headcounts" >
 					<option value="0">인원 선택</option>
 				</select>
@@ -88,7 +90,7 @@ table th span { color:#dc3545; margin-right: 5px }
 	<button class="btn btn-success" id="btn-save">신청하기</button>
 	<button class="px-4 btn btn-success" onclick="history.go(-1)" >취소</button>
 </div>
-
+</div>
 <script>
     $(document).ready(function () {
         // 현재 날짜 가져오기
@@ -118,6 +120,10 @@ table th span { color:#dc3545; margin-right: 5px }
         
         $('[name=application_date]').val(todayString)
         console.log("11", $("[name=application_date]").val())
+        headcount()
+    });
+    
+    function headcount(){
         $.ajax({
         	url: "headcount",
         	data: {plan_time: $("[name=time]:checked").val(), plan_id:$("[name=plan_id]").val(),
@@ -125,8 +131,12 @@ table th span { color:#dc3545; margin-right: 5px }
         }).done(function(response){
         	console.log(response)
         })
-    });
+    	
+    }
     
+    $("[name=application_date]").change(function(){
+    	headcount()
+    })
     var select = document.getElementById("headcounts");
 
     // "인원 선택"을 제외한 1부터 5까지의 옵션 추가
