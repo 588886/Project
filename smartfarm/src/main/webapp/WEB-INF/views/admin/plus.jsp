@@ -13,7 +13,7 @@
 	<div class="contaner">
 		<form method="post" action="register">
 			<table id="registertable">
-				<colgroup><col width="200px"><col width="650px">
+				<colgroup><col width="200px"><col width="950px">
 				</colgroup>
 				<tr><th>성명</th>
 					<td><div>

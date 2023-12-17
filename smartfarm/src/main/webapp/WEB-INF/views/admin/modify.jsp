@@ -15,7 +15,7 @@
 		<form method="post" action="adminmodify">
 			<input type="hidden" name ='userid' value="${vo.userid }">
 			<table>
-				<colgroup><col width="200px"><col width="650px">
+				<colgroup><col width="200px"><col width="950px">
 				</colgroup>
 				<tr><th>이름</th>
 					<td><div>

@@ -127,6 +127,11 @@
 }
 .contaner{
 	margin: 0 auto;
+	width: 1150px;
+	padding-top: 100px;
+}
+.logincontaner{
+	margin: 0 auto;
 	width: 850px;
 	padding-top: 100px;
 }
@@ -183,7 +188,7 @@
 
 .inputID input, .inputPW input{
     height: 50px;
-    width: 500px;
+    width: 540px;
     font-size: 40px;
     border-radius: 15px;
 }

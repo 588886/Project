@@ -14,9 +14,9 @@
 	<div class="contaner list">
 		<button  class='addbtn' onclick="location='/smartfarm/admin/addprogram'">추가하기</button>
 		<table>
-			<colgroup><col width="370px"><col width="130px"><col width="130px"><col width="100px"><col width="100px">
+			<colgroup><col width="370px"><col width="130px"><col width="130px"><col width="300px"><col width="100px"><col width="100px">
 			</colgroup>
-			<thead><tr><th>프로그램명</th><th>시작</th><th>종료</th><th>수정</th><th>삭제</th></tr></thead>
+			<thead><tr><th>프로그램명</th><th>시작</th><th>종료</th><th>시간</th><th>수정</th><th>삭제</th></tr></thead>
 			<tbody>
 				<c:if test="${empty programlist}">
 					<tr><td colspan="5">상시프로그램 외 다른 프로그램이 존재하지 않습니다.</td></tr>
@@ -27,12 +27,12 @@
 						<tr><td>${vo.plan_name}</td>
 							<td>${vo.plan_start_date }</td>
 							<td>${vo.plan_end_date }</td>
+							<td>${vo.plan_time_am }<c:if test="${ not empty vo.plan_time_pm}">, ${vo.plan_time_pm }</c:if></td>
 							<td><button 
-<%-- 							onclick="location='/smartfarm/admin/modify?userid=${vo.userid}'" --%>
+							onclick="location='/smartfarm/admin/programmodify?id=${vo.id}'"
 							>click</button></td>
 							<td><button 
-<%-- 							onclick="<c:if test='${empty loginInfo }'> alert('로그인이 되어있지 않습니다.');location='/smartfarm' </c:if> --%>
-<%-- 							<c:if test='${not empty loginInfo }'> if(confirm('정말 삭제하시겠습니까?')){location='/smartfarm/admin/delete?userid=${vo.userid}&adminid=${loginInfo.userid}'}</c:if>" --%>
+							onclick="if(confirm('정말 삭제하시겠습니까?')){location='/smartfarm/admin/deleteprogram?id=${vo.id}&adminid=${loginInfo.userid}'}"
 							>click</button></td>
 						</tr>
 						</c:if>

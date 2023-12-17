@@ -23,6 +23,7 @@ import com.hanul.smartfarm.company.CompanyService;
 import com.hanul.smartfarm.company.CompanyVO;
 import com.hanul.smartfarm.member.MemberService;
 import com.hanul.smartfarm.member.MemberVO;
+import com.hanul.smartfarm.program.ApplicantVO;
 import com.hanul.smartfarm.program.ProgramService;
 import com.hanul.smartfarm.program.ProgramVO;
 
@@ -212,5 +213,48 @@ public class AdminController {
 		return "redirect:admin";
 	}
 	
+	
+	//프로그램 수정 창 이동
+	@RequestMapping("/programmodify")
+	public String programmodify(int id ,Model model) {
+		ProgramVO vo=program.program_info(id);
+		model.addAttribute("vo", vo);
+		model.addAttribute("programname", "프로그램 정보 수정");
+		return "default/admin/modifyprogram";
+	}
+	
+	//프로그램 수정 작업
+	@RequestMapping("/programModifyAction")
+	public String programModifyAction(ProgramVO vo) {
+		program.modify(vo);
+		
+		return "redirect:admin";
+	}
+
+	
+	//프로그램 삭제 요청
+	@RequestMapping("/deleteprogram")
+	public String deleteprogram(int id,HttpSession session) {
+		
+		MemberVO vo=(MemberVO)session.getAttribute("loginInfo");
+		if(vo!=null) {
+			if(vo.getRole().equals("ADMIN")) {
+				program.program_delete(id);
+			}
+		}
+		
+		return "redirect:admin";
+		
+	}
+	
+	
+	//신청 인원 죄회 및 관리창
+	@RequestMapping("/personnel")
+	public String personnel(Model model) {
+		model.addAttribute("personnellist", program.personnel_list());
+		model.addAttribute("programname", "신청인원 관리");
+		return "default/admin/personnel";
+		
+	}
 	
 }

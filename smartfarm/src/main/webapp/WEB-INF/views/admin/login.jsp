@@ -10,7 +10,7 @@
 <link rel="icon" type="image/x-icon" href="<c:url value='/img/hanul.ico'/>" />
 </head>
 <body>
-	<div class="contaner">
+	<div class="logincontaner">
 	    <form method="post" action="smartfarmLogin">
 	    	<div class="inputID">
 	        	<div>
