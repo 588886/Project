@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <!DOCTYPE html>
 <html>
@@ -38,6 +39,7 @@
 			</div>
 			<a href="<c:url value='/admin/admin'/>">
 				<div class='slot <c:if test="${programname eq '프로그램 관리'}"> select</c:if>
+								 <c:if test="${programname eq '프로그램 정보 수정'}"> select</c:if>
 								 <c:if test="${programname eq '프로그램 추가'}"> select</c:if>	'>
 					<div class='content'>
 						<img alt="manager" src="/smartfarm/img/memo.png">
@@ -45,7 +47,7 @@
 					</div>
 				</div>
 			</a>
-			<a href="<c:url value='/admin/nonono'/>">
+			<a href="<c:url value='/admin/personnel'/>">
 				<div class='slot <c:if test="${programname eq '신청인원 관리'}"> select</c:if>'>
 					<div class='content'>
 						<img alt="manager" src="/smartfarm/img/guide.png">

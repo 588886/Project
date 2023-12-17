@@ -35,6 +35,16 @@ public class ProgramService {
 	public int addprogram(ProgramVO vo) {
 		return sql.insert("program.newprogram",vo);
 	}
+	
+	//프로그램 삭제
+	public int program_delete(int id) {
+		return sql.delete("program.deleteprogram",id);
+	}
+	
+	//프로그램 수정
+	public int modify(ProgramVO vo) {
+		return sql.update("program.updateprogram",vo);
+	}
 
 	//신규 체험신청 저장
 	public int program_application( ProgramVO vo ) {
@@ -54,6 +64,11 @@ public class ProgramService {
 	public int application_headcount(ApplicantVO vo) {
 //					vo.setApplication_date("2023-12-18");
 		return sql.selectOne("program.applicant_headcount", vo);
+	}
+	
+	//체험인원 조회
+	public List<ApplicantVO> personnel_list() {
+		return sql.selectList("program.personnel_list");
 	}
 
 }

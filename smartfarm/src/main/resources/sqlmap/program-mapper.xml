@@ -7,22 +7,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="list" resultType="program">
 	select * from program_plan order by id
 </select>
+
+<select id="personnel_list" resultType="applicant">
+	SELECT a.*,to_date(to_char(a.application_date,'YYYY-MM-DD')) apllication_date, s.state, p.plan_name
+	from applicant a left outer join apply_state s on a.state_code=s.code 
+					 left outer join program_plan p on a.plan_id=p.id
+	order by a.id desc
+</select>
+
 <insert id="newprogram">
 	insert into program_plan (plan_start_date, plan_end_date,plan_name,plan_time_am,plan_time_pm)
 	values ( #{plan_start_date}, #{plan_end_date} , #{plan_name}, #{plan_time_am}, #{plan_time_pm})
 </insert>
 
+<delete id="deleteprogram">
+	delete from program_plan where id = #{id}
+</delete>
+
+<update id="updateprogram">
+update program_plan set plan_name = #{plan_name}, 
+	plan_start_date=#{plan_start_date} , plan_end_date=#{plan_end_date}, 
+	plan_time_am=#{plan_time_am}, plan_time_pm=#{plan_time_pm}
+where id = #{id}
+</update>
+
 <select id="info" resultType="program">
 	select * from program_plan where id = #{id}
 </select>
-<!-- <select id="applicant_headcount" resultType="integer"> -->
-<!-- 	select sum(headcount) from applicant where plan_id = #{plan_id} and to_char(application_date, 'yyyy-mm-dd') = #{application_date} and plan_time = #{plan_time} -->
-<!-- 	select sum(headcount) from applicant where plan_id = #{plan_id} and   plan_time = #{plan_time} -->
-<!-- </select> -->
+
+
 <select id="applicant_headcount" resultType="integer">
 	select 10-nvl(sum(headcount),0) from applicant where plan_id = #{plan_id} and   application_date = #{application_date} and   plan_time = #{plan_time}
-<!-- 	select sum(headcount) from applicant where plan_id = #{plan_id} and   plan_time = #{plan_time} -->
 </select>
+
 <!-- 신규 체험신청 저장 -->
 <insert id="application">
 	insert into applicant ( name, phone, email, plan_id, headcount, application_date  )

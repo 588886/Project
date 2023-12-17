@@ -13,7 +13,7 @@
 	<div class="contaner">
 		<form method="post" action="programinsert">
 			<table id="registertable">
-				<colgroup><col width="200px"><col width="650px">
+				<colgroup><col width="200px"><col width="950px">
 				</colgroup>
 				<tr><th>프로그램명</th>
 					<td><div>

@@ -14,7 +14,7 @@
 		<button class='addbtn'>수정하기</button>
 		<form method="post" action="campanyModify">
 			<table id="settingtable">
-				<colgroup><col width="200px"><col width="650px">
+				<colgroup><col width="200px"><col width="950px">
 				</colgroup>
 				<tr><th>회사명</th>
 					<td><div>
@@ -23,7 +23,7 @@
 					</td>
 				</tr>
 				<tr><th>주소</th>
-					<td><div class="inputid">
+					<td><div>
 
 							<input type="text"  id="addr" name="adress" onclick="openZipSearch();" readonly="readonly"  value="${vo.adress }">
 						</div>

@@ -14,7 +14,7 @@
 	<div class="contaner list">
 	<button class='addbtn'onclick="location='/smartfarm/admin/plus'">추가하기</button>
 	<table>
-		<colgroup><col width="150px"><col width="130px"><col width="370px"><col width="100px"><col width="100px">
+		<colgroup><col width="230px"><col width="230px"><col width="490px"><col width="100px"><col width="100px">
 		</colgroup>
 		<thead><tr><th>이름</th><th>아이디</th><th>비밀번호</th><th>수정</th><th>삭제</th></tr></thead>
 		<tbody>
