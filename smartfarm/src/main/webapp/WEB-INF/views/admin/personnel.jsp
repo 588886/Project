@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="contaner list">
-<!-- 	<button class='addbtn'onclick="location='/smartfarm/admin/plus'">추가하기</button> -->
+	<button class='addbtn'onclick="location='/smartfarm/admin/personnel_plus'">추가하기</button>
 	<table>
 		<colgroup><col width="110px"><col width="170px"><col width="220px"><col width="80px"><col width="270px">
 				  <col width="120px"><col width="80px"><col width="100px">
