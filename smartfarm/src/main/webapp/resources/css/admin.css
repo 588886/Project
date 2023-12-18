@@ -243,6 +243,11 @@
     font-size: larger;
 }
 
+#registertable .inputid input{
+    width: 86%;
+    margin-left: 18px;
+}
+
 .inputid button {
 	width: 80px !important;
     height: 40px !important;

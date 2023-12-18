@@ -247,7 +247,6 @@ public class AdminController {
 		
 	}
 	
-	
 	//신청 인원 죄회 및 관리창
 	@RequestMapping("/personnel")
 	public String personnel(Model model) {
@@ -265,5 +264,14 @@ public class AdminController {
 		return program.state_check(vo)==1 ? vo.getState_code():-1;
 //		return -1;
 	}
+	
+	//신청 인원 죄회 및 관리창
+	@RequestMapping("/personnel_plus")
+	public String personnel_plus(Model model) {
+		model.addAttribute("program_list", program.program_list());
+		model.addAttribute("programname", "신청인원 추가");
+		return "default/admin/addpersonnel";
+	}
+	
 	
 }
