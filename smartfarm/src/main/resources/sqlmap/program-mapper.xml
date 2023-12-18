@@ -8,6 +8,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select * from program_plan order by id
 </select>
 
+<select id="state_list" resultType="state">
+	select * from apply_state order by code
+</select>
+
+
+<update id="update_state">
+update applicant set state_code = #{state_code}
+where id = #{id}
+</update>
+
 <select id="personnel_list" resultType="applicant">
 	SELECT a.*,to_date(to_char(a.application_date,'YYYY-MM-DD')) apllication_date, s.state, p.plan_name
 	from applicant a left outer join apply_state s on a.state_code=s.code 

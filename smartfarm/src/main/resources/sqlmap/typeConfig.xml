@@ -8,6 +8,7 @@
  	<typeAlias type="com.hanul.smartfarm.company.CompanyVO" alias="company"/>
  	<typeAlias type="com.hanul.smartfarm.program.ProgramVO" alias="program"/>
  	<typeAlias type="com.hanul.smartfarm.program.ApplicantVO" alias="applicant"/>
+ 	<typeAlias type="com.hanul.smartfarm.program.StateVO" alias="state"/>
  	
  </typeAliases>
  </configuration>

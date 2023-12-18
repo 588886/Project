@@ -70,5 +70,15 @@ public class ProgramService {
 	public List<ApplicantVO> personnel_list() {
 		return sql.selectList("program.personnel_list");
 	}
+	
+	//스테이트 조회
+	public List<StateVO> state_list() {
+		return sql.selectList("program.state_list");
+	}
+	
+	//스테이트 변경
+	public int state_check(ApplicantVO vo) {
+		return sql.update("program.update_state",vo);
+	}
 
 }

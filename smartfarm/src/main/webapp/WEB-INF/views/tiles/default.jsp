@@ -81,7 +81,6 @@
 					<p>${programname }</p>
 				<div>
 					<img class='gohome'alt="logout" src="/smartfarm/img/home.png">
-					<img alt="logout" src="/smartfarm/img/group.png">
 					<a href="<c:url value='/admin/logout'/>"><img alt="logout" src="/smartfarm/img/logout.png"></a>
 				</div>
 			</div>

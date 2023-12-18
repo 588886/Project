@@ -276,3 +276,27 @@
     height: 40px;
     font-size: large;
 }
+
+.state_ready{
+	background-color: cornsilk;
+}
+
+.state_check{
+	background-color: aliceblue;
+}
+
+.state_finish{
+	background-color: lightgreen;
+}
+
+.state_cancell{
+	background-color: darkgrey;
+}
+
+.state_option{
+	width: 100%;
+    height: 50px;
+    border: none;
+    text-align: center;
+    font-size: large;
+}
