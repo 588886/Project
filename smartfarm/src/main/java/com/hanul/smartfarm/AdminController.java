@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 import com.hanul.smartfarm.common.CommonService;
+import com.hanul.smartfarm.common.PageVO;
 import com.hanul.smartfarm.company.CompanyService;
 import com.hanul.smartfarm.company.CompanyVO;
 import com.hanul.smartfarm.member.MemberService;
@@ -248,10 +249,13 @@ public class AdminController {
 	}
 	
 	//신청 인원 죄회 및 관리창
-	@RequestMapping("/personnel")
-	public String personnel(Model model) {
+	@RequestMapping("/list")
+	public String list(Model model,PageVO page) {
+		page.setPageList(7);
+		page.setBlockPage(10);
 		model.addAttribute("state_list", program.state_list());
-		model.addAttribute("personnellist", program.personnel_list());
+		model.addAttribute("page", program.personnel_list(page));
+//		model.addAttribute("personnellist", program.personnel_list());
 		model.addAttribute("programname", "신청인원 관리");
 		return "default/admin/personnel";
 	}
@@ -265,12 +269,27 @@ public class AdminController {
 //		return -1;
 	}
 	
-	//신청 인원 죄회 및 관리창
+	//신청 인원 조회 및 관리창
 	@RequestMapping("/personnel_plus")
 	public String personnel_plus(Model model) {
 		model.addAttribute("program_list", program.program_list());
 		model.addAttribute("programname", "신청인원 추가");
 		return "default/admin/addpersonnel";
+	}
+	
+	//프로그램 조회
+	@ResponseBody @RequestMapping("/program_check")
+	public ProgramVO program_check(int id ) {
+		ProgramVO vo=program.program_info(id);
+		return vo;
+	}
+	
+	//체험인원 입력
+	@RequestMapping("/aplly_insert")
+	public String aplly_insert(ApplicantVO vo ) {
+		
+		program.apply_insert(vo);
+		return "redirect:list";
 	}
 	
 	

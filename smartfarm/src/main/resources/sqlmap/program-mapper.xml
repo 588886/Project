@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="program">
 
 <select id="list" resultType="program">
-	select * from program_plan order by id
+	select * from program_plan  order by id
 </select>
 
 <select id="state_list" resultType="state">
@@ -13,10 +13,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
 
 
+<insert id="add_application">
+	insert into applicant (name, phone,email,headcount,plan_id,application_date,plan_time)
+	values ( #{name}, #{phone} , #{email}, #{headcount}, #{plan_id}, #{application_date}, #{plan_time})
+</insert>
+
+
 <update id="update_state">
 update applicant set state_code = #{state_code}
 where id = #{id}
 </update>
+
+<select id="personnel_list2" resultType="applicant">
+	select *
+	from (select row_number() over(order by id desc) no,a.* from(SELECT a.*,to_date(to_char(a.application_date,'YYYY-MM-DD')) apllication_date, s.state, p.plan_name
+	from applicant a left outer join apply_state s on a.state_code=s.code 
+					 left outer join program_plan p on a.plan_id=p.id
+	order by a.id desc) a)
+    where no between #{beginList} and #{endList}		 
+	order by no desc
+</select>
 
 <select id="personnel_list" resultType="applicant">
 	SELECT a.*,to_date(to_char(a.application_date,'YYYY-MM-DD')) apllication_date, s.state, p.plan_name
@@ -55,5 +71,10 @@ where id = #{id}
 	insert into applicant ( name, phone, email, plan_id, headcount, application_date  )
 	values( #{name}, #{phone}, #{email}, #{plan_id}, #{headcount}, #{application_date} )
 </insert>
+
+<!-- 공지글 총건수 -->
+<select id="totalCount" resultType="integer">
+select count(*) from applicant 
+</select>
 
 </mapper>

@@ -156,7 +156,7 @@
 }
 
 .contaner table td{
-	font-size: larger;
+	font-size: small;
 }
 
 .contaner table td p{
@@ -304,4 +304,17 @@
     border: none;
     text-align: center;
     font-size: large;
+}
+
+.display_none{
+	display: none;
+}
+
+.input input, .input select{
+    width: 97%;
+    height: 37px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: lighter;
 }

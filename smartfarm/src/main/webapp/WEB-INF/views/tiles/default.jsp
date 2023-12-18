@@ -47,7 +47,7 @@
 					</div>
 				</div>
 			</a>
-			<a href="<c:url value='/admin/personnel'/>">
+			<a href="<c:url value='/admin/list'/>">
 				<div class='slot <c:if test="${programname eq '신청인원 관리'}"> select</c:if>
 									<c:if test="${programname eq '신청인원 추가'}"> select</c:if>'>
 					<div class='content'>

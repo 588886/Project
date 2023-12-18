@@ -23,7 +23,7 @@ public class ProgramService {
 	
 	public PageVO program_list(PageVO page) {
 		//데이터행의 건수 조회
-//			page.setTotalList( sql.selectOne("program.totalCount", page) );
+		page.setTotalList( sql.selectOne("program.totalCount", page) );
 		//해당 페이지의 글목록 조회
 		page.setList( sql.selectList("program.list", page) );
 //			List<NoticeVO> list = (List<NoticeVO>)page.getList();
@@ -55,7 +55,7 @@ public class ProgramService {
 	public List<ProgramVO> program_list() {
 		return sql.selectList("program.list");
 	}
-	//체험프로그램글목록 조회
+	//체험프로그램글 상세 조회
 	public ProgramVO program_info(int id) {
 		return sql.selectOne("program.info", id);
 	}
@@ -71,6 +71,13 @@ public class ProgramService {
 		return sql.selectList("program.personnel_list");
 	}
 	
+	//체험인원 페이지 조회
+	public PageVO personnel_list(PageVO page) {
+		page.setTotalList( sql.selectOne("program.totalCount", page) );
+		page.setList( sql.selectList("program.personnel_list2", page) );
+		return page;
+	}
+	
 	//스테이트 조회
 	public List<StateVO> state_list() {
 		return sql.selectList("program.state_list");
@@ -79,6 +86,11 @@ public class ProgramService {
 	//스테이트 변경
 	public int state_check(ApplicantVO vo) {
 		return sql.update("program.update_state",vo);
+	}
+	
+	//스테이트 변경
+	public int apply_insert(ApplicantVO vo) {
+		return sql.insert("program.add_application",vo);
 	}
 
 }

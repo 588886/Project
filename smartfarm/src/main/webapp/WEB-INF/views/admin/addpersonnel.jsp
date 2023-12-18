@@ -11,13 +11,14 @@
 </head>
 <body>
 	<div class="contaner">
-		<form method="post" action="programinsert">
+		<form method="post" action="aplly_insert">
 			<table>
-				<colgroup><col width="200px"><col>
+				<colgroup><col width="200px"><col width="950px">
 				</colgroup>
 				<tr><th>프로그램명</th>
 					<td><div>
-							<select  class='state_option'>
+							<select name='plan_id' class='program_option state_option'>
+							<option value='-1' >프로그램을 선택해주세요.</option>
 							<c:forEach items="${ program_list}" var="vo2">
 								<option value='${vo2.id }' >${vo2.plan_name }</option>
 							</c:forEach>
@@ -25,41 +26,59 @@
 						</div>
 					</td>
 				</tr>
-				<tr><th>성명</th>
+				<tr class="display_none input"><th>성명</th>
+					<td><div>
+							<input type="text" name="name" required>
+						</div>
+					</td>
+				</tr>
+				<tr class="display_none input"><th>전화번호</th>
 					<td><div>
 							<div class="col-auto">
-								<input type="text" name="name" class="form-control" autofocus >
+								<input type="text" name="phone" >
 							</div>
 						</div>
 					</td>
 				</tr>
-				<tr><th>이메일</th>
+				<tr class="display_none input"><th>이메일</th>
 					<td><div>
 							<div class="col-auto">
-								<input type="text" name="email" class="form-control check-item" title="이메일">
+								<input type="text" name="email" >
 							</div>
 						</div>
 					</td>
 				</tr>
-				<tr><th>신청일자</th>
+				<tr class="display_none input"><th>신청일자</th>
 					<td><div>
 							<div class="col-auto">
-								<input type="date" name="application_date" class="date form-control" >
+								<input type="date" name="application_date" id="date" >
 							</div>
 						</div>
 					</td>
 				</tr>
-				<tr><th>2부타임</th>
+				<tr class="display_none"><th>신청시간</th>
+					<td><div>
+							<div class="applyTime">
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr class="display_none input"><th>신청인원</th>
 					<td><div>
 							<div class="col-auto">
-								<input type="text"  placeholder="00:00" name="plan_time_pm" title="2부 시간" autofocus >
+								<select name="headcount" id="headcounts" >
+									<option value="0">인원 선택</option>
+									<c:forEach begin="1" end="15" var="i">
+										<option value=${i }>${i }명</option>
+									</c:forEach>
+								</select>
 							</div>
 						</div>
 					</td>
 				</tr>
 			</table>
 		<div class="addback">
-			<button id="program_add">추가하기</button>
+			<button id="apply_add">추가하기</button>
 			<button onclick=history.go(-1)>돌아가기</button>
 		</div>
 		</form>
@@ -67,22 +86,88 @@
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script src="<c:url value='/js/member.js'/>?<%=new java.util.Date() %>"></script>
 	<script>
-		$('#program_add').click(function(){
-			if( $('[name=plan_name]').val()=='' ){
-				alert('프로그램명을 입력하세요!');
-				$('[name=plan_name]').focus()
+		
+		$('.program_option').change(function(){
+			var state=$(this).closest('table').find('tr')
+			$.ajax({
+				url:'program_check',
+				data:{id:$(this).val()}
+			}).done(function( response ){
+				console.log( response)
+				var startDate=new Date(response.plan_start_date);
+				var endDate=new Date(response.plan_end_date);
+				
+				startDate.setDate(startDate.getDate()+1);
+				startDate=dateFormat(startDate);
+				console.log( startDate)
+				endDate.setDate(endDate.getDate()+1);
+				endDate=dateFormat(endDate);
+				
+				$('#date').prop("min", startDate);
+				$('#date').prop("max", endDate);
+				
+				var apply = 
+					`<input class="form-check-input" type="radio" name="plan_time" checked 
+					value=\${response.plan_time_am }>\${response.plan_time_am }
+					`;
+				if(response.plan_time_pm != null){
+					apply+=
+						`<input class="form-check-input" type="radio" name="plan_time" 
+						value=\${response.plan_time_pm }>\${response.plan_time_pm }
+						`;
+				}
+				
+				$('.applyTime').html(apply);
+				
+				state.removeClass('display_none')
+			})
+		})
+		
+		function dateFormat(date) {
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let hour = date.getHours();
+        let minute = date.getMinutes();
+        let second = date.getSeconds();
+
+        month = month >= 10 ? month : '0' + month;
+        day = day >= 10 ? day : '0' + day;
+        hour = hour >= 10 ? hour : '0' + hour;
+        minute = minute >= 10 ? minute : '0' + minute;
+        second = second >= 10 ? second : '0' + second;
+
+        return date.getFullYear() + '-' + month + '-' + day;
+		}
+		$('#apply_add').click(function(){
+			if( $('[name=plan_id]').val()==-1 ){
+				alert('프로그램을 선택하세요!');
+				$('[name=plan_id]').focus()
+				return;
 			}
-			if( $('[name=plan_start_date]').val()=='' ){
-				alert('시작일을 입력하세요!');
-				$('[name=plan_start_date]').focus()
+			if( $('[name=name]').val()=='' ){
+				alert('이름을 입력하세요!');
+				$('[name=name]').focus()
+				return;
 			}
-			if( $('[name=plan_end_date]').val()=='' ){
-				alert('종료일을 입력하세요!');
-				$('[name=plan_end_date]').focus()
+			if( $('[name=phone]').val()=='' ){
+				alert('전화번호를 입력하세요!');
+				$('[name=phone]').focus()
+				return;
 			}
-			if( $('[name=plan_time_am]').val()=='' ){
-				alert('종료일을 입력하세요!');
-				$('[name=plan_time_am]').focus()
+			if( $('[name=email]').val()=='' ){
+				alert('이메일을 입력하세요!');
+				$('[name=email]').focus()
+				return;
+			}
+			if( $('[name=application_date]').val()=='' ){
+				alert('날짜를 선택하세요!');
+				$('[name=application_date]').focus()
+				return;
+			}
+			if( $('[name=headcount]').val()==0 ){
+				alert('인원을 입력하세요!');
+				$('[name=headcount]').focus()
+				return;
 			}
 		})
 		
