@@ -9,10 +9,25 @@
 <link rel="icon" type="image/x-icon" href="<c:url value='/img/hanul.ico'/>" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <link href="<c:url value='/css/admin.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
+
+
+    <link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
+	
+    <!-- Template Stylesheet -->
+    <link href="<c:url value='/css/style.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 <body>
 <div class="contaner list">
+	<form method="post" action="list">
+	<input type="hidden" name="curPage" value="1">
+	</form>
+	
 	<button class='addbtn'onclick="location='/smartfarm/admin/personnel_plus'">추가하기</button>
+	
+	<c:set var="params" value="curPage=${page.curPage}&search=${page.search}&keyword=${page.keyword}"/>
+	
 	<table>
 		<colgroup><col width="110px"><col width="170px"><col width="220px"><col width="80px"><col width="270px">
 				  <col width="120px"><col width="80px"><col width="100px">
@@ -20,10 +35,12 @@
 		<thead><tr><th>이름</th><th>전화번호</th><th>이메일</th><th>인원</th><th>프로그램명</th>
 				   <th>신청일</th><th>시간</th><th>상태</th></tr></thead>
 		<tbody>
-			<c:if test="${empty personnellist}">
+<%-- 			<c:if test="${empty personnellist}"> --%>
+			<c:if test="${empty page.list}">
 				<tr><td colspan="5">프로그램 신청인원이 존재하지 않습니다.</td></tr>
 			</c:if>
-			<c:forEach var="vo" items="${personnellist}">
+			<c:forEach var="vo" items="${page.list}">
+<%-- 			<c:forEach var="vo" items="${personnellist}"> --%>
 				<tr><td>${vo.name}</td>
 					<td>${vo.phone }</td>
 					<td>${vo.email }</td>
@@ -47,6 +64,7 @@
 		</tbody>
 	</table>
 	</div>
+	<jsp:include page="/WEB-INF/views/include/page.jsp"/>
 	<script>
 		var previous,previousid;
 		
@@ -77,5 +95,6 @@
 		
 // 		})
 	</script>
+	
 </body>
 </html>
