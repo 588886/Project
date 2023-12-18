@@ -37,7 +37,7 @@ public class ProgramController {
 		@RequestMapping("/headcount") 
 		public int headcount(ApplicantVO vo,HttpServletRequest request) {
 			//화면에서 입력한 정보를 DB에 신규저장 후 목록화면으로 연결
-			vo.setApplication_date(vo.getApplication_date().toString());
+			vo.setApplication_date(vo.getApplication_date());
 			return service.application_headcount(vo);
 			
 		}

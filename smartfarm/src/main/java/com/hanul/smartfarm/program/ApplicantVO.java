@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 @Getter @Setter
 public class ApplicantVO {
-	private int id, headcount, plan_id;
+	private int id, headcount, plan_id,state_code;
 	private String name,phone,email,state,plan_time,plan_name;
 	private Date create_at, application_date ;
 }

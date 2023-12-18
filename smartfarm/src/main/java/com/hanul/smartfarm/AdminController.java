@@ -251,10 +251,19 @@ public class AdminController {
 	//신청 인원 죄회 및 관리창
 	@RequestMapping("/personnel")
 	public String personnel(Model model) {
+		model.addAttribute("state_list", program.state_list());
 		model.addAttribute("personnellist", program.personnel_list());
 		model.addAttribute("programname", "신청인원 관리");
 		return "default/admin/personnel";
+	}
+	
+	//상태변경처리
+	@ResponseBody @RequestMapping("/state_check")
+	public int state_check(ApplicantVO vo,Model model) {
 		
+//		model.addAttribute("programname", "신청인원 관리");
+		return program.state_check(vo)==1 ? vo.getState_code():-1;
+//		return -1;
 	}
 	
 }
