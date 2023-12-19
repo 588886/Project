@@ -134,6 +134,7 @@
 	margin: 0 auto;
 	width: 850px;
 	padding-top: 100px;
+	margin-top: 5vw;
 }
 
 .contaner table{
@@ -317,4 +318,8 @@
     text-align: center;
     font-size: 28px;
     font-weight: lighter;
+}
+
+.b-yb{
+	background-color: aliceblue;
 }
