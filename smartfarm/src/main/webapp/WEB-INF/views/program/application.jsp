@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -56,9 +56,12 @@ table th span { color:#dc3545; margin-right: 5px }
 			</div>
 			<div class="form-check form-check-inline">
 			  <label>
+			  	<c:if test="${not empty info.plan_time_pm }">
 				  <input class="form-check-input" type="radio" name="plan_time" value="${info.plan_time_pm }">${info.plan_time_pm }
+				  </c:if>
 			  </label>
 			</div>
+			  <div class="text-danger">※시각이 안보이는 경우에는 다른 날짜를 선택 해주세요.</div>
             </div>
 		</div>
 	</td>
@@ -93,28 +96,47 @@ table th span { color:#dc3545; margin-right: 5px }
 </div>
 <script>
     $(document).ready(function () {
-        // 현재 날짜 가져오기
-        var today = new Date();
-        var todayString = today.toISOString().split('T')[0];
-        
-        // 최소 날짜를 오늘 이후로 설정
-        $('input[name="application_date"]').attr('min', todayString);
-        console.log(todayString);
-        
-     // 최대 날짜를 plan_end_date까지로 설정
-        $('input[name="application_date"]').attr('max', '${info.plan_end_date}');
-        
-        // 날짜 변경 이벤트 처리
-        $('input[name="application_date"]').on('change', function () {
-            var selectedDate = $(this).val();
-            
-            // 선택한 날짜가 오늘 날짜와 이전인지 확인
-            if (selectedDate <= todayString) {
-                alert('오늘 날짜와 이전 날짜는 선택할 수 없습니다. 다음 날짜부터 선택해 주세요.');
-                $(this).val(''); // 날짜 초기화
-            }
-        });
-        
+    	// 현재 날짜 가져오기
+    	var today = new Date();
+    	var todayString = today.toISOString().split('T')[0];
+    	var currentHour = today.getHours();
+
+    	// info.plan_time_am에는 오전 시각이, info.plan_time_pm에는 오후 시각이 들어있다고 가정
+    	var planTimeAm = parseInt('${info.plan_time_am}', 10);
+    	var planTimePm = parseInt('${info.plan_time_pm}', 10);
+
+    	// 만약 현재 시간이 오전 시각을 지났다면 오전 시각 input을 숨깁니다.
+    	if (currentHour >= planTimeAm) {
+    	    $('input[value="${info.plan_time_am}"]').closest('.form-check').hide();
+    	}
+
+    	// 만약 현재 시간이 오후 시각을 지났다면 오후 시각 input을 숨깁니다.
+    	if (currentHour >= planTimePm) {
+    	    $('input[value="${info.plan_time_pm}"]').closest('.form-check').hide();
+    	}
+
+    	// 최소 날짜를 오늘부터로 설정
+    	 $('input[name="application_date"]').attr('min', todayString);
+
+    	// 날짜 변경 이벤트 처리
+    	$('input[name="application_date"]').on('change', function () {
+    	    var selectedDate = $(this).val();
+
+    	    // 선택한 날짜가 오늘이 아니면 모든 시간대의 input을 보이게 설정
+    	    if (selectedDate !== todayString) {
+    	        $('input[value="${info.plan_time_am}"]').closest('.form-check').show();
+    	        $('input[value="${info.plan_time_pm}"]').closest('.form-check').show();
+    	    } else {
+    	        // 선택한 날짜가 오늘이면 현재 시간 이후의 시간대만 보이게 설정
+    	        if (currentHour >= planTimeAm) {
+    	            $('input[value="${info.plan_time_am}"]').closest('.form-check').hide();
+    	        }
+
+    	        if (currentHour >= planTimePm) {
+    	            $('input[value="${info.plan_time_pm}"]').closest('.form-check').hide();
+    	        }
+    	    }
+    	});
         
         $('[name=application_date]').val(todayString)
         console.log("11", $("[name=application_date]").val())
@@ -122,7 +144,7 @@ table th span { color:#dc3545; margin-right: 5px }
         
     });
     
-    function headcount() {
+    function headcount(){
         $.ajax({
             url: "headcount",
             data: {
@@ -130,13 +152,13 @@ table th span { color:#dc3545; margin-right: 5px }
                 plan_id: $("[name=plan_id]").val(),
                 application_date: $("[name=application_date]").val()
             }
-        }).done(function(response) {
-            console.log(response);
+        }).done(function(response){
+            console.log(response)
             var select = $('#headcounts');
-
+            
             // 기존의 옵션들을 삭제
             select.empty();
-
+            
             // Add options based on the response
             for (var i = 1; i <= response; i++) {
                 var option = $('<option>', { value: i, text: i });
@@ -145,10 +167,9 @@ table th span { color:#dc3545; margin-right: 5px }
         });
     }
 
-    
-    $("[name=application_date], [name=plan_time]").change(function() {
-        headcount();
-    });
+    $("[name=application_date], [name=plan_time]").change(function(){
+    	headcount()
+    })
     var select = document.getElementById("headcounts");
 
     // "인원 선택"을 제외한 1부터 5까지의 옵션 추가
@@ -164,5 +185,6 @@ table th span { color:#dc3545; margin-right: 5px }
     		$('form').submit()
     })
 </script>
+
 </body>
 </html>

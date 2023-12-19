@@ -25,9 +25,9 @@ public class ProgramController {
 	@Autowired private ProgramService service;
 	@Autowired private CommonService common;
 	
-		//공지글 새글저장처리 요청
+		//체험프로그램 신청 저장처리 요청
 		@RequestMapping("/register") 
-		public String register(ProgramVO vo,HttpServletRequest request) {
+		public String register(ApplicantVO vo,HttpServletRequest request) {
 			//화면에서 입력한 정보를 DB에 신규저장 후 목록화면으로 연결
 			service.program_application(vo);
 			return "redirect:list";
@@ -37,7 +37,7 @@ public class ProgramController {
 		@RequestMapping("/headcount") 
 		public int headcount(ApplicantVO vo,HttpServletRequest request) {
 			//화면에서 입력한 정보를 DB에 신규저장 후 목록화면으로 연결
-			vo.setApplication_date(vo.getApplication_date().toString());
+			vo.setApplication_date(vo.getApplication_date());
 			return service.application_headcount(vo);
 			
 		}
@@ -54,9 +54,9 @@ public class ProgramController {
 	//공지글 목록화면 요청
 		@RequestMapping("/list")
 		public String list(Model model, HttpSession session, PageVO page) {
-
+			page.setPageList(5);
 			session.setAttribute("category", "pr");
-			model.addAttribute("list", service.program_list() ); //전체 목록조회
+			model.addAttribute("page", service.program_list(page) ); //전체 목록조회
 			return "program/list";
 		}
 }

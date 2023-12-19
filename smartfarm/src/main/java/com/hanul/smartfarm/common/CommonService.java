@@ -118,7 +118,7 @@ public class CommonService {
 		
 		
 		//다른ip에서 저장된 파일도 보여질수 있도록 localhost는 실제ip로 처리
-		String url = appURL(request).replace("localhost", "192.168.0.27");
+		String url = appURL(request).replace("localhost", "115.23.6.119");
 		return  url + upload + "/" + filename;
 	}
 	

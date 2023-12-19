@@ -24,8 +24,6 @@
             <input type="hidden" name="curPage" value="1">
         </form>
 
-        <c:set var="params" value="curPage=${page.curPage}&search=${page.search}&keyword=${page.keyword}" />
-
         <table class="table mx-auto text-center" style="max-width: 900px; background-color:#95d595;">
             <thead>
                 <tr>
@@ -36,7 +34,7 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="vo" items="${list}">
+                <c:forEach var="vo" items="${page.list}">
                     <tr>
                         <td>${vo.plan_name}</td>
                         <td>${vo.plan_start_date}</td>
