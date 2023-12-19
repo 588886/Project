@@ -9,7 +9,7 @@
 <link href="<c:url value='/css/admin.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
 <link rel="icon" type="image/x-icon" href="<c:url value='/img/hanul.ico'/>" />
 </head>
-<body>
+<body class='b-yb'>
 	<div class="logincontaner">
 	    <form method="post" action="smartfarmLogin">
 	    	<div class="inputID">
