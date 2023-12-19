@@ -34,7 +34,7 @@
 					<c:if test="${loginInfo.role eq 'MANAGER'}">
 						<img alt="manager" src="/smartfarm/img/manager.png">
 					</c:if>
-					<p>${loginInfo.name} 님</p>
+					<p class='bt'>${loginInfo.name} 님</p>
 				</div>
 			</div>
 			<a href="<c:url value='/admin/admin'/>">
@@ -78,7 +78,7 @@
 			</c:if>
 		</div>
 		<div class='workpage'>
-			<div class='head'>
+			<div class='head bt'>
 					<p>${programname }</p>
 				<div>
 					<img class='gohome'alt="logout" src="/smartfarm/img/home.png">
