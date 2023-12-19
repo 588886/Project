@@ -4,23 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="program">
 
-<!-- 체험프로그램 총건수 -->
-<select id="totalCount" resultType="integer">
-select count(*) from program_plan
-</select>
-
-<!-- 체험프로그램 목록정보 -->
 <select id="list" resultType="program">
-	select *
-from (select row_number() over(order by plan_start_date desc) no, p.*
-      from program_plan p) n
-where no between #{beginList} and #{endList}
-order by no desc
-
-
-<!-- <select id="list" resultType="program">
-	select * from program_plan  order by id -->
-
+	select * from program_plan  order by id
 </select>
 
 <select id="state_list" resultType="state">
@@ -41,10 +26,7 @@ where id = #{id}
 
 <select id="personnel_list2" resultType="applicant">
 	select *
-	from (select row_number() over(order by id desc) no,a.* from(SELECT a.*,to_date(to_char(a.application_date,'YYYY-MM-DD')) apllication_date, s.state, p.plan_name
-	from applicant a left outer join apply_state s on a.state_code=s.code 
-					 left outer join program_plan p on a.plan_id=p.id
-	order by a.id desc) a)
+	from (select row_number() over(order by id desc) no,a.* from(select * from applicant order by id desc) a)
     where no between #{beginList} and #{endList}		 
 	order by no desc
 </select>
@@ -83,8 +65,8 @@ where id = #{id}
 
 <!-- 신규 체험신청 저장 -->
 <insert id="application">
-	insert into applicant ( name, phone, email, plan_id, headcount, application_date, plan_time  )
-	values( #{name}, #{phone}, #{email}, #{plan_id}, #{headcount}, #{application_date}, #{plan_time})
+	insert into applicant ( name, phone, email, plan_id, headcount, application_date  )
+	values( #{name}, #{phone}, #{email}, #{plan_id}, #{headcount}, #{application_date} )
 </insert>
 
 <!-- 공지글 총건수 -->

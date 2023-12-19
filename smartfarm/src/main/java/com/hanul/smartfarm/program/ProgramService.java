@@ -33,7 +33,7 @@ public class ProgramService {
 		}
 		public PageVO program_list(PageVO page) {
 			//데이터행의 건수 조회
-			page.setTotalList( sql.selectOne("program.totalCount", page) );
+			page.setTotalList( sql.selectOne("program.totalCount1", page) );
 			//해당 페이지의 글목록 조회
 			page.setList( sql.selectList("program.list", page) );
 
