@@ -53,12 +53,6 @@
           	<img src="<c:url value='/img/hanul.logo.png'/>">
         </a>
         <div class="list-grouping p-2 p-lg-0" id="navbarCollapse">
-        	<c:if test="${empty loginInfo}">
-        		<a href="<c:url value='/admin/login'/>">로그인 임시</a>
-        	</c:if>
-        	<c:if test="${not empty loginInfo}">
-        		<a href="<c:url value='/admin/admin'/>">세팅화면 임시</a>
-        	</c:if>
 	        <a href="<c:url value='/'/>" class="${category eq 'ma' ? 'active' : ''} nav-item nav-link">HOME</a>
 	        <a href="<c:url value='/about'/>" class="${category eq 'ab' ? 'active' : ''} nav-item nav-link">ABOUT US</a>
 	        <a href="<c:url value='/program/list'/>" class="${category eq 'pr' ? 'active' : ''} nav-item nav-link">PROGRAM</a>
