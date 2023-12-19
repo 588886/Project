@@ -89,7 +89,7 @@ where id = #{id}
 
 <!-- 공지글 총건수 -->
 <select id="totalCount" resultType="integer">
-select count(*) from applicant 
+select count(*) from applicant
 </select>
 
 </mapper>

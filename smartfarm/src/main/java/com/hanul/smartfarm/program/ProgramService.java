@@ -65,14 +65,6 @@ public class ProgramService {
 		return sql.insert("program.application", vo);
 	}
 
-	//체험프로그램글목록 조회
-	public List<ProgramVO> program_list() {
-		return sql.selectList("program.list");
-	}
-	//체험프로그램글 상세 조회
-	public ProgramVO program_info(int id) {
-		return sql.selectOne("program.info", id);
-	}
 
 	//체험프로그램글목록 조회
 	public int application_headcount(ApplicantVO vo) {
