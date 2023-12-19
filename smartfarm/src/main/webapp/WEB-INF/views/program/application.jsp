@@ -46,7 +46,7 @@ table th span { color:#dc3545; margin-right: 5px }
 		</div>
 	</td>
 </tr>
-<tr><th>신청시각</th>
+<tr><th>신청타임</th>
 	<td><div class="row">
 			<div class="col-auto d-flex align-items-center">
                <div class="form-check form-check-inline">
@@ -61,7 +61,7 @@ table th span { color:#dc3545; margin-right: 5px }
 				  </c:if>
 			  </label>
 			</div>
-			  <div class="text-danger">※시각이 안보이는 경우에는 다른 날짜를 선택 해주세요.</div>
+			  <div class="text-danger">※타임이 안보이는 경우에는 다른 날짜를 선택 해주세요.</div>
             </div>
 		</div>
 	</td>
@@ -69,11 +69,11 @@ table th span { color:#dc3545; margin-right: 5px }
 <tr><th>신청인원</th>
 	<td><div class="row">
 			<div class="col-auto d-flex align-items-center">
-                
                 <select class="form-select w-px160" name="headcount" id="headcounts" >
 					<option value="0">인원 선택</option>
 				</select>
             </div>
+            <div class="text-danger">※인원이 초과되어 안 보이는 경우에는 다른 타임(날짜)를 선택 해주세요.</div>
 		</div>
 	</td>
 </tr>
