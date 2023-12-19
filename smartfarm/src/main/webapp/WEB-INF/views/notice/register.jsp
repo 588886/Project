@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="<c:url value='/css/styles.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
+<%--     <link href="<c:url value='/css/styles.css'/>?<%=new java.util.Date()%>" rel="stylesheet" /> --%>
     <link href="<c:url value='/css/common.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
 </head>
 <body>
