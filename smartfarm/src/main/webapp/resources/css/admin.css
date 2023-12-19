@@ -15,6 +15,18 @@
     background-color: #2a5baa;
 }
 
+.admin-contaner .menu a{
+	color: black;
+}
+
+.admin-contaner .menu a:hover{
+    color: gray;
+}
+
+.admin-contaner .menu a:active{
+    color: aliceblue;
+}
+
 .admin-contaner .menu .profile{
     height: 28%;
 }
@@ -48,6 +60,7 @@
 .profile, .slot{
 	position: relative;
 }
+
 
 .profile .content, .slot .content{ 
 	position: absolute;
@@ -114,8 +127,14 @@
 }
 .contaner{
 	margin: 0 auto;
+	width: 1150px;
+	padding-top: 100px;
+}
+.logincontaner{
+	margin: 0 auto;
 	width: 850px;
 	padding-top: 100px;
+	margin-top: 5vw;
 }
 
 .contaner table{
@@ -130,6 +149,7 @@
 
 .contaner table td,.contaner table th{
 	border: 1px solid #444444;
+	vertical-align: middle !important;
 }
 
 .contaner table th{
@@ -137,7 +157,7 @@
 }
 
 .contaner table td{
-	font-size: larger;
+	font-size: small;
 }
 
 .contaner table td p{
@@ -169,7 +189,7 @@
 
 .inputID input, .inputPW input{
     height: 50px;
-    width: 500px;
+    width: 540px;
     font-size: 40px;
     border-radius: 15px;
 }
@@ -224,6 +244,11 @@
     font-size: larger;
 }
 
+#registertable .inputid input{
+    width: 86%;
+    margin-left: 18px;
+}
+
 .inputid button {
 	width: 80px !important;
     height: 40px !important;
@@ -243,4 +268,58 @@
 	text-align: center;
     margin-bottom: 50px;
     color: red;
+}
+
+.list{
+	display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.list .addbtn{
+	margin-bottom: 10px;
+    width: 100px;
+    height: 40px;
+    font-size: large;
+}
+
+.state_ready{
+	background-color: cornsilk;
+}
+
+.state_check{
+	background-color: aliceblue;
+}
+
+.state_finish{
+	background-color: lightgreen;
+}
+
+.state_cancell{
+	background-color: darkgrey;
+}
+
+.state_option{
+	width: 100%;
+    height: 50px;
+    border: none;
+    text-align: center;
+    font-size: large;
+}
+
+.display_none{
+	display: none;
+}
+
+.input input, .input select{
+    width: 97%;
+    height: 37px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: lighter;
+}
+
+.b-yb{
+	background-color: aliceblue;
 }

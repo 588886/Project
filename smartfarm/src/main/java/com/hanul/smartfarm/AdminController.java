@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import javax.mail.Session;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,10 +19,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 import com.hanul.smartfarm.common.CommonService;
+import com.hanul.smartfarm.common.PageVO;
 import com.hanul.smartfarm.company.CompanyService;
 import com.hanul.smartfarm.company.CompanyVO;
 import com.hanul.smartfarm.member.MemberService;
 import com.hanul.smartfarm.member.MemberVO;
+import com.hanul.smartfarm.program.ApplicantVO;
+import com.hanul.smartfarm.program.ProgramService;
+import com.hanul.smartfarm.program.ProgramVO;
 
 
 
@@ -34,6 +39,8 @@ public class AdminController {
 	private CommonService common;
 	@Autowired 
 	private CompanyService company;
+	@Autowired 
+	private ProgramService program;
 	
 	//로그인화면 요청
 	@RequestMapping("/login")
@@ -79,10 +86,11 @@ public class AdminController {
 	
 	//세팅화면
 	@RequestMapping("/setting")
-	public String setting(HttpSession session) {
+	public String setting(HttpSession session,Model model) {
 		CompanyVO vo=company.company_info();
 		session.setAttribute("vo", vo);
-		return "/admin/setting";
+		model.addAttribute("programname", "주소변경");
+		return "default/admin/setting";
 	}
 	
 
@@ -91,7 +99,7 @@ public class AdminController {
 	@RequestMapping("/campanyModify")
 	public String campanyModify(CompanyVO vo) {
 		company.company_update(vo);
-		return "redirect:/";
+		return "redirect:default/admin/setting";
 
 	}
 	
@@ -127,14 +135,15 @@ public class AdminController {
 	@RequestMapping("/add")
 	public String add(Model model) {
 		model.addAttribute("adminList", service.admin_list());
-		return "/admin/list";
+		model.addAttribute("programname", "운영자 관리");
+		return "default/admin/list";
 	}
 	
 	//운영자 추가 창 이동
 	@RequestMapping("/plus")
-	public String plus(String userid) {
-		
-		return "/admin/plus";
+	public String plus(Model model) {
+		model.addAttribute("programname", "운영자 추가");
+		return "default/admin/plus";
 	}
 	
 	//운영자 추가
@@ -164,8 +173,8 @@ public class AdminController {
 	public String modify(String userid,Model model) {
 		MemberVO vo=service.member_info(userid);
 		model.addAttribute("vo", vo);
-		
-		return "/admin/modify";
+		model.addAttribute("programname", "운영자 정보 수정");
+		return "default/admin/modify";
 	}
 	
 	//운영자 정보 수정
@@ -182,18 +191,106 @@ public class AdminController {
 		return service.member_info( userid )==null ? true : false;
 	}
 	
-	//관리자 페이지 전체 틀
+	//관리자 페이지 전체 틀 입장 및 프로그램 관리
 	@RequestMapping("/admin")
-	public String admin() {
-		
-		return "/admin/admin";
+	public String admin(Model model) {
+		model.addAttribute("programlist", program.program_list());
+		model.addAttribute("programname", "프로그램 관리");
+		return "default/admin/program";
 	}
 	
-	//프로그램 관리
-	@RequestMapping("/program")
-	public String program() {
-		
-		return "/admin/program";
+	//프로그램 추가 창 이동
+	@RequestMapping("/addprogram")
+	public String addprogram(Model model) {
+		model.addAttribute("programname", "프로그램 추가");
+		return "default/admin/addprogram";
 	}
+	
+	
+	//프로그램 추가 작업
+	@RequestMapping("/programinsert")
+	public String programinsert(Model model,ProgramVO vo) {
+		program.addprogram(vo);
+		return "redirect:admin";
+	}
+	
+	
+	//프로그램 수정 창 이동
+	@RequestMapping("/programmodify")
+	public String programmodify(int id ,Model model) {
+		ProgramVO vo=program.program_info(id);
+		model.addAttribute("vo", vo);
+		model.addAttribute("programname", "프로그램 정보 수정");
+		return "default/admin/modifyprogram";
+	}
+	
+	//프로그램 수정 작업
+	@RequestMapping("/programModifyAction")
+	public String programModifyAction(ProgramVO vo) {
+		program.modify(vo);
+		
+		return "redirect:admin";
+	}
+
+	
+	//프로그램 삭제 요청
+	@RequestMapping("/deleteprogram")
+	public String deleteprogram(int id,HttpSession session) {
+		
+		MemberVO vo=(MemberVO)session.getAttribute("loginInfo");
+		if(vo!=null) {
+			if(vo.getRole().equals("ADMIN")) {
+				program.program_delete(id);
+			}
+		}
+		
+		return "redirect:admin";
+		
+	}
+	
+	//신청 인원 죄회 및 관리창
+	@RequestMapping("/list")
+	public String list(Model model,PageVO page) {
+		page.setPageList(7);
+		page.setBlockPage(10);
+		model.addAttribute("state_list", program.state_list());
+		model.addAttribute("page", program.personnel_list(page));
+//		model.addAttribute("personnellist", program.personnel_list());
+		model.addAttribute("programname", "신청인원 관리");
+		return "default/admin/personnel";
+	}
+	
+	//상태변경처리
+	@ResponseBody @RequestMapping("/state_check")
+	public int state_check(ApplicantVO vo,Model model) {
+		
+//		model.addAttribute("programname", "신청인원 관리");
+		return program.state_check(vo)==1 ? vo.getState_code():-1;
+//		return -1;
+	}
+	
+	//신청 인원 조회 및 관리창
+	@RequestMapping("/personnel_plus")
+	public String personnel_plus(Model model) {
+		model.addAttribute("program_list", program.program_list());
+		model.addAttribute("programname", "신청인원 추가");
+		return "default/admin/addpersonnel";
+	}
+	
+	//프로그램 조회
+	@ResponseBody @RequestMapping("/program_check")
+	public ProgramVO program_check(int id ) {
+		ProgramVO vo=program.program_info(id);
+		return vo;
+	}
+	
+	//체험인원 입력
+	@RequestMapping("/aplly_insert")
+	public String aplly_insert(ApplicantVO vo ) {
+		
+		program.apply_insert(vo);
+		return "redirect:list";
+	}
+	
 	
 }
