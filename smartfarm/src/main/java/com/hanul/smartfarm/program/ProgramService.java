@@ -43,6 +43,14 @@ public class ProgramService {
 		public ProgramVO program_info(int id) {
 			return sql.selectOne("program.info", id);
 		}
+		//상시프로그램글 조회
+		public ProgramVO program_always() {
+			return sql.selectOne("program.always");
+		}
+		//비상시프로그램글 조회
+		public  List<ProgramVO> program_plan_list(int option) {	
+			return option==0  ? sql.selectList( "program.plan_list" ):  sql.selectList( "program.plan_list_include", option );
+		}
 
 	
 	//프로그램 추가

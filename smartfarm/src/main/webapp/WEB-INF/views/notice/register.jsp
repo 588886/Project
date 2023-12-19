@@ -38,8 +38,24 @@
                     </div>
                 </td>
             </tr>
+            <tr>
+                <th>체험프로그램 여부</th>
+                <td id="plan_yn" style="height: 62px;">
+	                <div class="form-check form-check-inline mt-2 me-5">
+					  <label>
+						  <input class="form-check-input" type="radio" name="plan" value="0" checked>아니오
+					  </label>
+					</div>
+	                <div class="form-check form-check-inline mt-2">
+					  <label>
+						  <input class="form-check-input" type="radio" name="plan" value="1" >예
+					  </label>
+					</div>
+                </td>
+			</tr>                
         </table>
         <input type="hidden" name="writer" value="${loginInfo.userid}">
+        <input type="hidden" name="plan_id" value="0" >
     </form>
 
     <div class="btn-toolbar gap-2 justify-content-center my-3">
@@ -51,8 +67,32 @@
         var fileList = new FileList();
 
         $(function () {
-
+        	
+        	/* 체험프로그램 연결하기 */
+			$("[name=plan]").change(function(){
+				if( $(this).val() == 0 ){
+					$("#plan_yn").children("div.form-check:last").remove()
+				}else{
+					$.ajax({
+						url: "<c:url value='/program/plan_list'/>",
+						data: { option: 0 }
+					}).done(function( response ){
+						var tag = 
+							`<div class="form-check form-check-inline">
+								<select id="plan" class="form-select">`;
+						$(response).each(function(){
+							tag += `<option value="\${this.id}">\${this.plan_name} [ \${this.plan_start_date}~\${this.plan_end_date} ]</option>`;
+						})
+						tag += `	</select>					
+								</div>
+								`
+						$("#plan_yn").append(tag)
+					})
+				}
+			})	
+        		
         })
+        			
 
         $('#btn-cancel').on('click', function () {
             history.go(-1)
@@ -61,6 +101,9 @@
         $('#btn-save').click(function () {
             if (emptyCheck()) {
                 multipleFileUpload();
+                if( $("[name=plan]:checked").val()==1 ){
+                	$("[name=plan_id]").val(  $("select#plan option:selected").val()  )
+                }
                 $('form').submit()
             }
         })

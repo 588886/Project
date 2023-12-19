@@ -55,7 +55,7 @@
         <div class="list-grouping p-2 p-lg-0" id="navbarCollapse">
 	        <a href="<c:url value='/'/>" class="${category eq 'ma' ? 'active' : ''} nav-item nav-link">HOME</a>
 	        <a href="<c:url value='/about'/>" class="${category eq 'ab' ? 'active' : ''} nav-item nav-link">ABOUT US</a>
-	        <a href="<c:url value='/program/list'/>" class="${category eq 'pr' ? 'active' : ''} nav-item nav-link">PROGRAM</a>
+	        <a href="<c:url value='/program/always'/>" class="${category eq 'pr' ? 'active' : ''} nav-item nav-link">PROGRAM</a>
 	        <a href="<c:url value='/notice/list'/>" class="${category eq 'no' ? 'active' : ''} nav-item nav-link">BOARD</a>
 	    
         </div>

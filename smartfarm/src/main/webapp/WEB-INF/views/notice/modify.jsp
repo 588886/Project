@@ -45,12 +45,28 @@
 		</div>
 	</td>
 </tr>
+<tr>
+    <th>체험프로그램 여부</th>
+    <td id="plan_yn" style="height: 62px;">
+              <div class="form-check form-check-inline mt-2 me-5">
+		  <label>
+			  <input class="form-check-input" type="radio" name="plan" value="0" <c:if test="${empty vo.program}">checked</c:if> >아니오
+		  </label>
+		</div>
+              <div class="form-check form-check-inline mt-2">
+		  <label>
+			  <input class="form-check-input" type="radio" name="plan" value="1" <c:if test="${not empty vo.program}">checked</c:if> >예
+		  </label>
+		</div>
+    </td>
+</tr>  
 </table>
 <input type="hidden" name="remove" >
 <input type="hidden" name="id" value="${vo.id}">
 <input type="hidden" name="curPage" value="${page.curPage}">
 <input type="hidden" name="search" value="${page.search}">
 <input type="hidden" name="keyword" value="${page.keyword}">
+<input type="hidden" name="plan_id" value="0" >
 </form>
 
 <div class="btn-toolbar gap-2 justify-content-center my-3">
@@ -76,9 +92,52 @@ $('#btn-save').click(function(){
 		$('[name=remove]').val( fileList.info.removeId )
 		//console.log( 'remove> ', $('[name=remove]').val()  )
 		multipleFileUpload();
+		
+        if( $("[name=plan]:checked").val()==1 ){
+        	$("[name=plan_id]").val(  $("select#plan option:selected").val()  )
+        }
+		
 		$('form').submit()
 	}
 })
+
+$(function(){
+	
+	/* 체험프로그램 연결하기 */
+	if( $("[name=plan]:checked").val()==1 ){
+    	load_plan()
+    }
+	
+	$("[name=plan]").change(function(){
+		if( $(this).val() == 0 ){
+			$("#plan_yn").children("div.form-check:last").remove()
+		}else{
+			 load_plan()
+		}
+	})	
+
+
+	
+})
+
+function load_plan(){
+	$.ajax({
+		url: "<c:url value='/program/plan_list'/>",
+		data : { option: "${empty vo.program ? 0 : vo.program.id}" }
+	}).done(function( response ){
+		var tag = 
+			`<div class="form-check form-check-inline">
+				<select id="plan" class="form-select">`;
+		$(response).each(function(){
+			tag += `<option value="\${this.id}">\${this.plan_name} [ \${this.plan_start_date}~\${this.plan_end_date} ]</option>`;
+		})
+		tag += `	</select>					
+				</div>
+				`
+		$("#plan_yn").append(tag)
+		$("select#plan").val(${vo.program.id}).prop("selected",true);
+	})
+}
 
 </script>
 

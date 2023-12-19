@@ -42,6 +42,18 @@ public class ProgramController {
 			
 		}
 	
+		
+		//상시 체험신청글
+		@RequestMapping("/always")
+		public String always_program( Model model) {
+			model.addAttribute("always", service.program_always());
+			return "program/always";
+		}
+		//비상시 체험신청목록
+		@ResponseBody @RequestMapping("/plan_list")
+		public Object program_plan_list( Model model, int option) {
+			return service.program_plan_list(option);
+		}
 	
 		//체험신청글 새글쓰기 화면 요청
 		@RequestMapping("/apply")
