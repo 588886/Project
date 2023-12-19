@@ -26,7 +26,7 @@
 	
 	<button class='addbtn'onclick="location='/smartfarm/admin/personnel_plus'">추가하기</button>
 	
-	<c:set var="params" value="curPage=${page.curPage}&search=${page.search}&keyword=${page.keyword}"/>
+	<c:set var="params" value="curPage=${page.curPage}"/>
 	
 	<table>
 		<colgroup><col width="110px"><col width="170px"><col width="220px"><col width="80px"><col width="270px">
