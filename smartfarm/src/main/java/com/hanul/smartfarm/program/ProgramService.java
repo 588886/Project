@@ -29,7 +29,7 @@ public class ProgramService {
 	
 		//체험프로그램글목록 조회
 		public List<ProgramVO> program_list() {
-			return sql.selectList("program.list");
+			return sql.selectList("program.list1");
 		}
 		public PageVO program_list(PageVO page) {
 			//데이터행의 건수 조회
@@ -80,7 +80,7 @@ public class ProgramService {
 	//체험인원 페이지 조회
 	public PageVO personnel_list(PageVO page) {
 		page.setTotalList( sql.selectOne("program.totalCount", page) );
-		page.setList( sql.selectList("program.personnel_list", page) );
+		page.setList( sql.selectList("program.personnel_list2", page) );
 		return page;
 	}
 	
