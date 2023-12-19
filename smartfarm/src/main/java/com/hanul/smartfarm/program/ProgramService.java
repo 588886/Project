@@ -80,7 +80,7 @@ public class ProgramService {
 	//체험인원 페이지 조회
 	public PageVO personnel_list(PageVO page) {
 		page.setTotalList( sql.selectOne("program.totalCount", page) );
-		page.setList( sql.selectList("program.personnel_list2", page) );
+		page.setList( sql.selectList("program.personnel_list", page) );
 		return page;
 	}
 	
