@@ -36,7 +36,7 @@
             <tbody>
                 <c:forEach var="vo" items="${page.list}">
                     <tr>
-                        <td>${vo.plan_name}</td>
+                        <td><a <c:if test="${vo.notice_id > 0}"> class="text-link" href="<c:url value='/notice/info?id=${vo.notice_id}'/>"</c:if>>${vo.plan_name}</a></td>
                         <td>${vo.plan_start_date}</td>
                         <td>${vo.plan_end_date}</td>
                         <td><a class="btn btn-primary" href="apply?id=${vo.id}">체험신청</a></td>
