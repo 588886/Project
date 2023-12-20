@@ -79,7 +79,7 @@
 				$('[name=plan_end_date]').focus()
 			}
 			if( $('[name=plan_time_am]').val()=='' ){
-				alert('종료일을 입력하세요!');
+				alert('체험시간을 입력하세요!');
 				$('[name=plan_time_am]').focus()
 			}
 		})
