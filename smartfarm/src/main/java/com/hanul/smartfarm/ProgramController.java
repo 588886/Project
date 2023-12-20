@@ -45,8 +45,9 @@ public class ProgramController {
 		
 		//상시 체험신청글
 		@RequestMapping("/always")
-		public String always_program( Model model) {
+		public String always_program( Model model,HttpSession session) {
 			model.addAttribute("always", service.program_always());
+			session.setAttribute("category", "pr");
 			return "program/always";
 		}
 		//비상시 체험신청목록
