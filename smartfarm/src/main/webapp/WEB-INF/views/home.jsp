@@ -3,7 +3,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>한울스마트팜</title>
+	<title>BARAGI</title>
 	<link href="<c:url value='/css/home.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
 </head>
 <body>
