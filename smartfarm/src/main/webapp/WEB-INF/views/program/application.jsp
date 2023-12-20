@@ -41,7 +41,7 @@ table th span { color:#dc3545; margin-right: 5px }
 <tr><th>신청일자</th>
 	<td><div class="row">
 			<div class="col-auto d-flex align-items-center">
-                 <input type="date" name="application_date" class="date form-control" value="${info.id} " min="${info.plan_start_date }" max="${info.plan_end_date }">
+                 <input type="date" name="application_date" class="form-control" value="${info.id}" min="${info.plan_start_date }" max="${info.plan_end_date }">
             </div>
 		</div>
 	</td>
@@ -117,7 +117,10 @@ table th span { color:#dc3545; margin-right: 5px }
 
     	// 최소 날짜를 오늘부터로 설정
     	 $('input[name="application_date"]').attr('min', todayString);
-
+    	
+    	// 최대 날짜를 프로그램종료일로 설정
+    	 $('input[name="application_date"]').attr('max', '${info.plan_end_date}');
+    	
     	// 날짜 변경 이벤트 처리
     	$('input[name="application_date"]').on('change', function () {
     	    var selectedDate = $(this).val();

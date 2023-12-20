@@ -98,8 +98,8 @@ where id = #{id}
 
 <!-- 신규 체험신청 저장 -->
 <insert id="application">
-	insert into applicant ( name, phone, email, plan_id, headcount, application_date  )
-	values( #{name}, #{phone}, #{email}, #{plan_id}, #{headcount}, #{application_date} )
+	insert into applicant ( name, phone, email, plan_id, headcount, application_date, plan_time   )
+	values( #{name}, #{phone}, #{email}, #{plan_id}, #{headcount}, #{application_date}, #{plan_time})
 </insert>
 
 <!-- 공지글 총건수 -->
