@@ -47,6 +47,11 @@ public class NoticeService {
 	public NoticeVO notice_info(int id) {
 		NoticeVO vo = sql.selectOne("notice.info", id);
 		vo.setFiles( sql.selectList("notice.files", id) );
+		/*체험프로그램연결*/
+		if( vo.getPlan_id() != 0 ) {
+			id = vo.getPlan_id();
+			vo.setProgram( sql.selectOne("program.info",  id));
+		}
 		return vo;
 	}
 

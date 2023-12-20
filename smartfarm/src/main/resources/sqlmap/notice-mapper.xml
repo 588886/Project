@@ -35,7 +35,7 @@ delete from notice where id = #{id}
 <!-- 선택한 공지글 변경저장 -->
 <update id="update">
 update notice 
-set title = #{title}, content = #{content}
+set title = #{title}, content = #{content}, plan_id=<if test="plan_id == 0">null</if><if test="plan_id != 0">#{plan_id}</if>
 where id = #{id}
 </update>
 
@@ -98,14 +98,14 @@ order by no desc
 </foreach>
 </insert>
 
-<!-- 공지글신규저장 -->
+<!-- 공지글신규저장: 체험프로그램연결 추가 -->
 <insert id="register">
 <selectKey order="AFTER" resultType="integer" keyProperty="id">
 select seq_notice.currval from dual 
 </selectKey>
 
-insert into notice ( title, content, writer )
-values ( #{title}, #{content}, #{writer} )
+insert into notice ( title, content, writer, plan_id )
+values ( #{title}, #{content}, #{writer}, <if test="plan_id == 0">null</if><if test="plan_id != 0">#{plan_id}</if> )
 </insert>
 
 </mapper>

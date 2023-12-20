@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>공지사항</title>
-    <link href="<c:url value='/css/styles.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
+<%--     <link href="<c:url value='/css/styles.css'/>?<%=new java.util.Date()%>" rel="stylesheet" /> --%>
     <link href="<c:url value='/css/common.css'/>?<%=new java.util.Date()%>" rel="stylesheet" />
 </head>
 <body id="back">
@@ -31,6 +31,15 @@
                 </c:if>
             </c:forEach>
         </div>
+        <c:if test="${not empty vo.program }">
+        <div class="card-footer my-3" style="color:#000;">
+        	<p class="card-text">체험 프로그램명: ${vo.program.plan_name}</p>
+        	<p class="card-text">체험기간: ${vo.program.plan_start_date} ~ ${vo.program.plan_end_date}</p>
+        	<div class="text-center">
+				<a class="btn btn-primary" href="<c:url value='/program/apply?id=${vo.program.id}'/>" >체험 신청하기</a>
+			</div>
+        </div>
+        </c:if>
     </div>
 </div>
 

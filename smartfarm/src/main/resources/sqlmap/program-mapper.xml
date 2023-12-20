@@ -4,15 +4,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="program">
 
-<!-- 체험프로그램글 총건수 -->
+<!-- 체험프로그램글 총건수: 상시 제외하기  -->
 <select id="totalCount1" resultType="integer">
-select count(*) from program_plan
+select count(*) from program_plan where plan_always=0
 </select>
 
+<!-- 체험프로그램목록에서 상시 제외하기 -->
 <select id="list" resultType="program">
 	select *
 from (select row_number() over(order by plan_start_date desc) no, p.*
-      from program_plan p) n
+      from program_plan p where plan_always=0) n
 where no between #{beginList} and #{endList} 
 order by no desc
 </select>
@@ -68,6 +69,26 @@ where id = #{id}
 
 <select id="info" resultType="program">
 	select * from program_plan where id = #{id}
+</select>
+
+<!-- 상시프로그램조회 -->
+<select id="always" resultType="program">
+	select * from program_plan where plan_always = 1
+</select>
+
+
+<!-- 공지글에 연결되지 않은 비상시프로그램 목록조회 -->
+<select id="plan_list" resultType="program">
+	select * from program_plan 
+	where plan_always = 0 and  id  not in (select plan_id from notice where plan_id is not null)
+	order by plan_start_date
+</select>
+
+<!-- 선택된 체험+ 공지글에 연결되지 않은 프로그램 목록조회 -->
+<select id="plan_list_include" resultType="program">
+	select * from program_plan 
+	where plan_always = 0 and ( id  not in (select plan_id from notice where plan_id is not null) or id = #{option} ) 
+	order by plan_start_date
 </select>
 
 
