@@ -11,9 +11,9 @@ select count(*) from program_plan where plan_always=0
 
 <!-- 체험프로그램목록에서 상시 제외하기 -->
 <select id="list" resultType="program">
-	select *
+select p.*, n.id notice_id
 from (select row_number() over(order by plan_start_date desc) no, p.*
-      from program_plan p where plan_always=0) n
+      from program_plan p where plan_always=0) p left outer join notice n on p.id = n.plan_id
 where no between #{beginList} and #{endList} 
 order by no desc
 </select>
