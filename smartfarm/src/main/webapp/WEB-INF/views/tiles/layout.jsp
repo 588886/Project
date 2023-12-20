@@ -21,7 +21,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>한울스마트팜 ${title}</title>
+    <title>BARAGI ${title}</title>
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="<c:url value='/img/hanul.ico'/>" />
     <!-- Css reset-->
