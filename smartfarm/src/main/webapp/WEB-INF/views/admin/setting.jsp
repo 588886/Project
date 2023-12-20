@@ -11,8 +11,8 @@
 </head>
 <body>
 	<div class="contaner list">
-		<button class='addbtn' onclick="location='/smartfarm/admin/campanyModify'">수정하기</button>
 		<form method="post" action="campanyModify">
+		<div style='text-align:right'><button class='addbtn'>수정하기</button></div>
 			<table id="settingtable">
 				<colgroup><col width="200px"><col width="950px">
 				</colgroup>
